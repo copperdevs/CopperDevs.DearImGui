@@ -17,6 +17,14 @@
         <FileVersion>1.0.0</FileVersion>
     </PropertyGroup>
 
+    <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+      <DocumentationFile>bin\Debug\CopperDevs.DearImGui.xml</DocumentationFile>
+    </PropertyGroup>
+
+    <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+      <DocumentationFile>bin\Release\CopperDevs.DearImGui.xml</DocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
         <PackageReference Include="CopperDevs.Core" Version="1.0.0"/>
         <PackageReference Include="ImGui.NET" Version="1.91.0.1"/>
