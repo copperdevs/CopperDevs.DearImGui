@@ -8,5 +8,12 @@
 ## To Do
 - [ ] Documentation
 - [ ] Better examples
-  - Currently, there is a "simple" raylib example [here](CopperDevs.DearImGui.Example.Raylib) but it could be better
-- [ ] Add bindings feature
+  - [X] Raylib
+  - [ ] OpenGl (Silk.NET)
+  - [ ] Vulkan (Silk.NET)
+- [ ] Allow different bindings
+  - [ ] ImGui.NET
+- [ ] Example renderer package
+  - [ ] Raylib
+  - [ ] OpenGl (Silk.NET)
+  - [ ] Vulkan (Silk.NET)
