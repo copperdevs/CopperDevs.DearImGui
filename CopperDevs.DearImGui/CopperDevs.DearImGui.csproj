@@ -28,7 +28,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CopperDevs.Core" Version="1.0.0"/>
+        <PackageReference Include="CopperDevs.Core" Version="1.0.1" />
         <PackageReference Include="ImGui.NET" Version="1.91.0.1"/>
     </ItemGroup>
 
