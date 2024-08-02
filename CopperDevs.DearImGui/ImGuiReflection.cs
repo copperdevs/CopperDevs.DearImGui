@@ -30,14 +30,14 @@ internal static class ImGuiReflection
 
         var valueCached = FieldInfoTypeDictionary.TryGetValue(component.GetType(), out var value);
 
-        if (!valueCached) 
+        if (!valueCached)
             FieldInfoTypeDictionary.TryAdd(component.GetType(), component.GetType().GetFields(bindingFlags).ToList());
-        
+
         var fields = valueCached ? value : FieldInfoTypeDictionary[component.GetType()];
 
         if (fields is null)
             return;
-        
+
         foreach (var info in fields)
         {
             if (renderingType == RenderingType.Exposed && !info.IsPublic)
@@ -114,10 +114,6 @@ internal static class ImGuiReflection
     {
         var value = (IList)fieldInfo.GetValue(component)!;
 
-        // foreach (var type in value.GetType().GenericTypeArguments)
-        // {
-        // CopperImGui.Text(type.FullName);
-        // }
 
         CopperImGui.CollapsingHeader($"{fieldInfo.Name.ToTitleCase()}##{fieldInfo.Name}{id}", () =>
         {
@@ -127,7 +123,14 @@ internal static class ImGuiReflection
                     CopperImGui.Button($"+##{fieldInfo.Name}{id}",
                         () => { value.Add(value.Count > 0 ? value[^1] : Activator.CreateInstance(value.GetType().GenericTypeArguments[0])); });
                 },
-                () => { CopperImGui.Button($"-##{fieldInfo.Name}{id}", () => value.RemoveAt(value.Count - 1)); });
+                () =>
+                {
+                    CopperImGui.Button($"-##{fieldInfo.Name}{id}", () =>
+                    {
+                        if (value.Count - 1 > -1)
+                            value.RemoveAt(value.Count - 1);
+                    });
+                });
 
             CopperImGui.Separator();
 

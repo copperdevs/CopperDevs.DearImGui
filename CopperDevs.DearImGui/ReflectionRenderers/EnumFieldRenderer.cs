@@ -5,6 +5,7 @@ using CopperDevs.Core.Data;
 
 namespace CopperDevs.DearImGui.ReflectionRenderers;
 
+// enums are broken and i dont wanna fix them cause they suck
 internal class EnumFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
@@ -21,29 +22,25 @@ internal class EnumFieldRenderer : FieldRenderer
         RenderEnum(value.GetType(), ref value, id, value.GetType().Name.ToTitleCase(), valueChanged);
     }
 
-    private void RenderEnum(Type type, ref object component, int id, string title, Action valueChanged = null!)
+    private static void RenderEnum(Type type, ref object component, int id, string title, Action valueChanged = null!)
     {
-        CopperImGui.Text("enums are broken and i dont wanna fix them cause they suck");
-        // return;
-        //
-        // var enumValues = Enum.GetValues(type);
-        // var value = enumValues.GetValue((int)Convert.ChangeType(component, Enum.GetUnderlyingType(type)))!;
-        //
-        // var enumRange = new Vector2Int(0, enumValues.Length);
-        //
-        // var currentValueIndex = 0;
-        //
-        // for (var i = 0; i < enumValues.Length; i++)
-        // {
-        //     var enumValue = enumValues.GetValue(i);
-        //
-        //     if (enumValue?.GetHashCode() == value.GetHashCode())
-        //         currentValueIndex = i;
-        // }
-        //
-        // CopperImGui.HorizontalGroup(() => { CopperImGui.Text(title); },
-        //     () => { CopperImGui.Button($"-###{Enum.GetUnderlyingType(type)}{type}{id}", () => { Log.Debug($"{currentValueIndex - 1} {MathUtil.Clamp(currentValueIndex - 1, enumRange)}"); }); },
-        //     () => { CopperImGui.Button($"{value}###{Enum.GetUnderlyingType(type)}{type}{id}"); },
-        //     () => { CopperImGui.Button($"+###{Enum.GetUnderlyingType(type)}{type}{id}", () => { Log.Debug($"{currentValueIndex + 1} {MathUtil.Clamp(currentValueIndex + 1, enumRange)}"); }); });
+        var enumValues = Enum.GetValues(type).Cast<object>().ToList();
+        var currentValue = enumValues[(int)Convert.ChangeType(component, Enum.GetUnderlyingType(type))]!;
+
+        var tempComponent = component;
+
+        CopperImGui.HorizontalGroup(
+            () => { CopperImGui.Text(title); },
+            () =>
+            {
+                CopperImGui.Button($"{currentValue}###{title}{id}", () =>
+                {
+                    var targetIndex = (enumValues.IndexOf(currentValue) + 1) % enumValues.Count;
+                    tempComponent = enumValues[targetIndex];
+                    valueChanged?.Invoke();
+                });
+            });
+
+        component = tempComponent;
     }
 }
