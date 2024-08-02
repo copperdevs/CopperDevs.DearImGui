@@ -13,6 +13,10 @@ public class RlImGuiRenderer : IImGuiRenderer
     {
         rlImGui.SetupUserFonts += SetupUserFonts;
         rlImGui.Setup(true, true);
+        
+        CopperImGui.RegisterFieldRenderer<Color, ColorFieldRenderer>();
+        CopperImGui.RegisterFieldRenderer<Texture2D, Texture2DFieldRenderer>();
+        CopperImGui.RegisterFieldRenderer<RenderTexture2D, RenderTexture2DFieldRenderer>();
     }
 
     public void Begin()

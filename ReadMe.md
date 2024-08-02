@@ -11,7 +11,7 @@
   - [X] Raylib
   - [ ] OpenGl (Silk.NET)
   - [ ] Vulkan (Silk.NET)
-- [ ] Example renderer package
-  - [ ] Raylib
+- [ ] Pre-made renderer packages
+  - [X] Raylib
   - [ ] OpenGl (Silk.NET)
   - [ ] Vulkan (Silk.NET)
