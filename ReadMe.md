@@ -11,8 +11,6 @@
   - [X] Raylib
   - [ ] OpenGl (Silk.NET)
   - [ ] Vulkan (Silk.NET)
-- [ ] Allow different bindings
-  - [ ] ImGui.NET
 - [ ] Example renderer package
   - [ ] Raylib
   - [ ] OpenGl (Silk.NET)
