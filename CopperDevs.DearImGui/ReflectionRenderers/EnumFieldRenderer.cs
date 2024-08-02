@@ -24,26 +24,26 @@ internal class EnumFieldRenderer : FieldRenderer
     private void RenderEnum(Type type, ref object component, int id, string title, Action valueChanged = null!)
     {
         CopperImGui.Text("enums are broken and i dont wanna fix them cause they suck");
-        return;
-        
-        var enumValues = Enum.GetValues(type);
-        var value = enumValues.GetValue((int)Convert.ChangeType(component, Enum.GetUnderlyingType(type)))!;
-
-        var enumRange = new Vector2Int(0, enumValues.Length);
-
-        var currentValueIndex = 0;
-
-        for (var i = 0; i < enumValues.Length; i++)
-        {
-            var enumValue = enumValues.GetValue(i);
-
-            if (enumValue?.GetHashCode() == value.GetHashCode())
-                currentValueIndex = i;
-        }
-
-        CopperImGui.HorizontalGroup(() => { CopperImGui.Text(title); },
-            () => { CopperImGui.Button($"-###{Enum.GetUnderlyingType(type)}{type}{id}", () => { Log.Debug($"{currentValueIndex - 1} {MathUtil.Clamp(currentValueIndex - 1, enumRange)}"); }); },
-            () => { CopperImGui.Button($"{value}###{Enum.GetUnderlyingType(type)}{type}{id}"); },
-            () => { CopperImGui.Button($"+###{Enum.GetUnderlyingType(type)}{type}{id}", () => { Log.Debug($"{currentValueIndex + 1} {MathUtil.Clamp(currentValueIndex + 1, enumRange)}"); }); });
+        // return;
+        //
+        // var enumValues = Enum.GetValues(type);
+        // var value = enumValues.GetValue((int)Convert.ChangeType(component, Enum.GetUnderlyingType(type)))!;
+        //
+        // var enumRange = new Vector2Int(0, enumValues.Length);
+        //
+        // var currentValueIndex = 0;
+        //
+        // for (var i = 0; i < enumValues.Length; i++)
+        // {
+        //     var enumValue = enumValues.GetValue(i);
+        //
+        //     if (enumValue?.GetHashCode() == value.GetHashCode())
+        //         currentValueIndex = i;
+        // }
+        //
+        // CopperImGui.HorizontalGroup(() => { CopperImGui.Text(title); },
+        //     () => { CopperImGui.Button($"-###{Enum.GetUnderlyingType(type)}{type}{id}", () => { Log.Debug($"{currentValueIndex - 1} {MathUtil.Clamp(currentValueIndex - 1, enumRange)}"); }); },
+        //     () => { CopperImGui.Button($"{value}###{Enum.GetUnderlyingType(type)}{type}{id}"); },
+        //     () => { CopperImGui.Button($"+###{Enum.GetUnderlyingType(type)}{type}{id}", () => { Log.Debug($"{currentValueIndex + 1} {MathUtil.Clamp(currentValueIndex + 1, enumRange)}"); }); });
     }
 }

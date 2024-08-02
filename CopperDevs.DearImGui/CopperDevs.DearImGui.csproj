@@ -15,14 +15,15 @@
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyVersion>1.0.0</AssemblyVersion>
         <FileVersion>1.0.0</FileVersion>
+        <PackageLicenseFile>License.txt</PackageLicenseFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-      <DocumentationFile>bin\Debug\CopperDevs.DearImGui.xml</DocumentationFile>
+        <DocumentationFile>bin\Debug\CopperDevs.DearImGui.xml</DocumentationFile>
     </PropertyGroup>
 
     <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-      <DocumentationFile>bin\Release\CopperDevs.DearImGui.xml</DocumentationFile>
+        <DocumentationFile>bin\Release\CopperDevs.DearImGui.xml</DocumentationFile>
     </PropertyGroup>
 
     <ItemGroup>
