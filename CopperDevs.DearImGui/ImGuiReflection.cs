@@ -6,6 +6,7 @@ using CopperDevs.DearImGui.Utility;
 namespace CopperDevs.DearImGui;
 
 [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract")]
+[SuppressMessage("ReSharper", "AccessToModifiedClosure")]
 internal static class ImGuiReflection
 {
     internal static readonly Dictionary<Type, FieldRenderer> ImGuiRenderers = new();
@@ -34,6 +35,9 @@ internal static class ImGuiReflection
         
         var fields = valueCached ? value : FieldInfoTypeDictionary[component.GetType()];
 
+        if (fields is null)
+            return;
+        
         foreach (var info in fields)
         {
             if (renderingType == RenderingType.Exposed && !info.IsPublic)

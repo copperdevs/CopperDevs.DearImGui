@@ -1,12 +1,23 @@
 ﻿namespace CopperDevs.DearImGui.Attributes;
 
+/// <summary>
+/// Attribute for deciding if a class should a window
+/// </summary>
+/// <param name="windowName">Display name of the window</param>
 [AttributeUsage(AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
 public class WindowAttribute(string windowName) : Attribute
 {
+    /// <summary>
+    /// Name of the window
+    /// </summary>
     public readonly string WindowName = windowName;
+    
+    /// <summary>
+    /// Currently state of window 
+    /// </summary>
     public bool WindowOpen = false;
 
-    internal object targetClass = null!;
+    internal object TargetClass = null!;
 
     private bool startMethodFound;
     private MethodInfo? startMethod;
@@ -19,7 +30,7 @@ public class WindowAttribute(string windowName) : Attribute
 
     internal void GetMethods(object target)
     {
-        targetClass = target;
+        TargetClass = target;
 
         startMethod = target.GetType().GetMethod("WindowStart");
         startMethodFound = startMethod is not null;
@@ -34,18 +45,18 @@ public class WindowAttribute(string windowName) : Attribute
     internal void Start()
     {
         if (startMethodFound)
-            startMethod?.Invoke(targetClass, []);
+            startMethod?.Invoke(TargetClass, []);
     }
 
     internal void Update()
     {
         if (updateMethodFound)
-            updateMethod?.Invoke(targetClass, []);
+            updateMethod?.Invoke(TargetClass, []);
     }
 
     internal void Stop()
     {
         if (stopMethodFound)
-            stopMethod?.Invoke(targetClass, []);
+            stopMethod?.Invoke(TargetClass, []);
     }
 }

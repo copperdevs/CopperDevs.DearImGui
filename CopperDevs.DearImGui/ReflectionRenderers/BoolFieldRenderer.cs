@@ -1,6 +1,6 @@
 ﻿namespace CopperDevs.DearImGui.ReflectionRenderers;
 
-public class BoolFieldRenderer : FieldRenderer
+internal class BoolFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
     {

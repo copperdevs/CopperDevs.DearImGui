@@ -4,6 +4,12 @@ namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
+    /// <summary>
+    /// Setup the entire system
+    /// </summary>
+    /// <param name="isDockingEnabled">Should docking be enabled</param>
+    /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
+    /// <typeparam name="T">Type of your <see cref="CopperDevs.DearImGui.IImGuiRenderer"/></typeparam>
     public static void Setup<T>(bool isDockingEnabled = true, bool shouldShowTabBar = false) where T : IImGuiRenderer, new()
     {
         currentRenderer = new T();
@@ -22,6 +28,9 @@ public static partial class CopperImGui
         dockingEnabled = isDockingEnabled;
     }
 
+    /// <summary>
+    /// Render all registered items
+    /// </summary>
     public static void Render()
     {
         if (!canRender)
@@ -43,6 +52,9 @@ public static partial class CopperImGui
         currentRenderer.End();
     }
 
+    /// <summary>
+    /// Shutdown the entire system
+    /// </summary>
     public static void Shutdown()
     {
         if (!canRender)

@@ -2,7 +2,7 @@
 
 namespace CopperDevs.DearImGui.ReflectionRenderers;
 
-public class FloatFieldRenderer : FieldRenderer
+internal class FloatFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
     {

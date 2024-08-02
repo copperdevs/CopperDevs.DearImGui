@@ -58,11 +58,16 @@ public static partial class CopperImGui
         }
     }
 
+    /// <summary>
+    /// Get the loaded instance of a specific window
+    /// </summary>
+    /// <typeparam name="T">Type of the window you want to get</typeparam>
+    /// <returns>The instance of the window</returns>
     public static T? GetWindow<T>()
     {
-        foreach (var window in windows.Where(window => window.targetClass.GetType() == typeof(T)))
+        foreach (var window in windows.Where(window => window.TargetClass.GetType() == typeof(T)))
         {
-            return (T)window.targetClass;
+            return (T)window.TargetClass;
         }
 
         return default;

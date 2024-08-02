@@ -1,6 +1,6 @@
 ﻿namespace CopperDevs.DearImGui.ReflectionRenderers;
 
-public class StringFieldRenderer : FieldRenderer
+internal class StringFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
     {

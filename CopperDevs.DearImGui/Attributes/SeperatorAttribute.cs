@@ -1,15 +1,25 @@
 ﻿namespace CopperDevs.DearImGui.Attributes;
 
+/// <summary>
+/// Add a seperator line above the field before rendering it
+/// </summary>
 [AttributeUsage(AttributeTargets.Field, Inherited = false, AllowMultiple = false)]
 public sealed class SeperatorAttribute : Attribute
 {
-    private string? seperatorText;
+    private readonly string? seperatorText;
 
+    /// <summary>
+    /// Create a normal seperator with no text
+    /// </summary>
     public SeperatorAttribute()
     {
         seperatorText = null;
     }
 
+    /// <summary>
+    /// Created a seperator with specific text
+    /// </summary>
+    /// <param name="text">Text to display</param>
     public SeperatorAttribute(string text)
     {
         seperatorText = text;

@@ -2,7 +2,7 @@
 
 namespace CopperDevs.DearImGui.ReflectionRenderers;
 
-public class Vector3FieldRenderer : FieldRenderer
+internal class Vector3FieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
     {

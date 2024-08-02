@@ -4,7 +4,7 @@ using ImGuiNET;
 namespace CopperDevs.DearImGui.Example.Raylib;
 
 [Window("Example Window", WindowOpen = true)]
-public class ExampleWindow : BaseWindow
+public class ExampleWindow : BaseWindow // inheriting from BaseWindow isn't required (only applying the Window attribute is), but you can inherit from it anyways so you can hard type the names
 {
     private string inputString = "quick brown fox";
     private float inputFloat = 0.5f;

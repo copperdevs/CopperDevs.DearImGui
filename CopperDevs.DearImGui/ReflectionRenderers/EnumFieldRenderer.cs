@@ -5,7 +5,7 @@ using CopperDevs.Core.Data;
 
 namespace CopperDevs.DearImGui.ReflectionRenderers;
 
-public class EnumFieldRenderer : FieldRenderer
+internal class EnumFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
     {

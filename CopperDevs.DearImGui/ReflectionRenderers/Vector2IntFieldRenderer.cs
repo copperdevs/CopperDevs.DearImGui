@@ -3,7 +3,7 @@ using CopperDevs.DearImGui.Attributes;
 
 namespace CopperDevs.DearImGui.ReflectionRenderers;
 
-public class Vector2IntFieldRenderer : FieldRenderer
+internal class Vector2IntFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
     {
