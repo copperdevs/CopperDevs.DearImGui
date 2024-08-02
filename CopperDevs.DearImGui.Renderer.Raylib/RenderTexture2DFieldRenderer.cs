@@ -1,7 +1,7 @@
 ﻿using System.Reflection;
 using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.ReflectionRenderers;
-using Raylib_cs;
+using Raylib_CSharp.Textures;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib;
 

@@ -1,7 +1,9 @@
 ﻿using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.Renderer.Raylib;
-using Raylib_cs;
-using static Raylib_cs.Raylib;
+using Raylib_CSharp.Colors;
+using Raylib_CSharp.Rendering;
+using Raylib_CSharp.Windowing;
+using static Raylib_CSharp.Raylib;
 
 namespace CopperDevs.DearImGui.Example.Raylib;
 
@@ -13,11 +15,11 @@ public static class Program
 
     public static void Main()
     {
-        var configFlags = ConfigFlags.ResizableWindow | ConfigFlags.Msaa4xHint | ConfigFlags.VSyncHint | ConfigFlags.AlwaysRunWindow;
+        var configFlags = ConfigFlags.ResizableWindow | ConfigFlags.Msaa4XHint | ConfigFlags.VSyncHint | ConfigFlags.AlwaysRunWindow;
         if (WindowsApi.IsWindows11 && TransparentWindow) configFlags |= ConfigFlags.TransparentWindow;
 
         SetConfigFlags(configFlags);
-        InitWindow(800, 480, "CopperDevs.DearImGui Example");
+        Window.Init(800, 480, "CopperDevs.DearImGui Example");
         SetWindowStyling();
 
         CopperImGui.Setup<RlImGuiRenderer>(); // setup the actual imgui layering, as well as enabling all the built in dearimgui windows
@@ -27,36 +29,33 @@ public static class Program
         CopperImGui.ShowDearImGuiDebugLogWindow = true;
         CopperImGui.ShowDearImGuiIdStackToolWindow = true;
 
-        while (!WindowShouldClose())
+        while (!Window.ShouldClose())
             RenderGame();
 
         CopperImGui.Shutdown();
-        CloseWindow();
+        Window.Close();
     }
 
     private static void RenderGame() // this is in its own method so that WindowsApi.OnWindowResize can call it so the window gets redrawn on resize
     {
-        BeginDrawing();
-        ClearBackground(WindowsApi.IsWindows11 && TransparentWindow ? TransparentColor : Color.RayWhite);
+        Graphics.BeginDrawing();
+        Graphics.ClearBackground(WindowsApi.IsWindows11 && TransparentWindow ? TransparentColor : Color.RayWhite);
 
         CopperImGui.Render();
 
-        EndDrawing();
+        Graphics.EndDrawing();
     }
 
     private static void SetWindowStyling() // windows 11 window styling stuff. its not required at all but it looks really nice
     {
-        unsafe
-        {
-            var handle = new IntPtr(GetWindowHandle());
+        var handle = Window.GetHandle();
 
-            WindowsApi.SetDwmImmersiveDarkMode(handle, true);
-            WindowsApi.SetDwmSystemBackdropType(handle, WindowsApi.SystemBackdropType.Acrylic);
-            WindowsApi.SetDwmWindowCornerPreference(handle, WindowsApi.WindowCornerPreference.Default);
+        WindowsApi.SetDwmImmersiveDarkMode(handle, true);
+        WindowsApi.SetDwmSystemBackdropType(handle, WindowsApi.SystemBackdropType.Acrylic);
+        WindowsApi.SetDwmWindowCornerPreference(handle, WindowsApi.WindowCornerPreference.Default);
 
-            WindowsApi.RegisterWindow(handle);
+        WindowsApi.RegisterWindow(handle);
 
-            WindowsApi.OnWindowResize += _ => { RenderGame(); };
-        }
+        WindowsApi.OnWindowResize += _ => { RenderGame(); };
     }
 }

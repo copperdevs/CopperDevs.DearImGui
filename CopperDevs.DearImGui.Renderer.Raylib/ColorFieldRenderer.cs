@@ -2,7 +2,7 @@
 using System.Reflection;
 using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.ReflectionRenderers;
-using Raylib_cs;
+using Raylib_CSharp.Colors;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib;
 
@@ -16,7 +16,7 @@ public class ColorFieldRenderer : FieldRenderer
         CopperImGui.ColorEdit($"{fieldInfo.Name.ToTitleCase()}##{fieldInfo.Name}{id}", ref vectorColor,
             interactedValue =>
             {
-                fieldInfo.SetValue(component, new Color((int)interactedValue.X * 255, (int)interactedValue.Y * 255, (int)interactedValue.Z * 255, (int)interactedValue.W * 255));
+                fieldInfo.SetValue(component, new Color((byte)(interactedValue.X * 255), (byte)(interactedValue.Y * 255), (byte)(interactedValue.Z * 255), (byte)(interactedValue.W * 255)));
                 valueChanged?.Invoke();
             });
     }
@@ -27,6 +27,6 @@ public class ColorFieldRenderer : FieldRenderer
 
         CopperImGui.ColorEdit($"{value.GetType().Name.ToTitleCase()}##{id}", ref colorValue, _ => valueChanged?.Invoke());
 
-        value = new Color((int)colorValue.X * 255, (int)colorValue.Y * 255, (int)colorValue.Z * 255, (int)colorValue.W * 255);
+        value = new Color((byte)(colorValue.X * 255), (byte)(colorValue.Y * 255), (byte)(colorValue.Z * 255), (byte)(colorValue.W * 255));
     }
 }

@@ -1,7 +1,8 @@
 using System.Numerics;
 using ImGuiNET;
-using Raylib_cs;
-using static Raylib_cs.Raylib;
+using Raylib_CSharp.Colors;
+using Raylib_CSharp.Textures;
+using Raylib_CSharp.Transformations;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib;
 
