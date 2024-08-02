@@ -4,7 +4,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui", "Cop
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo", "Repo", "{5B0E440E-FC7D-4306-86AC-FC8B75BB1ED8}"
 	ProjectSection(SolutionItems) = preProject
-		License.md = License.md
+		License.txt = License.txt
 		ReadMe.md = ReadMe.md
 	EndProjectSection
 EndProject
