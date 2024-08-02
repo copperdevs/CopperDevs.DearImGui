@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CopperDevs.Core" Version="1.0.0"/>
+        <PackageReference Include="ImGui.NET" Version="1.91.0.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Compile Update="CopperImGui.DearImGui.DataLayering.cs">
+            <DependentUpon>CopperImGui.cs</DependentUpon>
+        </Compile>
+        <Compile Update="CopperImGui.DearImGui.Layering.cs">
+            <DependentUpon>CopperImGui.cs</DependentUpon>
+        </Compile>
+        <Compile Update="CopperImGui.DearImGui.Theming.cs">
+            <DependentUpon>CopperImGui.cs</DependentUpon>
+        </Compile>
+        <Compile Update="CopperImGui.ImGuiReflectionLayering.cs">
+            <DependentUpon>CopperImGui.cs</DependentUpon>
+        </Compile>
+        <Compile Update="CopperImgui.PopupManagment.cs">
+            <DependentUpon>CopperImGui.cs</DependentUpon>
+        </Compile>
+        <Compile Update="CopperImGui.Rendering.cs">
+            <DependentUpon>CopperImGui.cs</DependentUpon>
+        </Compile>
+        <Compile Update="CopperImGui.WindowManagment.cs">
+            <DependentUpon>CopperImGui.cs</DependentUpon>
+        </Compile>
+    </ItemGroup>
+
+</Project>
