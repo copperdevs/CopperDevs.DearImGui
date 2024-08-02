@@ -4,7 +4,7 @@ namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
-    public static void Setup<T>(bool isDockingEnabled = true) where T : IImGuiRenderer, new()
+    public static void Setup<T>(bool isDockingEnabled = true, bool shouldShowTabBar = false) where T : IImGuiRenderer, new()
     {
         currentRenderer = new T();
 
@@ -18,6 +18,7 @@ public static partial class CopperImGui
         windows.ForEach(instance => instance.Start());
 
         canRender = true;
+        showTabBar = shouldShowTabBar;
         dockingEnabled = isDockingEnabled;
     }
 

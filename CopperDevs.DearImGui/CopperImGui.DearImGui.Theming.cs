@@ -60,16 +60,16 @@ public static partial class CopperImGui
         colors[(int)ImGuiCol.TitleBg] = new Vector4(0.15f, 0.1505f, 0.151f, 1.0f);
         colors[(int)ImGuiCol.TitleBgActive] = new Vector4(0.15f, 0.1505f, 0.151f, 1.0f);
         colors[(int)ImGuiCol.TitleBgCollapsed] = new Vector4(0.15f, 0.1505f, 0.151f, 1.0f);
-        
+
         // this crap
         colors[(int)ImGuiCol.CheckMark] = new Vector4(1f, 1f, 1f, 1.0f);
-        
-        colors[(int)ImGuiCol.SliderGrab] = new Vector4(1f, 1f, 1f, 1.0f);
-        colors[(int)ImGuiCol.SliderGrabActive] = new Vector4(0.15f, 0.1505f, 0.151f, 1.0f);
-        
+
+        colors[(int)ImGuiCol.SliderGrab] = new Vector4(0.4f, 0.4f, 0.4f, 1.0f);
+        colors[(int)ImGuiCol.SliderGrabActive] = new Vector4(0.25f, 0.25f, 0.25f, 1.0f);
+
         colors[(int)ImGuiCol.ScrollbarGrab] = new Vector4(0.15f, 0.1505f, 0.151f, 1.0f);
         colors[(int)ImGuiCol.ScrollbarGrabActive] = new Vector4(0.15f, 0.1505f, 0.151f, 1.0f);
-        
+
         colors[(int)ImGuiCol.Separator] = new Vector4(0.15f, 0.1505f, 0.151f, 1.0f);
         colors[(int)ImGuiCol.SeparatorActive] = new Vector4(0.15f, 0.1505f, 0.151f, 1.0f);
     }

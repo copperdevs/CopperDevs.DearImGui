@@ -16,13 +16,13 @@ public static partial class CopperImGui
         {
             foreach (var type in assembly.GetTypes())
             {
-                if (type.GetCustomAttributes(targetAttribute, true).Length > 0)
-                {
-                    var attribute = (WindowAttribute)type.GetCustomAttribute(targetAttribute)!;
-                    attribute.GetMethods(Activator.CreateInstance(type)!);
-                    Log.Info($"Loading new window. | Full Name: {type.FullName}");
-                    createdObjects.Add(attribute);
-                }
+                if (type.GetCustomAttributes(targetAttribute, true).Length <= 0)
+                    continue;
+
+                var attribute = (WindowAttribute)type.GetCustomAttribute(targetAttribute)!;
+                attribute.GetMethods(Activator.CreateInstance(type)!);
+                Log.Info($"Loading new window. | Full Name: {type.FullName}");
+                createdObjects.Add(attribute);
             }
         }
 
@@ -33,21 +33,24 @@ public static partial class CopperImGui
     {
         foreach (var window in windows)
         {
-            if (ImGui.BeginMainMenuBar())
+            if (showTabBar)
             {
-                if (ImGui.BeginMenu("Windows"))
+                if (ImGui.BeginMainMenuBar())
                 {
-                    ImGui.MenuItem(window.WindowName, null, ref window.WindowOpen);
-                    ImGui.EndMenu();
-                }
+                    if (ImGui.BeginMenu("Windows"))
+                    {
+                        ImGui.MenuItem(window.WindowName, null, ref window.WindowOpen);
+                        ImGui.EndMenu();
+                    }
 
-                ImGui.EndMainMenuBar();
+                    ImGui.EndMainMenuBar();
+                }
             }
 
-            if (!window.WindowOpen) 
+            if (!window.WindowOpen)
                 continue;
-            
-            if (!ImGui.Begin(window.WindowName, ref window.WindowOpen)) 
+
+            if (!ImGui.Begin(window.WindowName, ref window.WindowOpen))
                 continue;
 
             window.Update();
