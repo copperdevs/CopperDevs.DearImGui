@@ -292,12 +292,10 @@ public static partial class CopperImGui
         if (!canRender)
             return false;
 
-        var vectorColor = color;
-
-        if (!ImGui.ColorEdit4(name, ref vectorColor))
+        if (!ImGui.ColorEdit4(name, ref color))
             return false;
 
-        interacted?.Invoke(vectorColor);
+        interacted?.Invoke(color);
         return true;
     }
 
