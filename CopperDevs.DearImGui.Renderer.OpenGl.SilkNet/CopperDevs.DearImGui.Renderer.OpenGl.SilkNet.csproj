@@ -4,6 +4,16 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CopperDevs.Core" Version="1.1.0"/>
+        <PackageReference Include="CopperDevs.DearImGui" Version="1.1.1"/>
+        <PackageReference Include="Silk.NET.Input.Common" Version="2.21.0"/>
+        <PackageReference Include="Silk.NET.Input.Extensions" Version="2.21.0"/>
+        <PackageReference Include="Silk.NET.OpenGL" Version="2.21.0"/>
+        <PackageReference Include="Silk.NET.Windowing.Common" Version="2.21.0"/>
+    </ItemGroup>
 
 </Project>
