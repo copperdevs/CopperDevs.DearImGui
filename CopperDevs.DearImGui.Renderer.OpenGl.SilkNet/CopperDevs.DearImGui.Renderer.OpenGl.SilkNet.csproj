@@ -5,6 +5,19 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Title>CopperDevs.DearImGui.Renderer.OpenGl.SilkNet</Title>
+        <Authors>copperdevs</Authors>
+        <PackageLicenseFile>License.txt</PackageLicenseFile>
+        <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
+        <Description>Silk.net OpenGl renderer for my ImGui wrapper</Description>
+        <Copyright>MIT</Copyright>
+        <PackageProjectUrl>https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/CopperDevs.DearImGui.Renderer.OpenGl.SilkNet</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/copperdevs/CopperDevs.DearImGui</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,6 +27,17 @@
         <PackageReference Include="Silk.NET.Input.Extensions" Version="2.21.0"/>
         <PackageReference Include="Silk.NET.OpenGL" Version="2.21.0"/>
         <PackageReference Include="Silk.NET.Windowing.Common" Version="2.21.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="ReadMe.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Include="License.txt">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
     </ItemGroup>
 
 </Project>
