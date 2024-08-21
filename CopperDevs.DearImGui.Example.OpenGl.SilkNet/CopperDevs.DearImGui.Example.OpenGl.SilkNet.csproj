@@ -8,12 +8,14 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj" />
+        <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.OpenGl.SilkNet\CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.csproj" />
         <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <PackageReference Include="CopperDevs.Core" Version="1.1.0" />
+        <PackageReference Include="Silk.NET.Input.Glfw" Version="2.21.0" />
+        <PackageReference Include="Silk.NET.Windowing" Version="2.21.0" />
     </ItemGroup>
 
 </Project>
