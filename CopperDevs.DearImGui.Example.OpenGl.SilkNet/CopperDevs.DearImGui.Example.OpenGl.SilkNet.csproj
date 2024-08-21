@@ -13,8 +13,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CopperDevs.Core" Version="1.0.1" />
-        <PackageReference Include="Raylib-CSharp" Version="4.1.8" />
+        <PackageReference Include="CopperDevs.Core" Version="1.1.0" />
     </ItemGroup>
 
 </Project>

@@ -23,6 +23,7 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <ProjectReference Include="..\CopperDevs.DearImGui.Binding.ImGuiNET\CopperDevs.DearImGui.Binding.ImGuiNET.csproj" />
       <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
     </ItemGroup>
     
@@ -47,6 +48,6 @@
     </ItemGroup>
     
     <ItemGroup>
-      <PackageReference Include="Raylib-CSharp" Version="4.1.8" />
+      <PackageReference Include="Raylib-CSharp" Version="4.1.9" />
     </ItemGroup>
 </Project>

@@ -21,8 +21,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CopperDevs.Core" Version="1.1.0"/>
-        <PackageReference Include="CopperDevs.DearImGui" Version="1.1.1"/>
+        <ProjectReference Include="..\CopperDevs.DearImGui.Binding.ImGuiNET\CopperDevs.DearImGui.Binding.ImGuiNET.csproj"/>
+        <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
+    </ItemGroup>
+    
+    <ItemGroup>
         <PackageReference Include="Silk.NET.Input.Common" Version="2.21.0"/>
         <PackageReference Include="Silk.NET.Input.Extensions" Version="2.21.0"/>
         <PackageReference Include="Silk.NET.OpenGL" Version="2.21.0"/>

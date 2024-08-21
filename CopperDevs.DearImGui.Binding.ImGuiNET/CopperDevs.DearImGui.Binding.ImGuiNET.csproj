@@ -10,4 +10,8 @@
       <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <PackageReference Include="ImGui.NET" Version="1.91.0.1" />
+    </ItemGroup>
+
 </Project>
