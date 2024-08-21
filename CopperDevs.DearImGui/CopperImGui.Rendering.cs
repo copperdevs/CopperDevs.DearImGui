@@ -9,10 +9,14 @@ public static partial class CopperImGui
     /// </summary>
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
-    /// <typeparam name="T">Type of your <see cref="CopperDevs.DearImGui.IImGuiRenderer"/></typeparam>
-    public static void Setup<T>(bool isDockingEnabled = true, bool shouldShowTabBar = false) where T : IImGuiRenderer, new()
+    /// <typeparam name="TImGuiRenderer">Type of your <see cref="CopperDevs.DearImGui.IImGuiRenderer"/></typeparam>
+    /// <typeparam name="TImGuiBinding">Type of your <see cref="CopperDevs.DearImGui.IImGuiBinding"/></typeparam>
+    public static void Setup<TImGuiRenderer, TImGuiBinding>(bool isDockingEnabled = true, bool shouldShowTabBar = false)
+        where TImGuiRenderer : IImGuiRenderer, new()
+        where TImGuiBinding : IImGuiBinding, new()
     {
-        currentRenderer = new T();
+        currentRenderer = new TImGuiRenderer();
+        currentBinding = new TImGuiBinding();
 
         currentRenderer.Setup();
 

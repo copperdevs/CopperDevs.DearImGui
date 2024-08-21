@@ -12,6 +12,7 @@ public static partial class CopperImGui
     private static bool dockingEnabled;
     private static bool showTabBar;
     private static IImGuiRenderer currentRenderer = null!;
+    private static IImGuiBinding currentBinding = null!;
 
     // ---------------- windows ---------------- //
     private static List<WindowAttribute> windows = [];
