@@ -12,7 +12,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Exampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib", "CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj", "{4E1BE947-CDE9-42D0-833F-A398005634F1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.OpenGl", "CopperDevs.DearImGui.Example.OpenGl\CopperDevs.DearImGui.Example.OpenGl.csproj", "{00084F80-B522-4A3C-A094-1A5421155AF9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.OpenGl.SilkNet", "CopperDevs.DearImGui.Example.OpenGl.SilkNet\CopperDevs.DearImGui.Example.OpenGl.SilkNet.csproj", "{00084F80-B522-4A3C-A094-1A5421155AF9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.OpenGl.SilkNet", "CopperDevs.DearImGui.Renderer.OpenGl.SilkNet\CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.csproj", "{647AE06D-93BF-4C4B-9D53-0FAA4F03757D}"
 EndProject

@@ -1,4 +1,4 @@
-﻿namespace CopperDevs.DearImGui.Example.OpenGl;
+﻿namespace CopperDevs.DearImGui.Example.OpenGl.SilkNet;
 
 public static class Program
 {
