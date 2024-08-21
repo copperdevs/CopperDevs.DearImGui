@@ -7,4 +7,14 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <ItemGroup>
+        <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj" />
+        <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="CopperDevs.Core" Version="1.0.1" />
+        <PackageReference Include="Raylib-CSharp" Version="4.1.8" />
+    </ItemGroup>
+
 </Project>
