@@ -20,403 +20,211 @@ public class ImGuiNETBindings : IImGuiBinding
 
     public double GetTime() => ImGui.GetTime();
 
-    public void SeparatorText(string empty)
-    {
-        throw new NotImplementedException();
-    }
+    public void SeparatorText(string text) => ImGui.SeparatorText(text);
 
-    public void Dummy(Vector2 vector2)
-    {
-        throw new NotImplementedException();
-    }
+    public void Dummy(Vector2 size) => ImGui.Dummy(size);
 
-    public void SameLine()
-    {
-        throw new NotImplementedException();
-    }
+    public void SameLine() => ImGui.SameLine();
 
-    public bool BeginChild(string id, Vector2 vector2, ChildFlags flags)
-    {
-        throw new NotImplementedException();
-    }
+    public bool BeginChild(string id, Vector2 vector2, ChildFlags flags) => ImGui.BeginChild(id, vector2, (ImGuiChildFlags)flags);
 
-    public void EndChild()
-    {
-        throw new NotImplementedException();
-    }
+    public void EndChild() => ImGui.EndChild();
 
-    public bool Selectable(string text, bool enabled)
-    {
-        throw new NotImplementedException();
-    }
+    public bool Selectable(string text, bool enabled) => ImGui.Selectable(text, enabled);
 
-    public void LabelText(string title, string value)
-    {
-        throw new NotImplementedException();
-    }
+    public void LabelText(string title, string value) => ImGui.LabelText(title, value);
 
-    public void Text(string s)
-    {
-        throw new NotImplementedException();
-    }
+    public void Text(string s) => ImGui.Text(s);
 
-    public bool DragFloat4(string rowName, ref Vector4 row)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragFloat4(string label, ref Vector4 value) => ImGui.DragFloat4(label, ref value);
 
-    public bool BeginItemTooltip()
-    {
-        throw new NotImplementedException();
-    }
+    public bool BeginItemTooltip() => ImGui.BeginItemTooltip();
 
-    public float GetFontSize()
-    {
-        throw new NotImplementedException();
-    }
+    public float GetFontSize() => ImGui.GetFontSize();
 
-    public void PushTextWrapPos(float getFontSize)
-    {
-        throw new NotImplementedException();
-    }
+    public void PushTextWrapPos(float getFontSize) => ImGui.PushTextWrapPos(getFontSize);
 
-    public void TextUnformatted(string? toString)
-    {
-        throw new NotImplementedException();
-    }
+    public void TextUnformatted(string? toString) => ImGui.TextUnformatted(toString);
 
-    public void PopTextWrapPos()
-    {
-        throw new NotImplementedException();
-    }
+    public void PopTextWrapPos() => ImGui.PopTextWrapPos();
 
-    public void EndTooltip()
-    {
-        throw new NotImplementedException();
-    }
+    public void EndTooltip() => ImGui.EndTooltip();
 
-    public bool CollapsingHeader(string name)
-    {
-        throw new NotImplementedException();
-    }
+    public bool CollapsingHeader(string name) => ImGui.CollapsingHeader(name);
 
-    public bool Button(string name)
-    {
-        throw new NotImplementedException();
-    }
+    public bool Button(string name) => ImGui.Button(name);
 
-    public bool Button(string name, Vector2 vector2)
-    {
-        throw new NotImplementedException();
-    }
+    public bool Button(string name, Vector2 value) => ImGui.Button(name, value);
 
-    public bool Checkbox(string name, ref bool currentValue)
-    {
-        throw new NotImplementedException();
-    }
+    public bool Checkbox(string name, ref bool value) => ImGui.Checkbox(name, ref value);
 
-    public bool ColorEdit4(string name, ref Vector4 color)
-    {
-        throw new NotImplementedException();
-    }
+    public bool ColorEdit4(string name, ref Vector4 color) => ImGui.ColorEdit4(name, ref color);
 
-    public bool DragFloat(string name, ref float value)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragFloat(string name, ref float value) => ImGui.DragFloat(name, ref value);
 
-    public bool DragFloat(string name, ref float value, float speed, float min, float max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragFloat(string name, ref float value, float speed, float min, float max) => ImGui.DragFloat(name, ref value, speed, min, max);
 
-    public bool SliderFloat(string name, ref float value, float min, float max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool SliderFloat(string name, ref float value, float min, float max) => ImGui.SliderFloat(name, ref value, min, max);
 
-    public bool DragFloat2(string name, ref Vector2 value)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragFloat2(string name, ref Vector2 value) => ImGui.DragFloat2(name, ref value);
 
-    public bool DragFloat2(string name, ref Vector2 value, float speed, float min, float max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragFloat2(string name, ref Vector2 value, float speed, float min, float max) => ImGui.DragFloat2(name, ref value, speed, min, max);
 
-    public bool SliderFloat2(string name, ref Vector2 value, float min, float max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool SliderFloat2(string name, ref Vector2 value, float min, float max) => ImGui.SliderFloat2(name, ref value, min, max);
 
-    public bool DragInt2(string name, ref int valueX, int speed, int min, int max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragInt2(string name, ref int value, int speed, int min, int max) => ImGui.DragInt2(name, ref value, speed, min, max);
 
-    public bool DragInt2(string name, ref int valueX)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragInt2(string name, ref int value) => ImGui.DragInt2(name, ref value);
 
-    public bool SliderInt2(string name, ref int valueX, int min, int max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool SliderInt2(string name, ref int value, int min, int max) => ImGui.SliderInt2(name, ref value, min, max);
 
-    public bool DragFloat3(string name, ref Vector3 value)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragFloat3(string name, ref Vector3 value) => ImGui.DragFloat3(name, ref value);
 
-    public bool DragFloat3(string name, ref Vector3 value, float speed, float min, float max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragFloat3(string name, ref Vector3 value, float speed, float min, float max) => ImGui.DragFloat3(name, ref value, speed, min, max);
 
-    public bool SliderFloat3(string name, ref Vector3 value, float min, float max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool SliderFloat3(string name, ref Vector3 value, float min, float max) => ImGui.SliderFloat3(name, ref value, min, max);
 
-    public bool DragFloat4(string rowName, ref Vector4 value, float speed, float min, float max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragFloat4(string label, ref Vector4 value, float speed, float min, float max) => ImGui.DragFloat4(label, ref value, speed, min, max);
 
-    public bool SliderFloat4(string name, ref Vector4 value, float min, float max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool SliderFloat4(string name, ref Vector4 value, float min, float max) => ImGui.SliderFloat4(name, ref value, min, max);
 
-    public bool DragInt(string name, ref int value)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragInt(string name, ref int value) => ImGui.DragInt(name, ref value);
 
-    public bool DragInt(string name, ref int value, int speed, int min, int max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool DragInt(string name, ref int value, int speed, int min, int max) => ImGui.DragInt(name, ref value, speed, min, max);
 
-    public bool SliderInt(string name, ref int value, int min, int max)
-    {
-        throw new NotImplementedException();
-    }
+    public bool SliderInt(string name, ref int value, int min, int max) => ImGui.SliderInt(name, ref value, min, max);
 
-    public bool InputText(string name, ref string value, uint maxLength)
-    {
-        throw new NotImplementedException();
-    }
+    public bool InputText(string name, ref string value, uint maxLength) => ImGui.InputText(name, ref value, maxLength);
 
-    public bool BeginTabBar(string id, TabBarFlags reorderable)
-    {
-        throw new NotImplementedException();
-    }
+    public bool BeginTabBar(string id, TabBarFlags flags) => ImGui.BeginTabBar(id, (ImGuiTabBarFlags)flags);
 
-    public bool BeginTabItem(string s)
-    {
-        throw new NotImplementedException();
-    }
+    public bool BeginTabItem(string id) => ImGui.BeginTabBar(id);
 
-    public void EndTabItem()
-    {
-        throw new NotImplementedException();
-    }
+    public void EndTabItem() => ImGui.EndTabItem();
 
-    public void EndTabBar()
-    {
-        throw new NotImplementedException();
-    }
+    public void EndTabBar() => ImGui.EndTabBar();
 
-    public bool MenuItem(string text, object o, ref bool enabled)
+    public bool MenuItem(string text, string? shortcut, ref bool enabled)
     {
-        throw new NotImplementedException();
+        return ImGui.MenuItem(text, shortcut, ref enabled);
     }
 
-    public bool BeginMainMenuBar()
-    {
-        throw new NotImplementedException();
-    }
+    public bool BeginMainMenuBar() => ImGui.BeginMainMenuBar();
 
-    public bool BeginMenuBar()
-    {
-        throw new NotImplementedException();
-    }
+    public bool BeginMenuBar() => ImGui.BeginMenuBar();
 
-    public bool BeginMenu(string subMenuItem1)
-    {
-        throw new NotImplementedException();
-    }
+    public bool BeginMenu(string label) => ImGui.BeginMenu(label);
 
-    public void EndMenu()
-    {
-        throw new NotImplementedException();
-    }
+    public void EndMenu() => ImGui.EndMenu();
 
-    public void EndMainMenuBar()
-    {
-        throw new NotImplementedException();
-    }
+    public void EndMainMenuBar() => ImGui.EndMainMenuBar();
 
-    public void EndMenuBar()
-    {
-        throw new NotImplementedException();
-    }
+    public void EndMenuBar() => ImGui.EndMenuBar();
 
-    public bool Begin(string title, WindowFlags flags)
-    {
-        throw new NotImplementedException();
-    }
+    public bool Begin(string title, WindowFlags flags) => ImGui.Begin(title, (ImGuiWindowFlags)flags);
 
-    public void End()
-    {
-        throw new NotImplementedException();
-    }
+    public void End() => ImGui.End();
 
-    public bool Begin(string title, ref bool isOpen, WindowFlags flags = WindowFlags.None)
-    {
-        throw new NotImplementedException();
-    }
+    public bool Begin(string title, ref bool isOpen, WindowFlags flags = WindowFlags.None) => ImGui.Begin(title, ref isOpen, (ImGuiWindowFlags)flags);
 
-    public void OpenPopup(string id)
-    {
-        throw new NotImplementedException();
-    }
+    public void OpenPopup(string id) => ImGui.OpenPopup(id);
 
-    public void EndPopup()
-    {
-        throw new NotImplementedException();
-    }
+    public void EndPopup() => ImGui.EndPopup();
 
-    public bool BeginPopup(string id)
-    {
-        throw new NotImplementedException();
-    }
+    public bool BeginPopup(string id) => ImGui.BeginPopup(id);
 
-    public void DockSpaceOverMainViewport()
-    {
-        throw new NotImplementedException();
-    }
+    public void DockSpaceOverMainViewport() => ImGui.DockSpaceOverViewport(0, ImGui.GetMainViewport(), ImGuiDockNodeFlags.PassthruCentralNode | ImGuiDockNodeFlags.AutoHideTabBar);
 
-    public void ShowAboutWindow(ref bool showDearImGuiAboutWindow)
-    {
-        throw new NotImplementedException();
-    }
+    public void ShowAboutWindow(ref bool showDearImGuiAboutWindow) => ImGui.ShowAboutWindow(ref showDearImGuiAboutWindow);
 
-    public void ShowDemoWindow(ref bool showDearImGuiDemoWindow)
-    {
-        throw new NotImplementedException();
-    }
+    public void ShowDemoWindow(ref bool showDearImGuiDemoWindow) => ImGui.ShowDemoWindow(ref showDearImGuiDemoWindow);
 
-    public void ShowMetricsWindow(ref bool showDearImGuiMetricsWindow)
-    {
-        throw new NotImplementedException();
-    }
+    public void ShowMetricsWindow(ref bool showDearImGuiMetricsWindow) => ImGui.ShowMetricsWindow(ref showDearImGuiMetricsWindow);
 
-    public void ShowDebugLogWindow(ref bool showDearImGuiDebugLogWindow)
-    {
-        throw new NotImplementedException();
-    }
+    public void ShowDebugLogWindow(ref bool showDearImGuiDebugLogWindow) => ImGui.ShowDebugLogWindow(ref showDearImGuiDebugLogWindow);
 
-    public void ShowIDStackToolWindow(ref bool showDearImGuiIdStackToolWindow)
-    {
-        throw new NotImplementedException();
-    }
+    public void ShowIdStackToolWindow(ref bool showDearImGuiIdStackToolWindow) => ImGui.ShowIDStackToolWindow(ref showDearImGuiIdStackToolWindow);
 
-    public void BeginDisabled()
-    {
-        throw new NotImplementedException();
-    }
+    public void BeginDisabled() => ImGui.BeginDisabled();
 
-    public void EndDisabled()
-    {
-        throw new NotImplementedException();
-    }
+    public void EndDisabled() => ImGui.EndDisabled();
 
-    public void Indent()
-    {
-        throw new NotImplementedException();
-    }
+    public void Indent() => ImGui.Indent();
 
-    public void Unindent()
-    {
-        throw new NotImplementedException();
-    }
+    public void Unindent() => ImGui.Unindent();
 
     public void SetThemingColor(ImGuiColors colorType, Vector4 color)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().Colors[(int)colorType] = color;
     }
 
     public void AddConfigTheme(ConfigFlags configFlags)
     {
-        throw new NotImplementedException();
+        ImGui.GetIO().ConfigFlags |= (ImGuiConfigFlags)configFlags;
     }
 
     public void RemoveConfigTheme(ConfigFlags configFlags)
     {
-        throw new NotImplementedException();
+        ImGui.GetIO().ConfigFlags &= ~(ImGuiConfigFlags)configFlags;
     }
 
     public void SetConfigWindowsMoveFromTitleBarOnly(bool value)
     {
-        throw new NotImplementedException();
+        ImGui.GetIO().ConfigWindowsMoveFromTitleBarOnly = value;
     }
 
     public void SetWindowRounding(int value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().WindowRounding = value;
     }
 
     public void SetChildRounding(int value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().ChildRounding = value;
     }
 
     public void SetFrameRounding(int value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().FrameRounding = value;
     }
 
     public void SetPopupRounding(int value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().PopupRounding = value;
     }
 
     public void SetScrollbarRounding(int value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().ScrollbarRounding = value;
     }
 
     public void SetGrabRounding(int value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().GrabRounding = value;
     }
 
     public void SetTabRounding(int value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().TabRounding = value;
     }
 
     public void SetTabBorderSize(int value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().TabBorderSize = value;
     }
 
     public void SetWindowTitleAlign(Vector2 value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().WindowTitleAlign = value;
     }
 
     public void SetSeparatorTextAlign(Vector2 value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().SeparatorTextAlign = value;
     }
 
     public void SetSeparatorTextPadding(Vector2 value)
     {
-        throw new NotImplementedException();
+        ImGui.GetStyle().SeparatorTextPadding = value;
     }
 }

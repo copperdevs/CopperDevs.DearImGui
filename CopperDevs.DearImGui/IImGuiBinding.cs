@@ -19,15 +19,15 @@ public interface IImGuiBinding
 
     #region ui
 
-    public void SeparatorText(string empty);
-    public void Dummy(Vector2 vector2);
+    public void SeparatorText(string text);
+    public void Dummy(Vector2 size);
     public void SameLine();
     public bool BeginChild(string id, Vector2 vector2, ChildFlags flags);
     public void EndChild();
     public bool Selectable(string text, bool enabled);
     public void LabelText(string title, string value);
     public void Text(string s);
-    public bool DragFloat4(string rowName, ref Vector4 row);
+    public bool DragFloat4(string label, ref Vector4 value);
     public bool BeginItemTooltip();
     public float GetFontSize();
     public void PushTextWrapPos(float getFontSize);
@@ -36,8 +36,8 @@ public interface IImGuiBinding
     public void EndTooltip();
     public bool CollapsingHeader(string name);
     public bool Button(string name);
-    public bool Button(string name, Vector2 vector2);
-    public bool Checkbox(string name, ref bool currentValue);
+    public bool Button(string name, Vector2 value);
+    public bool Checkbox(string name, ref bool value);
     public bool ColorEdit4(string name, ref Vector4 color);
     public bool DragFloat(string name, ref float value);
     public bool DragFloat(string name, ref float value, float speed, float min, float max);
@@ -45,26 +45,26 @@ public interface IImGuiBinding
     public bool DragFloat2(string name, ref Vector2 value);
     public bool DragFloat2(string name, ref Vector2 value, float speed, float min, float max);
     public bool SliderFloat2(string name, ref Vector2 value, float min, float max);
-    public bool DragInt2(string name, ref int valueX, int speed, int min, int max);
-    public bool DragInt2(string name, ref int valueX);
-    public bool SliderInt2(string name, ref int valueX, int min, int max);
+    public bool DragInt2(string name, ref int value, int speed, int min, int max);
+    public bool DragInt2(string name, ref int value);
+    public bool SliderInt2(string name, ref int value, int min, int max);
     public bool DragFloat3(string name, ref Vector3 value);
     public bool DragFloat3(string name, ref Vector3 value, float speed, float min, float max);
     public bool SliderFloat3(string name, ref Vector3 value, float min, float max);
-    public bool DragFloat4(string rowName, ref Vector4 value, float speed, float min, float max);
+    public bool DragFloat4(string label, ref Vector4 value, float speed, float min, float max);
     public bool SliderFloat4(string name, ref Vector4 value, float min, float max);
     public bool DragInt(string name, ref int value);
     public bool DragInt(string name, ref int value, int speed, int min, int max);
     public bool SliderInt(string name, ref int value, int min, int max);
     public bool InputText(string name, ref string value, uint maxLength);
-    public bool BeginTabBar(string id, TabBarFlags reorderable);
-    public bool BeginTabItem(string s);
+    public bool BeginTabBar(string id, TabBarFlags flags);
+    public bool BeginTabItem(string id);
     public void EndTabItem();
     public void EndTabBar();
-    public bool MenuItem(string text, object o, ref bool enabled);
+    public bool MenuItem(string text, string? shortcut, ref bool enabled);
     public bool BeginMainMenuBar();
     public bool BeginMenuBar();
-    public bool BeginMenu(string subMenuItem1);
+    public bool BeginMenu(string label);
     public void EndMenu();
     public void EndMainMenuBar();
     public void EndMenuBar();
@@ -79,7 +79,7 @@ public interface IImGuiBinding
     public void ShowDemoWindow(ref bool showDearImGuiDemoWindow);
     public void ShowMetricsWindow(ref bool showDearImGuiMetricsWindow);
     public void ShowDebugLogWindow(ref bool showDearImGuiDebugLogWindow);
-    public void ShowIDStackToolWindow(ref bool showDearImGuiIdStackToolWindow);
+    public void ShowIdStackToolWindow(ref bool showDearImGuiIdStackToolWindow);
     public void BeginDisabled();
     public void EndDisabled();
     public void Indent();

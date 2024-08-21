@@ -83,6 +83,6 @@ public static partial class CopperImGui
             currentBinding.ShowDebugLogWindow(ref ShowDearImGuiDebugLogWindow);
 
         if (ShowDearImGuiIdStackToolWindow)
-            currentBinding.ShowIDStackToolWindow(ref ShowDearImGuiIdStackToolWindow);
+            currentBinding.ShowIdStackToolWindow(ref ShowDearImGuiIdStackToolWindow);
     }
 }
