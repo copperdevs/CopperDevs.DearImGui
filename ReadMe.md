@@ -9,14 +9,14 @@ Personally direct DearImGui didn't feel the best in C#, so I made this package t
 
 - [ ] Documentation
 - [ ] Better examples
-    - [X] [Raylib-CSharp](https://github.com/MrScautHD/Raylib-CSharp)
-    - [ ] [raylib-cs](https://github.com/chrisdill/raylib-cs) ***Maybe***
+    - [X] Raylib ([Raylib-CSharp](https://github.com/MrScautHD/Raylib-CSharp))
+    - [ ] Raylib ([raylib-cs](https://github.com/chrisdill/raylib-cs)) ***Maybe***
     - [ ] OpenGl ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] Vulkan ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] OpenGl ([OpenTk](https://github.com/opentk/opentk)) ***Maybe***
 - Pre-made renderer packages
-    - [X] [Raylib-CSharp](https://github.com/MrScautHD/Raylib-CSharp)
-    - [ ] [raylib-cs](https://github.com/chrisdill/raylib-cs ***Maybe***
+    - [X] Raylib ([Raylib-CSharp](https://github.com/MrScautHD/Raylib-CSharp))
+    - [ ] Raylib ([raylib-cs](https://github.com/chrisdill/raylib-cs)) ***Maybe***
     - [X] OpenGl ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] Vulkan ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] OpenGl ([OpenTk](https://github.com/opentk/opentk)) ***Maybe***
