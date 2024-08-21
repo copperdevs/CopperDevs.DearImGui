@@ -1,6 +1,7 @@
 ﻿using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.Binding.ImGuiNET;
 using CopperDevs.DearImGui.Renderer.Raylib;
+using ImGuiNET;
 using Raylib_CSharp;
 using Raylib_CSharp.Colors;
 using Raylib_CSharp.Rendering;
@@ -17,7 +18,7 @@ public static class Program
     public static void Main()
     {
         RaylibLogger.Initialize();
-        
+
         var configFlags = ConfigFlags.ResizableWindow | ConfigFlags.Msaa4XHint | ConfigFlags.VSyncHint | ConfigFlags.AlwaysRunWindow;
         if (WindowsApi.IsWindows11 && TransparentWindow) configFlags |= ConfigFlags.TransparentWindow;
 

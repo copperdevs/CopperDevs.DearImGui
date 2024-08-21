@@ -1,5 +1,4 @@
-﻿using ImGuiNET;
-
+﻿
 namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
@@ -31,15 +30,21 @@ public static partial class CopperImGui
     /// <param name="id">ID of the popup to render</param>
     public static void ShowPopup(string id)
     {
-        ImGui.OpenPopup(id);
+        currentBinding.OpenPopup(id);
     }
 
     private static void RenderPopups()
     {
-        foreach (var popup in RegisteredPopups.Where(popup => ImGui.BeginPopup(popup.Key)))
+        foreach (var popup in RegisteredPopups)
         {
+            if (!canRender) 
+                continue;
+            
+            if (!currentBinding.BeginPopup(popup.Key)) 
+                continue;
+                
             popup.Value?.Invoke();
-            ImGui.EndPopup();
+            currentBinding.EndPopup();
         }
     }
 
@@ -52,10 +57,10 @@ public static partial class CopperImGui
         if (!RegisteredPopups.TryGetValue(id, out var popup))
             return;
 
-        if (!ImGui.BeginPopup(id))
+        if (!currentBinding.BeginPopup(id))
             return;
 
         popup?.Invoke();
-        ImGui.EndPopup();
+        currentBinding.EndPopup();
     }
 }

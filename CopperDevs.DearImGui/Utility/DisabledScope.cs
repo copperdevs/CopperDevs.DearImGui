@@ -1,5 +1,4 @@
-﻿using ImGuiNET;
-
+﻿
 namespace CopperDevs.DearImGui.Utility;
 
 /// <summary>
@@ -25,7 +24,7 @@ public sealed class DisabledScope : Scope
         this.condition = condition;
 
         if (condition)
-            ImGui.BeginDisabled();
+            CopperImGui.currentBinding.BeginDisabled();
     }
 
     /// <summary>
@@ -34,6 +33,6 @@ public sealed class DisabledScope : Scope
     protected override void CloseScope()
     {
         if (condition)
-            ImGui.EndDisabled();
+            CopperImGui.currentBinding.EndDisabled();
     }
 }

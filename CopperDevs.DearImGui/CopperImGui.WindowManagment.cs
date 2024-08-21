@@ -1,5 +1,4 @@
 ﻿using CopperDevs.DearImGui.Attributes;
-using ImGuiNET;
 
 namespace CopperDevs.DearImGui;
 
@@ -35,26 +34,26 @@ public static partial class CopperImGui
         {
             if (showTabBar)
             {
-                if (ImGui.BeginMainMenuBar())
+                if (currentBinding.BeginMainMenuBar())
                 {
-                    if (ImGui.BeginMenu("Windows"))
+                    if (currentBinding.BeginMenu("Windows"))
                     {
-                        ImGui.MenuItem(window.WindowName, null, ref window.WindowOpen);
-                        ImGui.EndMenu();
+                        currentBinding.MenuItem(window.WindowName, null, ref window.WindowOpen);
+                        currentBinding.EndMenu();
                     }
 
-                    ImGui.EndMainMenuBar();
+                    currentBinding.EndMainMenuBar();
                 }
             }
 
             if (!window.WindowOpen)
                 continue;
 
-            if (!ImGui.Begin(window.WindowName, ref window.WindowOpen))
+            if (!currentBinding.Begin(window.WindowName, ref window.WindowOpen))
                 continue;
 
             window.Update();
-            ImGui.End();
+            currentBinding.End();
         }
     }
 

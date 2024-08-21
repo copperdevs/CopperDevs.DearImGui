@@ -1,6 +1,4 @@
-﻿using ImGuiNET;
-
-namespace CopperDevs.DearImGui.Utility;
+﻿namespace CopperDevs.DearImGui.Utility;
 
 /// <summary>
 /// Create a indent scope
@@ -25,7 +23,7 @@ public sealed class IndentScope : Scope
         this.condition = condition;
 
         if (condition)
-            ImGui.Indent();
+            CopperImGui.currentBinding.Indent();
     }
 
     /// <summary>
@@ -34,6 +32,6 @@ public sealed class IndentScope : Scope
     protected override void CloseScope()
     {
         if (condition)
-            ImGui.Unindent();
+            CopperImGui.currentBinding.Unindent();
     }
 }

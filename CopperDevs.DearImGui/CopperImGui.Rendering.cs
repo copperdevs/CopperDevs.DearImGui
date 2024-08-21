@@ -1,5 +1,4 @@
-﻿using ImGuiNET;
-
+﻿
 namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
@@ -45,7 +44,8 @@ public static partial class CopperImGui
         PreRendered?.Invoke();
 
         if (dockingEnabled)
-            ImGui.DockSpaceOverViewport(0, ImGui.GetMainViewport(), ImGuiDockNodeFlags.PassthruCentralNode | ImGuiDockNodeFlags.AutoHideTabBar);
+            currentBinding.DockSpaceOverMainViewport();
+            // ImGui.DockSpaceOverViewport(0, ImGui.GetMainViewport(), ImGuiDockNodeFlags.PassthruCentralNode | ImGuiDockNodeFlags.AutoHideTabBar);
 
         RenderWindows();
         RenderBuiltInWindows();
@@ -71,18 +71,18 @@ public static partial class CopperImGui
     private static void RenderBuiltInWindows()
     {
         if (ShowDearImGuiAboutWindow)
-            ImGui.ShowAboutWindow(ref ShowDearImGuiAboutWindow);
+            currentBinding.ShowAboutWindow(ref ShowDearImGuiAboutWindow);
 
         if (ShowDearImGuiDemoWindow)
-            ImGui.ShowDemoWindow(ref ShowDearImGuiDemoWindow);
+            currentBinding.ShowDemoWindow(ref ShowDearImGuiDemoWindow);
 
         if (ShowDearImGuiMetricsWindow)
-            ImGui.ShowMetricsWindow(ref ShowDearImGuiMetricsWindow);
+            currentBinding.ShowMetricsWindow(ref ShowDearImGuiMetricsWindow);
 
         if (ShowDearImGuiDebugLogWindow)
-            ImGui.ShowDebugLogWindow(ref ShowDearImGuiDebugLogWindow);
+            currentBinding.ShowDebugLogWindow(ref ShowDearImGuiDebugLogWindow);
 
         if (ShowDearImGuiIdStackToolWindow)
-            ImGui.ShowIDStackToolWindow(ref ShowDearImGuiIdStackToolWindow);
+            currentBinding.ShowIDStackToolWindow(ref ShowDearImGuiIdStackToolWindow);
     }
 }
