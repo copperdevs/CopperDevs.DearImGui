@@ -17,13 +17,15 @@ Personally direct DearImGui didn't feel the best in C#, so I made this package t
     - [ ] OpenGl ([OpenTk](https://github.com/opentk/opentk)) ***Maybe***
 - Pre-made renderer packages
     - [X] Raylib ([Raylib-CSharp](https://github.com/MrScautHD/Raylib-CSharp))
+        - [ ] Update to not directly call ImGui.NET
     - [ ] Raylib ([raylib-cs](https://github.com/chrisdill/raylib-cs)) ***Maybe***
     - [X] OpenGl ([Silk.NET](https://github.com/dotnet/Silk.NET))
+        - [ ] Update to not directly call ImGui.NET
     - [ ] Vulkan ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] OpenGl ([OpenTk](https://github.com/opentk/opentk)) ***Maybe***
 - [ ] Changable backends
     - [X] [ImGui.NET](https://github.com/ImGuiNET/ImGui.NET)
-    - [ ] [Hexa.Net.ImGui](https://www.nuget.org/packages/Hexa.NET.ImGui/)
+    - [ ] [Hexa.Net.ImGui](https://www.nuget.org/packages/Hexa.NET.ImGui/) **Untested**
 
 ## Examples
 
