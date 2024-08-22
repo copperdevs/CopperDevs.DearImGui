@@ -1,5 +1,5 @@
 ﻿using CopperDevs.Core.Utility;
-using CopperDevs.DearImGui.Binding.ImGuiNET;
+using CopperDevs.DearImGui.Backend.ImGuiNET;
 using CopperDevs.DearImGui.Renderer.Raylib;
 using Raylib_CSharp.Colors;
 using Raylib_CSharp.Rendering;
@@ -24,7 +24,7 @@ public static class Program
         Window.Init(800, 480, "CopperDevs.DearImGui Example");
         SetWindowStyling();
 
-        CopperImGui.Setup<RlImGuiRenderer, ImGuiNETBindings>(true, true); // setup the actual imgui layering, as well as enabling all the built in dearimgui windows
+        CopperImGui.Setup<RlImGuiRenderer, ImGuiNetBackend>(true, true); // setup the actual imgui layering, as well as enabling all the built in dearimgui windows
         CopperImGui.ShowDearImGuiAboutWindow = true;
         CopperImGui.ShowDearImGuiDemoWindow = true;
         CopperImGui.ShowDearImGuiMetricsWindow = true;

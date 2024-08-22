@@ -30,7 +30,7 @@ public static partial class CopperImGui
     /// <param name="id">ID of the popup to render</param>
     public static void ShowPopup(string id)
     {
-        currentBinding.OpenPopup(id);
+        CurrentBackend.OpenPopup(id);
     }
 
     private static void RenderPopups()
@@ -40,11 +40,11 @@ public static partial class CopperImGui
             if (!canRender) 
                 continue;
             
-            if (!currentBinding.BeginPopup(popup.Key)) 
+            if (!CurrentBackend.BeginPopup(popup.Key)) 
                 continue;
                 
             popup.Value?.Invoke();
-            currentBinding.EndPopup();
+            CurrentBackend.EndPopup();
         }
     }
 
@@ -57,10 +57,10 @@ public static partial class CopperImGui
         if (!RegisteredPopups.TryGetValue(id, out var popup))
             return;
 
-        if (!currentBinding.BeginPopup(id))
+        if (!CurrentBackend.BeginPopup(id))
             return;
 
         popup?.Invoke();
-        currentBinding.EndPopup();
+        CurrentBackend.EndPopup();
     }
 }

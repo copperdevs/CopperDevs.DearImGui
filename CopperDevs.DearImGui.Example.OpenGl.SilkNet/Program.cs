@@ -2,7 +2,7 @@
 using System.Diagnostics.CodeAnalysis;
 using System.Drawing;
 using CopperDevs.Core.Utility;
-using CopperDevs.DearImGui.Binding.ImGuiNET;
+using CopperDevs.DearImGui.Backend.ImGuiNET;
 using CopperDevs.DearImGui.Renderer.OpenGl.SilkNet;
 using Silk.NET.Input;
 using Silk.NET.OpenGL;
@@ -33,7 +33,7 @@ public static class Program
             SetWindowStyling();
 
             OpenGlRenderer.SetupReferences(gl, window, window.CreateInput());
-            CopperImGui.Setup<OpenGlRenderer, ImGuiNETBindings>(true, true);
+            CopperImGui.Setup<OpenGlRenderer, ImGuiNetBackend>(true, true);
         };
 
         window.Render += deltaTime =>

@@ -23,7 +23,7 @@ public sealed class IndentScope : Scope
         this.condition = condition;
 
         if (condition)
-            CopperImGui.currentBinding.Indent();
+            CopperImGui.CurrentBackend.Indent();
     }
 
     /// <summary>
@@ -32,6 +32,6 @@ public sealed class IndentScope : Scope
     protected override void CloseScope()
     {
         if (condition)
-            CopperImGui.currentBinding.Unindent();
+            CopperImGui.CurrentBackend.Unindent();
     }
 }

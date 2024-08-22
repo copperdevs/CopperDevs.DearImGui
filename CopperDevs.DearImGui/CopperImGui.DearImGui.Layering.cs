@@ -14,7 +14,7 @@ public static partial class CopperImGui
     public static void Separator()
     {
         if (canRender)
-            currentBinding.SeparatorText("");
+            CurrentBackend.SeparatorText("");
     }
 
     /// <summary>
@@ -24,7 +24,7 @@ public static partial class CopperImGui
     public static void Separator(string text)
     {
         if (canRender)
-            currentBinding.SeparatorText(text);
+            CurrentBackend.SeparatorText(text);
     }
 
     /// <summary>
@@ -33,7 +33,7 @@ public static partial class CopperImGui
     public static void Space()
     {
         if (canRender)
-            currentBinding.Dummy(tempVec with { Y = 20 });
+            CurrentBackend.Dummy(tempVec with { Y = 20 });
     }
 
     /// <summary>
@@ -43,7 +43,7 @@ public static partial class CopperImGui
     public static void Space(float amount)
     {
         if (canRender)
-            currentBinding.Dummy(tempVec with { Y = amount });
+            CurrentBackend.Dummy(tempVec with { Y = amount });
     }
 
     /// <summary>
@@ -58,10 +58,10 @@ public static partial class CopperImGui
         foreach (var action in items)
         {
             action.Invoke();
-            currentBinding.SameLine();
+            CurrentBackend.SameLine();
         }
 
-        currentBinding.Dummy(tempVec with { X = 0, Y = 0 });
+        CurrentBackend.Dummy(tempVec with { X = 0, Y = 0 });
     }
 
     /// <summary>
@@ -89,11 +89,11 @@ public static partial class CopperImGui
     {
         if (!canRender)
             return;
-        if (!currentBinding.BeginChild(id, tempVec with { X = width, Y = height }, flags))
+        if (!CurrentBackend.BeginChild(id, tempVec with { X = width, Y = height }, flags))
             return;
 
         group.Invoke();
-        currentBinding.EndChild();
+        CurrentBackend.EndChild();
     }
 
     /// <summary>
@@ -117,7 +117,7 @@ public static partial class CopperImGui
     {
         if (!canRender)
             return;
-        if (currentBinding.Selectable(text, enabled))
+        if (CurrentBackend.Selectable(text, enabled))
             clickEvent?.Invoke();
     }
 
@@ -129,7 +129,7 @@ public static partial class CopperImGui
     public static void Text(object value, string title)
     {
         if (canRender)
-            currentBinding.LabelText(title, $"{value}");
+            CurrentBackend.LabelText(title, $"{value}");
     }
 
     /// <summary>
@@ -139,7 +139,7 @@ public static partial class CopperImGui
     public static void Text(object? value)
     {
         if (canRender)
-            currentBinding.Text($"{value}");
+            CurrentBackend.Text($"{value}");
     }
 
     /// <summary>
@@ -179,7 +179,7 @@ public static partial class CopperImGui
             var rowInteracted = false;
             var row = new Vector4(itemOne, itemTwo, itemThree, itemFour);
 
-            if (!currentBinding.DragFloat4(rowName, ref row))
+            if (!CurrentBackend.DragFloat4(rowName, ref row))
                 return rowInteracted;
 
             rowInteracted = true;
@@ -201,16 +201,16 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (!currentBinding.BeginItemTooltip())
+        if (!CurrentBackend.BeginItemTooltip())
             return;
 
-        currentBinding.PushTextWrapPos(currentBinding.GetFontSize() * 35.0f);
+        CurrentBackend.PushTextWrapPos(CurrentBackend.GetFontSize() * 35.0f);
 
-        currentBinding.TextUnformatted(message.ToString());
+        CurrentBackend.TextUnformatted(message.ToString());
 
-        currentBinding.PopTextWrapPos();
+        CurrentBackend.PopTextWrapPos();
 
-        currentBinding.EndTooltip();
+        CurrentBackend.EndTooltip();
     }
 
     /// <summary>
@@ -224,7 +224,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (!currentBinding.CollapsingHeader(name))
+        if (!CurrentBackend.CollapsingHeader(name))
             return;
 
         using (new IndentScope(indent))
@@ -241,7 +241,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.Button(name))
+        if (CurrentBackend.Button(name))
             clickEvent?.Invoke();
     }
 
@@ -257,7 +257,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.Button(name, tempVec with { X = width, Y = height }))
+        if (CurrentBackend.Button(name, tempVec with { X = width, Y = height }))
             clickEvent?.Invoke();
     }
 
@@ -273,7 +273,7 @@ public static partial class CopperImGui
         if (!canRender)
             return false;
 
-        if (!currentBinding.Checkbox(name, ref currentValue))
+        if (!CurrentBackend.Checkbox(name, ref currentValue))
             return false;
 
         interacted?.Invoke(currentValue);
@@ -292,7 +292,7 @@ public static partial class CopperImGui
         if (!canRender)
             return false;
 
-        if (!currentBinding.ColorEdit4(name, ref color))
+        if (!CurrentBackend.ColorEdit4(name, ref color))
             return false;
 
         interacted?.Invoke(color);
@@ -311,7 +311,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragFloat(name, ref value))
+        if (CurrentBackend.DragFloat(name, ref value))
             interacted?.Invoke(value);
     }
 
@@ -330,7 +330,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragFloat(name, ref value, speed, min, max))
+        if (CurrentBackend.DragFloat(name, ref value, speed, min, max))
             interacted?.Invoke(value);
     }
 
@@ -348,7 +348,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.SliderFloat(name, ref value, min, max))
+        if (CurrentBackend.SliderFloat(name, ref value, min, max))
             interacted?.Invoke(value);
     }
 
@@ -364,7 +364,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragFloat2(name, ref value))
+        if (CurrentBackend.DragFloat2(name, ref value))
             interacted?.Invoke(value);
     }
 
@@ -383,7 +383,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragFloat2(name, ref value, speed, min, max))
+        if (CurrentBackend.DragFloat2(name, ref value, speed, min, max))
             interacted?.Invoke(value);
     }
 
@@ -401,7 +401,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.SliderFloat2(name, ref value, min, max))
+        if (CurrentBackend.SliderFloat2(name, ref value, min, max))
             interacted?.Invoke(value);
     }
 
@@ -421,7 +421,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragInt2(name, ref value.X, speed, min, max))
+        if (CurrentBackend.DragInt2(name, ref value.X, speed, min, max))
             interacted?.Invoke(value);
     }
 
@@ -437,7 +437,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragInt2(name, ref value.X))
+        if (CurrentBackend.DragInt2(name, ref value.X))
             interacted?.Invoke(value);
     }
 
@@ -455,7 +455,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.SliderInt2(name, ref value.X, min, max))
+        if (CurrentBackend.SliderInt2(name, ref value.X, min, max))
             interacted?.Invoke(value);
     }
 
@@ -471,7 +471,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragFloat3(name, ref value))
+        if (CurrentBackend.DragFloat3(name, ref value))
             interacted?.Invoke(value);
     }
 
@@ -490,7 +490,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragFloat3(name, ref value, speed, min, max))
+        if (CurrentBackend.DragFloat3(name, ref value, speed, min, max))
             interacted?.Invoke(value);
     }
 
@@ -508,7 +508,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.SliderFloat3(name, ref value, min, max))
+        if (CurrentBackend.SliderFloat3(name, ref value, min, max))
             interacted?.Invoke(value);
     }
 
@@ -524,7 +524,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragFloat4(name, ref value))
+        if (CurrentBackend.DragFloat4(name, ref value))
             interacted?.Invoke(value);
     }
 
@@ -543,7 +543,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragFloat4(name, ref value, speed, min, max))
+        if (CurrentBackend.DragFloat4(name, ref value, speed, min, max))
             interacted?.Invoke(value);
     }
 
@@ -561,7 +561,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.SliderFloat4(name, ref value, min, max))
+        if (CurrentBackend.SliderFloat4(name, ref value, min, max))
             interacted?.Invoke(value);
     }
 
@@ -577,7 +577,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragInt(name, ref value))
+        if (CurrentBackend.DragInt(name, ref value))
             interacted?.Invoke(value);
     }
 
@@ -596,7 +596,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.DragInt(name, ref value, speed, min, max))
+        if (CurrentBackend.DragInt(name, ref value, speed, min, max))
             interacted?.Invoke(value);
     }
 
@@ -614,7 +614,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.SliderInt(name, ref value, min, max))
+        if (CurrentBackend.SliderInt(name, ref value, min, max))
             interacted?.Invoke(value);
     }
 
@@ -631,7 +631,7 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (currentBinding.InputText(name, ref value, maxLength))
+        if (CurrentBackend.InputText(name, ref value, maxLength))
             interacted?.Invoke(value);
     }
 
@@ -646,21 +646,21 @@ public static partial class CopperImGui
         if (!canRender)
             return;
 
-        if (!currentBinding.BeginTabBar(id, TabBarFlags.Reorderable))
+        if (!CurrentBackend.BeginTabBar(id, TabBarFlags.Reorderable))
             return;
 
         for (var i = 0; i < tabs.Length; i++)
         {
             var (tabTitle, tabAction) = tabs[i];
 
-            if (!currentBinding.BeginTabItem($"{tabTitle}###{id}{i}"))
+            if (!CurrentBackend.BeginTabItem($"{tabTitle}###{id}{i}"))
                 continue;
 
             tabAction?.Invoke();
-            currentBinding.EndTabItem();
+            CurrentBackend.EndTabItem();
         }
 
-        currentBinding.EndTabBar();
+        CurrentBackend.EndTabBar();
     }
 
     /// <summary>
@@ -706,7 +706,7 @@ public static partial class CopperImGui
     public static bool MenuItem(string text, ref bool enabled)
     {
         if (canRender)
-            return currentBinding.MenuItem(text, null, ref enabled);
+            return CurrentBackend.MenuItem(text, null, ref enabled);
         return false;
     }
 
@@ -728,22 +728,22 @@ public static partial class CopperImGui
     /// <remarks>The string of the subMenus tuple is the menus name, while the Action is invoked on click of that item</remarks>
     public static void MenuBar(bool isMainMenuBar = false, params (string, Action?)[] subMenus)
     {
-        if (isMainMenuBar ? !currentBinding.BeginMainMenuBar() : !currentBinding.BeginMenuBar())
+        if (isMainMenuBar ? !CurrentBackend.BeginMainMenuBar() : !CurrentBackend.BeginMenuBar())
             return;
 
         foreach (var subMenu in subMenus)
         {
-            if (!currentBinding.BeginMenu(subMenu.Item1))
+            if (!CurrentBackend.BeginMenu(subMenu.Item1))
                 continue;
 
             subMenu.Item2?.Invoke();
-            currentBinding.EndMenu();
+            CurrentBackend.EndMenu();
         }
 
         if (isMainMenuBar)
-            currentBinding.EndMainMenuBar();
+            CurrentBackend.EndMainMenuBar();
         else
-            currentBinding.EndMenuBar();
+            CurrentBackend.EndMenuBar();
     }
 
     /// <summary>
@@ -754,11 +754,11 @@ public static partial class CopperImGui
     /// <param name="flags">Flags to render the window with</param>
     public static void Window(string title, Action? render, WindowFlags flags = WindowFlags.None)
     {
-        if (!currentBinding.Begin(title, flags))
+        if (!CurrentBackend.Begin(title, flags))
             return;
 
         render?.Invoke();
-        currentBinding.End();
+        CurrentBackend.End();
     }
 
     /// <summary>
@@ -773,10 +773,10 @@ public static partial class CopperImGui
         if (!isOpen)
             return;
 
-        if (!currentBinding.Begin(title, ref isOpen, flags))
+        if (!CurrentBackend.Begin(title, ref isOpen, flags))
             return;
 
         render.Invoke();
-        currentBinding.End();
+        CurrentBackend.End();
     }
 }

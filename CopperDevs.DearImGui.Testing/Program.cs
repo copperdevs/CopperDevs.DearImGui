@@ -1,5 +1,5 @@
 ﻿using CopperDevs.Core.Utility;
-using CopperDevs.DearImGui.Binding.ImGuiNET;
+using CopperDevs.DearImGui.Backend.ImGuiNET;
 using CopperDevs.DearImGui.Renderer.Raylib;
 using ImGuiNET;
 using Raylib_CSharp;
@@ -26,7 +26,7 @@ public static class Program
         Window.Init(800, 480, "CopperDevs.DearImGui Example");
         SetWindowStyling();
 
-        CopperImGui.Setup<RlImGuiRenderer, ImGuiNETBindings>(true, true);
+        CopperImGui.Setup<RlImGuiRenderer, ImGuiNetBackend>(true, true);
 
         while (!Window.ShouldClose())
             RenderGame();

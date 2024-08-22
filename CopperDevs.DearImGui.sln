@@ -26,9 +26,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Testin
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bindings", "Bindings", "{72BA773F-D9D7-408A-9E90-183AFF20B7BC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Binding.ImGuiNET", "CopperDevs.DearImGui.Binding.ImGuiNET\CopperDevs.DearImGui.Binding.ImGuiNET.csproj", "{113CC8F6-7C4D-45F6-9531-0C485B2F6C28}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Backend.ImGuiNET", "CopperDevs.DearImGui.Backend.ImGuiNET\CopperDevs.DearImGui.Backend.ImGuiNET.csproj", "{113CC8F6-7C4D-45F6-9531-0C485B2F6C28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Binding.HexaNet", "CopperDevs.DearImGui.Binding.HexaNet\CopperDevs.DearImGui.Binding.HexaNet.csproj", "{5C94EAAF-DDB8-44E8-8197-A51C5C53A2CE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Backend.HexaNet", "CopperDevs.DearImGui.Backend.HexaNet\CopperDevs.DearImGui.Backend.HexaNet.csproj", "{5C94EAAF-DDB8-44E8-8197-A51C5C53A2CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.OpenGl.OpenTk", "CopperDevs.DearImGui.Renderer.OpenGl.OpenTk\CopperDevs.DearImGui.Renderer.OpenGl.OpenTk.csproj", "{C9E8714D-8935-4A9D-8818-788A51B39C03}"
 EndProject

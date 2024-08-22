@@ -1,10 +1,10 @@
-﻿using System.Numerics;
+using System.Numerics;
 using CopperDevs.DearImGui.Enums;
-using ImGuiNET;
+using Hexa.NET.ImGui;
 
-namespace CopperDevs.DearImGui.Binding.ImGuiNET;
+namespace CopperDevs.DearImGui.Backend.HexaNet;
 
-public class ImGuiNETBindings : IImGuiBinding
+public class HexaNetBackend : IImGuiBackend
 {
     public bool WantCaptureMouse => ImGui.GetIO().WantCaptureMouse;
 

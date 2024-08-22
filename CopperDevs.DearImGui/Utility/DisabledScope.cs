@@ -24,7 +24,7 @@ public sealed class DisabledScope : Scope
         this.condition = condition;
 
         if (condition)
-            CopperImGui.currentBinding.BeginDisabled();
+            CopperImGui.CurrentBackend.BeginDisabled();
     }
 
     /// <summary>
@@ -33,6 +33,6 @@ public sealed class DisabledScope : Scope
     protected override void CloseScope()
     {
         if (condition)
-            CopperImGui.currentBinding.EndDisabled();
+            CopperImGui.CurrentBackend.EndDisabled();
     }
 }

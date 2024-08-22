@@ -9,13 +9,13 @@ public static partial class CopperImGui
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
     /// <typeparam name="TImGuiRenderer">Type of your <see cref="CopperDevs.DearImGui.IImGuiRenderer"/></typeparam>
-    /// <typeparam name="TImGuiBinding">Type of your <see cref="CopperDevs.DearImGui.IImGuiBinding"/></typeparam>
+    /// <typeparam name="TImGuiBinding">Type of your <see cref="IImGuiBackend"/></typeparam>
     public static void Setup<TImGuiRenderer, TImGuiBinding>(bool isDockingEnabled = true, bool shouldShowTabBar = false)
         where TImGuiRenderer : IImGuiRenderer, new()
-        where TImGuiBinding : IImGuiBinding, new()
+        where TImGuiBinding : IImGuiBackend, new()
     {
         currentRenderer = new TImGuiRenderer();
-        currentBinding = new TImGuiBinding();
+        CurrentBackend = new TImGuiBinding();
 
         currentRenderer.Setup();
 
@@ -44,7 +44,7 @@ public static partial class CopperImGui
         PreRendered?.Invoke();
 
         if (dockingEnabled)
-            currentBinding.DockSpaceOverMainViewport();
+            CurrentBackend.DockSpaceOverMainViewport();
             // ImGui.DockSpaceOverViewport(0, ImGui.GetMainViewport(), ImGuiDockNodeFlags.PassthruCentralNode | ImGuiDockNodeFlags.AutoHideTabBar);
 
         RenderWindows();
@@ -71,18 +71,18 @@ public static partial class CopperImGui
     private static void RenderBuiltInWindows()
     {
         if (ShowDearImGuiAboutWindow)
-            currentBinding.ShowAboutWindow(ref ShowDearImGuiAboutWindow);
+            CurrentBackend.ShowAboutWindow(ref ShowDearImGuiAboutWindow);
 
         if (ShowDearImGuiDemoWindow)
-            currentBinding.ShowDemoWindow(ref ShowDearImGuiDemoWindow);
+            CurrentBackend.ShowDemoWindow(ref ShowDearImGuiDemoWindow);
 
         if (ShowDearImGuiMetricsWindow)
-            currentBinding.ShowMetricsWindow(ref ShowDearImGuiMetricsWindow);
+            CurrentBackend.ShowMetricsWindow(ref ShowDearImGuiMetricsWindow);
 
         if (ShowDearImGuiDebugLogWindow)
-            currentBinding.ShowDebugLogWindow(ref ShowDearImGuiDebugLogWindow);
+            CurrentBackend.ShowDebugLogWindow(ref ShowDearImGuiDebugLogWindow);
 
         if (ShowDearImGuiIdStackToolWindow)
-            currentBinding.ShowIdStackToolWindow(ref ShowDearImGuiIdStackToolWindow);
+            CurrentBackend.ShowIdStackToolWindow(ref ShowDearImGuiIdStackToolWindow);
     }
 }

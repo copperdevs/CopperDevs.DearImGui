@@ -34,26 +34,26 @@ public static partial class CopperImGui
         {
             if (showTabBar)
             {
-                if (currentBinding.BeginMainMenuBar())
+                if (CurrentBackend.BeginMainMenuBar())
                 {
-                    if (currentBinding.BeginMenu("Windows"))
+                    if (CurrentBackend.BeginMenu("Windows"))
                     {
-                        currentBinding.MenuItem(window.WindowName, null, ref window.WindowOpen);
-                        currentBinding.EndMenu();
+                        CurrentBackend.MenuItem(window.WindowName, null, ref window.WindowOpen);
+                        CurrentBackend.EndMenu();
                     }
 
-                    currentBinding.EndMainMenuBar();
+                    CurrentBackend.EndMainMenuBar();
                 }
             }
 
             if (!window.WindowOpen)
                 continue;
 
-            if (!currentBinding.Begin(window.WindowName, ref window.WindowOpen))
+            if (!CurrentBackend.Begin(window.WindowName, ref window.WindowOpen))
                 continue;
 
             window.Update();
-            currentBinding.End();
+            CurrentBackend.End();
         }
     }
 
