@@ -108,4 +108,11 @@ public interface IImGuiBackend
     public void SetSeparatorTextPadding(Vector2 value);
 
     #endregion
+
+    #region fonts
+
+    public void LoadFont(string path, float pixelSize);
+    public void LoadFontFromMemory(byte[] fontData, int pixelSize, int dataSize);
+
+    #endregion
 }

@@ -1,4 +1,5 @@
 using System.Numerics;
+using CopperDevs.Core;
 using CopperDevs.DearImGui.Enums;
 using Hexa.NET.ImGui;
 
@@ -226,5 +227,33 @@ public class HexaNetBackend : IImGuiBackend
     public void SetSeparatorTextPadding(Vector2 value)
     {
         ImGui.GetStyle().SeparatorTextPadding = value;
+    }
+
+    public void LoadFont(string path, float pixelSize)
+    {
+        try
+        {
+            ImGui.GetIO().Fonts.AddFontFromFileTTF(path, pixelSize);
+        }
+        catch (Exception e)
+        {
+            Log.Exception(e);
+        }
+    }
+
+    public void LoadFontFromMemory(byte[] fontData, int pixelSize, int dataSize)
+    {
+        try
+        {
+            unsafe
+            {
+                fixed (byte* p = fontData)
+                    ImGui.GetIO().Fonts.AddFontFromMemoryTTF(p, dataSize, pixelSize);
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Exception(e);
+        }
     }
 }
