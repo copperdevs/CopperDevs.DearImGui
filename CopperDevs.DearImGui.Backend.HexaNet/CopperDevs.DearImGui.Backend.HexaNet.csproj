@@ -7,6 +7,18 @@
         <PackageLicenseFile>License.txt</PackageLicenseFile>
         <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Authors>copperdevs</Authors>
+        <RepositoryUrl>https://github.com/copperdevs/copperdevs.dearimgui</RepositoryUrl>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Company>copperdevs</Company>
+        <AssemblyVersion>2.1.1</AssemblyVersion>
+        <FileVersion>2.1.1</FileVersion>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>CopperDevs.DearImGui.Backend.HexaNet</Title>
+        <Description>Hexa.Net.ImGui bindings for my ImGui wrapper</Description>
+        <Copyright>MIT</Copyright>
+        <PackageProjectUrl>https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/CopperDevs.DearImGui.Backend.HexaNet</PackageProjectUrl>
+        <RepositoryType>git</RepositoryType>
     </PropertyGroup>
 
     <ItemGroup>

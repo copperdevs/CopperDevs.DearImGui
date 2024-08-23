@@ -7,6 +7,18 @@
         <PackageLicenseFile>License.txt</PackageLicenseFile>
         <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>CopperDevs.DearImGui.Backend.ImGuiNET</Title>
+        <Authors>copperdevs</Authors>
+        <Description>ImGui.NET bindings for my ImGui wrapper</Description>
+        <Copyright>MIT</Copyright>
+        <PackageProjectUrl>https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/CopperDevs.DearImGui.Backend.ImGuiNET</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/copperdevs/copperdevs.dearimgui</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Company>copperdevs</Company>
+        <AssemblyVersion>1.91.0.1</AssemblyVersion>
+        <FileVersion>1.91.0.1</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
