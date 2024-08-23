@@ -1,11 +1,12 @@
 ﻿using System.Reflection;
 using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.ReflectionRenderers;
+using CopperDevs.DearImGui.Renderer.Raylib.Internal.Rendering;
 using Raylib_CSharp.Textures;
 
-namespace CopperDevs.DearImGui.Renderer.Raylib;
+namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.FieldRenderers;
 
-public class Texture2DFieldRenderer : FieldRenderer
+internal class Texture2DFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
     {
@@ -25,10 +26,7 @@ public class Texture2DFieldRenderer : FieldRenderer
             () =>
             {
                 CopperImGui.HorizontalGroup(() => { rlImGui.ImageSize(textureValue, 64, 64); },
-                    () =>
-                    {
-                        CopperImGui.Text($"Size: <{textureValue.Width},{textureValue.Height}> \nFormat: {textureValue.Format} \nOpenGL id: {textureValue.Id} \nMipmap level: {textureValue.Mipmaps}");
-                    });
+                    () => { CopperImGui.Text($"Size: <{textureValue.Width},{textureValue.Height}> \nFormat: {textureValue.Format} \nOpenGL id: {textureValue.Id} \nMipmap level: {textureValue.Mipmaps}"); });
             });
     }
 }

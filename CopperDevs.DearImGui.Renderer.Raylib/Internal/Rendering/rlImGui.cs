@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
 using CopperDevs.Core;
+using CopperDevs.DearImGui.Renderer.Raylib.Internal.FontAwesome;
 using ImGuiNET;
 using Raylib_CSharp;
 using Raylib_CSharp.Images;
@@ -11,7 +12,7 @@ using Raylib_CSharp.Textures;
 using Raylib_CSharp.Transformations;
 using Raylib_CSharp.Windowing;
 
-namespace CopperDevs.DearImGui.Renderer.Raylib;
+namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.Rendering;
 
 // ReSharper disable once InconsistentNaming
 internal static class rlImGui
@@ -307,7 +308,7 @@ internal static class rlImGui
                 Buffer.MemoryCopy(range, FontAwesomeIcons.IconFontRanges.ToPointer(), 6, 6);
                 iconsConfig->GlyphRanges = (ushort*)FontAwesomeIcons.IconFontRanges.ToPointer();
 
-                using var stream = typeof(rlImGui).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Renderer.Raylib.FontAwesomeData.txt");
+                using var stream = typeof(rlImGui).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Renderer.Raylib.Resources.FontAwesomeData.txt");
                 using var reader = new StreamReader(stream!);
                 var streamTextResult = reader.ReadToEnd();
 

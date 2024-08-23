@@ -4,9 +4,9 @@ using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.ReflectionRenderers;
 using Raylib_CSharp.Colors;
 
-namespace CopperDevs.DearImGui.Renderer.Raylib;
+namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.FieldRenderers;
 
-public class ColorFieldRenderer : FieldRenderer
+internal class ColorFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
     {

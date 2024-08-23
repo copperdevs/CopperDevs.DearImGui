@@ -1,11 +1,12 @@
 ﻿using System.Reflection;
 using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.ReflectionRenderers;
+using CopperDevs.DearImGui.Renderer.Raylib.Internal.Rendering;
 using Raylib_CSharp.Textures;
 
-namespace CopperDevs.DearImGui.Renderer.Raylib;
+namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.FieldRenderers;
 
-public class RenderTexture2DFieldRenderer : FieldRenderer
+internal class RenderTexture2DFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
     {
