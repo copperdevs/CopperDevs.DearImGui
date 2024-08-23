@@ -4,6 +4,8 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <PackageLicenseFile>License.txt</PackageLicenseFile>
+        <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -11,7 +13,29 @@
     </ItemGroup>
 
     <ItemGroup>
-      <PackageReference Include="Hexa.NET.ImGui" Version="2.1.1" />
+        <PackageReference Include="Hexa.NET.ImGui" Version="2.1.1"/>
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="License.txt">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+      <None Update="ReadMe.md">
+        <Pack>True</Pack>
+        <PackagePath>\</PackagePath>
+      </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <None Include="ReadMe.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Include="License.txt">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
     </ItemGroup>
 
 </Project>
