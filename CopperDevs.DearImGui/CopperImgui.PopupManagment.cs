@@ -1,5 +1,4 @@
-﻿
-namespace CopperDevs.DearImGui;
+﻿namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
@@ -18,7 +17,7 @@ public static partial class CopperImGui
     /// <summary>
     /// Deregister a popup of a specific type
     /// </summary>
-    /// <param name="id">I'd of the popup to deregister</param>
+    /// <param name="id">ID of the popup to deregister</param>
     public static void DeregisterPopup(string id)
     {
         RegisteredPopups.Remove(id);
@@ -37,14 +36,7 @@ public static partial class CopperImGui
     {
         foreach (var popup in RegisteredPopups)
         {
-            if (!canRender) 
-                continue;
-            
-            if (!CurrentBackend.BeginPopup(popup.Key)) 
-                continue;
-                
-            popup.Value?.Invoke();
-            CurrentBackend.EndPopup();
+            ForceRenderPopup(popup.Key);
         }
     }
 
@@ -52,6 +44,7 @@ public static partial class CopperImGui
     /// Force render popup instead of waiting for the system to call it automatically
     /// </summary>
     /// <param name="id">ID of the popup to force render</param>
+    /// <remarks>This is not recommended at all, but it is publicly available just in case</remarks>
     public static void ForceRenderPopup(string id)
     {
         if (!RegisteredPopups.TryGetValue(id, out var popup))
