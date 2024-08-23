@@ -6,31 +6,28 @@ using Raylib_CSharp.Transformations;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib;
 
-public class RlImGuiRenderer : IImGuiRenderer
+public class RlImGuiRenderer : ImGuiRenderer
 {
-    public static Action<ImFontAtlasPtr> SetupUserFonts = null!;
-
-    public void Setup()
+    public override void Setup()
     {
-        rlImGui.SetupUserFonts += SetupUserFonts;
         rlImGui.Setup(true, true);
-        
+
         CopperImGui.RegisterFieldRenderer<Color, ColorFieldRenderer>();
         CopperImGui.RegisterFieldRenderer<Texture2D, Texture2DFieldRenderer>();
         CopperImGui.RegisterFieldRenderer<RenderTexture2D, RenderTexture2DFieldRenderer>();
     }
 
-    public void Begin()
+    public override void Begin()
     {
         rlImGui.Begin();
     }
 
-    public void End()
+    public override void End()
     {
         rlImGui.End();
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         rlImGui.Shutdown();
     }

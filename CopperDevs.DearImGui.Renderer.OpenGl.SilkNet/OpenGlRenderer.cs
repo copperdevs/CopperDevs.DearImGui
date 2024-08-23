@@ -6,10 +6,8 @@ using Silk.NET.Windowing;
 
 namespace CopperDevs.DearImGui.Renderer.OpenGl.SilkNet;
 
-public class OpenGlRenderer : IImGuiRenderer
+public class OpenGlRenderer : ImGuiRenderer
 {
-    public static Action<ImFontAtlasPtr> SetupUserFonts = null!;
-
     private static ImGuiController controller = null!;
 
     private static GL targetGl = null!;
@@ -27,22 +25,22 @@ public class OpenGlRenderer : IImGuiRenderer
 
     public static void SetDeltaTime(double newDeltaTime) => deltaTime = newDeltaTime;
 
-    public void Setup()
+    public override void Setup()
     {
         controller = new ImGuiController(targetGl, targetWindow, targetInputContext);
     }
 
-    public void Begin()
+    public override void Begin()
     {
         controller.Update((float)deltaTime);
     }
 
-    public void End()
+    public override void End()
     {
         controller.Render();
     }
 
-    public void Shutdown()
+    public override void Shutdown()
     {
         controller.Dispose();
     }

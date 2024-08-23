@@ -11,7 +11,7 @@ public static partial class CopperImGui
     private static bool canRender;
     private static bool dockingEnabled;
     private static bool showTabBar;
-    private static IImGuiRenderer currentRenderer = null!;
+    private static ImGuiRenderer currentRenderer = null!;
     internal static IImGuiBackend CurrentBackend { get; private set; } = null!;
 
     // ---------------- windows ---------------- //

@@ -31,11 +31,6 @@ internal static class rlImGui
     private static bool lastAltPressed;
     private static bool lastSuperPressed;
 
-    /// <summary>
-    /// Callback for cases where the user wants to install additional fonts.
-    /// </summary>
-    public static Action<ImFontAtlasPtr> SetupUserFonts = null!;
-
     // ReSharper disable once InconsistentNaming
     private static bool rlImGuiIsControlDown() => Input.IsKeyDown(KeyboardKey.RightControl) || Input.IsKeyDown(KeyboardKey.LeftControl);
 
@@ -283,7 +278,7 @@ internal static class rlImGui
         ImGui.SetCurrentContext(imGuiContext);
 
         var fonts = ImGui.GetIO().Fonts;
-        SetupUserFonts?.Invoke(fonts);
+        ImGuiRenderer.LoadUserFonts?.Invoke();
         fonts.AddFontDefault();
 
         // remove this part if you don't want font awesome
