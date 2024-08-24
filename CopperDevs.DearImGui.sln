@@ -7,7 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo", "Repo", "{5B0E440E-F
 		License.txt = License.txt
 		ReadMe.md = ReadMe.md
 		.gitignore = .gitignore
-		temp-notes.txt = temp-notes.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib", "CopperDevs.DearImGui.Example.Raylib\CopperDevs.DearImGui.Example.Raylib.csproj", "{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE}"

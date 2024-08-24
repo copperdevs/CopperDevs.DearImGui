@@ -6,6 +6,22 @@
 
 Personally direct DearImGui didn't feel the best in C#, so I made this package to (subjectively) improve upon it.
 
+## Installation
+
+```
+dotnet add package CopperDevs.DearImGui --version 1.2.0
+```
+
+Additionally, you need to install a relevant renderer package. There is currently two pre-made packages available.
+
+```
+dotnet add package CopperDevs.DearImGui.Renderer.Raylib --version 1.1.1
+```
+
+```
+dotnet add package CopperDevs.DearImGui.Renderer.OpenGl.SilkNet --version 1.0.1
+```
+
 ## To Do
 
 - [ ] Documentation
@@ -27,7 +43,5 @@ Personally direct DearImGui didn't feel the best in C#, so I made this package t
 
 ## Examples
 
-There is currently one completed example, with one WIP example
-
-- [Silk.NET OpenGl](./CopperDevs.DearImGui.Example.OpenGl.SilkNet)
-- [Raylib-CSharp](./CopperDevs.DearImGui.Example.Raylib)
+- [Silk.NET OpenGl](https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/CopperDevs.DearImGui.Renderer.OpenGl.SilkNet)
+- [Raylib-CSharp](https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/CopperDevs.DearImGui.Renderer.Raylib)
