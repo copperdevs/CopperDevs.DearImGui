@@ -13,7 +13,7 @@ public static partial class CopperImGui
     private static bool dockingEnabled;
     private static bool showTabBar;
     private static ImGuiRenderer currentRenderer = null!;
-    internal static IImGuiBackend CurrentBackend { get; private set; } = null!;
+    internal static IImGuiBackend CurrentBackend { get; private set; } = new ImGuiNetBackend();
 
     // ---------------- windows ---------------- //
     private static List<WindowAttribute> windows = [];

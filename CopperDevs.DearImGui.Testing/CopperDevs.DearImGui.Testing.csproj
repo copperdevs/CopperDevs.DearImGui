@@ -12,7 +12,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CopperDevs.DearImGui.Backend.ImGuiNET\CopperDevs.DearImGui.Backend.ImGuiNET.csproj" />
       <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj" />
       <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
     </ItemGroup>
