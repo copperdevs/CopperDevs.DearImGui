@@ -1,11 +1,5 @@
-﻿// BUG: Fix Lists of enums
-// BUG: Multiple enums breaks 
+﻿namespace CopperDevs.DearImGui.ReflectionRenderers;
 
-using CopperDevs.Core.Data;
-
-namespace CopperDevs.DearImGui.ReflectionRenderers;
-
-// enums are broken and i dont wanna fix them cause they suck
 internal class EnumFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
