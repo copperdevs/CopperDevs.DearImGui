@@ -1,7 +1,7 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using CopperDevs.Core.Data;
-using CopperDevs.DearImGui.Enums;
 using CopperDevs.DearImGui.Utility;
+using CopperDevs.DearImGui.Wrapping.Enums;
 
 namespace CopperDevs.DearImGui;
 
@@ -717,7 +717,8 @@ public static partial class CopperImGui
     /// <remarks>The string of the subMenus tuple is the menus name, while the Action is invoked on click of that item</remarks>
     public static void MenuBar(params (string, Action?)[] subMenus)
     {
-        MenuBar(false, subMenus);
+        if (canRender)
+            MenuBar(false, subMenus);
     }
 
     /// <summary>
@@ -728,6 +729,9 @@ public static partial class CopperImGui
     /// <remarks>The string of the subMenus tuple is the menus name, while the Action is invoked on click of that item</remarks>
     public static void MenuBar(bool isMainMenuBar = false, params (string, Action?)[] subMenus)
     {
+        if (!canRender)
+            return;
+
         if (isMainMenuBar ? !CurrentBackend.BeginMainMenuBar() : !CurrentBackend.BeginMenuBar())
             return;
 
@@ -754,6 +758,9 @@ public static partial class CopperImGui
     /// <param name="flags">Flags to render the window with</param>
     public static void Window(string title, Action? render, WindowFlags flags = WindowFlags.None)
     {
+        if (!canRender)
+            return;
+
         if (!CurrentBackend.Begin(title, flags))
             return;
 
@@ -770,6 +777,9 @@ public static partial class CopperImGui
     /// <param name="flags">Flags to render the window with</param>
     public static void Window(string title, Action render, ref bool isOpen, WindowFlags flags = WindowFlags.None)
     {
+        if (!canRender)
+            return;
+
         if (!isOpen)
             return;
 
@@ -788,7 +798,8 @@ public static partial class CopperImGui
     /// <remarks>Only TTF fonts are supported</remarks>
     public static void LoadFont(string path, float pixelSize)
     {
-        CurrentBackend.LoadFont(path, pixelSize);
+        if (canRender)
+            CurrentBackend.LoadFont(path, pixelSize);
     }
 
     /// <summary>
@@ -800,6 +811,45 @@ public static partial class CopperImGui
     /// <remarks>Only TTF fonts are supported</remarks>
     public static void LoadFontFromMemory(byte[] fontData, int pixelSize, int dataSize)
     {
-        CurrentBackend.LoadFontFromMemory(fontData, pixelSize, dataSize);
+        if (canRender)
+            CurrentBackend.LoadFontFromMemory(fontData, pixelSize, dataSize);
+    }
+
+    /// <summary>
+    /// Renders an image of a certain size
+    /// </summary>
+    /// <param name="imageId">The connected image id</param>
+    /// <param name="size">Size of the image</param>
+    public static void Image(IntPtr imageId, Vector2 size)
+    {
+        if (canRender)
+            CurrentBackend.Image(imageId, size);
+    }
+
+    /// <summary>
+    /// idk man it renders an image
+    /// </summary>
+    /// <param name="imageId">The connected image id</param>
+    /// <param name="size">Size of the image</param>
+    /// <param name="uv0">uv0</param>
+    /// <param name="uv1">uv1</param>
+    public static void Image(IntPtr imageId, Vector2 size, Vector2 uv0, Vector2 uv1)
+    {
+        if (canRender)
+            CurrentBackend.Image(imageId, size, uv0, uv1);
+    }
+
+    /// <summary>
+    /// Renders an image with a button
+    /// </summary>
+    /// <param name="name">Name of the button</param>
+    /// <param name="imageId">The connected image id</param>
+    /// <param name="size">Size of the image</param>
+    /// <returns>True if the button was clicked</returns>
+    public static bool ImageButton(string name, IntPtr imageId, Vector2 size)
+    {
+        if (canRender)
+            return CurrentBackend.ImageButton(name, imageId, size);
+        return false;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System.Numerics;
 using CopperDevs.Core;
-using CopperDevs.DearImGui.Enums;
+using CopperDevs.DearImGui.Wrapping;
+using CopperDevs.DearImGui.Wrapping.Enums;
 using ImGuiNET;
 
 namespace CopperDevs.DearImGui.Backend.ImGuiNET;
@@ -20,6 +21,14 @@ public class ImGuiNetBackend : IImGuiBackend
     public Vector2 GetWindowSize() => ImGui.GetWindowSize();
 
     public double GetTime() => ImGui.GetTime();
+
+    public float GetCursorXPos() => ImGui.GetCursorPosX();
+
+    public float GetCursorYPos() => ImGui.GetCursorPosY();
+
+    public void SetCursorYPos(float yPos) => ImGui.SetCursorPosY(yPos);
+
+    public void SetCursorXPos(float xPos) => ImGui.SetCursorPosX(xPos);
 
     public void SeparatorText(string text) => ImGui.SeparatorText(text);
 
@@ -154,7 +163,13 @@ public class ImGuiNetBackend : IImGuiBackend
 
     public void Unindent() => ImGui.Unindent();
 
-    public void SetThemingColor(ImGuiColors colorType, Vector4 color)
+    public void Image(IntPtr imageId, Vector2 size) => ImGui.Image(imageId, size);
+
+    public void Image(IntPtr imageId, Vector2 size, Vector2 uv0, Vector2 uv1) => ImGui.Image(imageId, size, uv0, uv1);
+
+    public bool ImageButton(string name, IntPtr imageId, Vector2 size) => ImGui.ImageButton(name, imageId, size);
+
+    public void SetThemingColor(ColorTypes colorType, Vector4 color)
     {
         ImGui.GetStyle().Colors[(int)colorType] = color;
     }
@@ -256,4 +271,10 @@ public class ImGuiNetBackend : IImGuiBackend
             Log.Exception(e);
         }
     }
+
+    public void LoadDefaultFonts() => ImGui.GetIO().Fonts.AddFontDefault();
+
+    public object CreateContext() => ImGui.CreateContext();
+    public void SetCurrentContext(object context) => ImGui.SetCurrentContext((IntPtr)context);
+    public void DestroyContext(object context) => ImGui.DestroyContext((IntPtr)context);
 }

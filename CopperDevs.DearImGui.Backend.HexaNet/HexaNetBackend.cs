@@ -1,6 +1,7 @@
 using System.Numerics;
 using CopperDevs.Core;
-using CopperDevs.DearImGui.Enums;
+using CopperDevs.DearImGui.Wrapping;
+using CopperDevs.DearImGui.Wrapping.Enums;
 using Hexa.NET.ImGui;
 
 namespace CopperDevs.DearImGui.Backend.HexaNet;
@@ -20,6 +21,14 @@ public class HexaNetBackend : IImGuiBackend
     public Vector2 GetWindowSize() => ImGui.GetWindowSize();
 
     public double GetTime() => ImGui.GetTime();
+
+    public float GetCursorXPos() => ImGui.GetCursorPosX();
+
+    public float GetCursorYPos() => ImGui.GetCursorPosY();
+
+    public void SetCursorYPos(float yPos) => ImGui.SetCursorPosY(yPos);
+
+    public void SetCursorXPos(float xPos) => ImGui.SetCursorPosX(xPos);
 
     public void SeparatorText(string text) => ImGui.SeparatorText(text);
 
@@ -154,15 +163,15 @@ public class HexaNetBackend : IImGuiBackend
 
     public void Unindent() => ImGui.Unindent();
 
-    public void SetThemingColor(ImGuiColors colorType, Vector4 color)
-    {
-        ImGui.GetStyle().Colors[(int)colorType] = color;
-    }
+    public void Image(IntPtr imageId, Vector2 size) => ImGui.Image(imageId, size);
 
-    public void AddConfigTheme(ConfigFlags configFlags)
-    {
-        ImGui.GetIO().ConfigFlags |= (ImGuiConfigFlags)configFlags;
-    }
+    public void Image(IntPtr imageId, Vector2 size, Vector2 uv0, Vector2 uv1) => ImGui.Image(imageId, size, uv0, uv1);
+
+    public bool ImageButton(string name, IntPtr imageId, Vector2 size) => ImGui.ImageButton(name, imageId, size);
+
+    public void SetThemingColor(ColorTypes colorType, Vector4 color) => ImGui.GetStyle().Colors[(int)colorType] = color;
+
+    public void AddConfigTheme(ConfigFlags configFlags) => ImGui.GetIO().ConfigFlags |= (ImGuiConfigFlags)configFlags;
 
     public void RemoveConfigTheme(ConfigFlags configFlags)
     {
@@ -214,20 +223,11 @@ public class HexaNetBackend : IImGuiBackend
         ImGui.GetStyle().TabBorderSize = value;
     }
 
-    public void SetWindowTitleAlign(Vector2 value)
-    {
-        ImGui.GetStyle().WindowTitleAlign = value;
-    }
+    public void SetWindowTitleAlign(Vector2 value) => ImGui.GetStyle().WindowTitleAlign = value;
 
-    public void SetSeparatorTextAlign(Vector2 value)
-    {
-        ImGui.GetStyle().SeparatorTextAlign = value;
-    }
+    public void SetSeparatorTextAlign(Vector2 value) => ImGui.GetStyle().SeparatorTextAlign = value;
 
-    public void SetSeparatorTextPadding(Vector2 value)
-    {
-        ImGui.GetStyle().SeparatorTextPadding = value;
-    }
+    public void SetSeparatorTextPadding(Vector2 value) => ImGui.GetStyle().SeparatorTextPadding = value;
 
     public void LoadFont(string path, float pixelSize)
     {
@@ -256,4 +256,13 @@ public class HexaNetBackend : IImGuiBackend
             Log.Exception(e);
         }
     }
+
+
+    public void LoadDefaultFonts() => ImGui.GetIO().Fonts.AddFontDefault();
+
+    public object CreateContext() => ImGui.CreateContext();
+
+    public void SetCurrentContext(object context) => ImGui.SetCurrentContext((ImGuiContextPtr)context);
+
+    public void DestroyContext(object context) => ImGui.DestroyContext((ImGuiContextPtr)context);
 }

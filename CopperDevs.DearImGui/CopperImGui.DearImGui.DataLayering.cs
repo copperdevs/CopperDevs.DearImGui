@@ -1,6 +1,5 @@
-﻿
-
-using CopperDevs.DearImGui.Enums;
+﻿using CopperDevs.DearImGui.Wrapping.Data;
+using CopperDevs.DearImGui.Wrapping.Enums;
 
 namespace CopperDevs.DearImGui;
 
@@ -40,4 +39,9 @@ public static partial class CopperImGui
     /// Get the current DearImgui time
     /// </summary>
     public static double Time => CurrentBackend.GetTime();
+
+    /// <summary>
+    /// Rendering cursor object
+    /// </summary>
+    public static CursorVector2 Cursor = new();
 }

@@ -1,4 +1,6 @@
-﻿namespace CopperDevs.DearImGui;
+﻿using CopperDevs.DearImGui.Wrapping;
+
+namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
@@ -107,5 +109,14 @@ public static partial class CopperImGui
 
         if (ShowDearImGuiIdStackToolWindow)
             CurrentBackend.ShowIdStackToolWindow(ref ShowDearImGuiIdStackToolWindow);
+    }
+
+    /// <summary>
+    /// Load the default font, as well as invoke the <see cref="ImGuiRenderer.LoadUserFonts"/> callback
+    /// </summary>
+    public static void LoadFonts()
+    {
+        CurrentBackend.LoadDefaultFonts();
+        ImGuiRenderer.LoadUserFonts?.Invoke();
     }
 }

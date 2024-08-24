@@ -7,7 +7,7 @@ public static partial class CopperImGui
     /// <summary>
     /// Register a new popup
     /// </summary>
-    /// <param name="id">Id of the popup</param>
+    /// <param name="id">ID of the popup</param>
     /// <param name="renderAction">Render action of the popup</param>
     public static void RegisterPopup(string id, Action renderAction)
     {

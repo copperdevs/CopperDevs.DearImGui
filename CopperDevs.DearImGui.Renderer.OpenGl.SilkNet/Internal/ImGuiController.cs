@@ -47,7 +47,7 @@ public class ImGuiController : IDisposable
 
         var io = ImGui.GetIO();
 
-        ImGuiRenderer.LoadUserFonts?.Invoke();
+        CopperImGui.LoadFonts();
 
         io.BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset;
 

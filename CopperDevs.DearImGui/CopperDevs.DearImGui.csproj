@@ -45,7 +45,7 @@
         <Compile Update="CopperImGui.ImGuiReflectionLayering.cs">
             <DependentUpon>CopperImGui.cs</DependentUpon>
         </Compile>
-        <Compile Update="CopperImgui.PopupManagment.cs">
+        <Compile Update="CopperImGui.PopupManagment.cs">
             <DependentUpon>CopperImGui.cs</DependentUpon>
         </Compile>
         <Compile Update="CopperImGui.Rendering.cs">
@@ -53,6 +53,12 @@
         </Compile>
         <Compile Update="CopperImGui.WindowManagment.cs">
             <DependentUpon>CopperImGui.cs</DependentUpon>
+        </Compile>
+        <Compile Update="CopperImGui.Context.cs">
+          <DependentUpon>CopperImGui.cs</DependentUpon>
+        </Compile>
+        <Compile Update="CopperImGui.Internal.cs">
+          <DependentUpon>CopperImGui.cs</DependentUpon>
         </Compile>
     </ItemGroup>
 

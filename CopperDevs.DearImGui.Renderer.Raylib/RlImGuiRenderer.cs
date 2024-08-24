@@ -12,7 +12,7 @@ public class RlImGuiRenderer : ImGuiRenderer
 {
     public override void Setup()
     {
-        rlImGui.Setup(true, true);
+        rlImGui.Setup();
 
         CopperImGui.RegisterFieldRenderer<Color, ColorFieldRenderer>();
         CopperImGui.RegisterFieldRenderer<Texture2D, Texture2DFieldRenderer>();

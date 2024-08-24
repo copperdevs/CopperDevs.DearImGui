@@ -1,8 +1,8 @@
-using CopperDevs.DearImGui.Enums;
+using CopperDevs.DearImGui.Wrapping.Enums;
+
+namespace CopperDevs.DearImGui.Wrapping;
 
 #pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-namespace CopperDevs.DearImGui;
-
 public interface IImGuiBackend
 {
     #region data
@@ -14,6 +14,11 @@ public interface IImGuiBackend
     public Vector2 GetWindowPos();
     public Vector2 GetWindowSize();
     public double GetTime();
+
+    public float GetCursorXPos();
+    public float GetCursorYPos();
+    public void SetCursorYPos(float yPos);
+    public void SetCursorXPos(float xPos);
 
     #endregion
 
@@ -84,12 +89,15 @@ public interface IImGuiBackend
     public void EndDisabled();
     public void Indent();
     public void Unindent();
+    public void Image(IntPtr imageId, Vector2 size);
+    public void Image(IntPtr imageId, Vector2 size, Vector2 uv0, Vector2 uv1);
+    public bool ImageButton(string name, IntPtr imageId, Vector2 size);
 
     #endregion
 
     #region styling
 
-    public void SetThemingColor(ImGuiColors colorType, Vector4 color);
+    public void SetThemingColor(ColorTypes colorType, Vector4 color);
     public void AddConfigTheme(ConfigFlags configFlags);
     public void RemoveConfigTheme(ConfigFlags configFlags);
 
@@ -113,6 +121,15 @@ public interface IImGuiBackend
 
     public void LoadFont(string path, float pixelSize);
     public void LoadFontFromMemory(byte[] fontData, int pixelSize, int dataSize);
+    public void LoadDefaultFonts();
+
+    #endregion
+
+    #region context
+
+    public object CreateContext();
+    public void SetCurrentContext(object context);
+    public void DestroyContext(object context);
 
     #endregion
 }

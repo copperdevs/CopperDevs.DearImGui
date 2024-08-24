@@ -1,7 +1,7 @@
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-namespace CopperDevs.DearImGui.Enums;
+namespace CopperDevs.DearImGui.Wrapping.Enums;
 
-public enum ImGuiColors
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+public enum ColorTypes
 {
     Text,
     TextDisabled,
