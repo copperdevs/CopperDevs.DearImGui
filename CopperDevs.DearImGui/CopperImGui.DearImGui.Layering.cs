@@ -779,27 +779,4 @@ public static partial class CopperImGui
         render.Invoke();
         CurrentBackend.End();
     }
-
-    /// <summary>
-    /// Load a font from the disc
-    /// </summary>
-    /// <param name="path">The path of the TTF font on disc</param>
-    /// <param name="pixelSize">pixelSize</param>
-    /// <remarks>Only TTF fonts are supported</remarks>
-    public static void LoadFont(string path, float pixelSize)
-    {
-        CurrentBackend.LoadFont(path, pixelSize);
-    }
-
-    /// <summary>
-    /// Load a font from memory
-    /// </summary>
-    /// <param name="fontData">The data of the TTF font</param>
-    /// <param name="pixelSize">pixelSize</param>
-    /// <param name="dataSize">dataSize</param>
-    /// <remarks>Only TTF fonts are supported</remarks>
-    public static void LoadFontFromMemory(byte[] fontData, int pixelSize, int dataSize)
-    {
-        CurrentBackend.LoadFontFromMemory(fontData, pixelSize, dataSize);
-    }
 }

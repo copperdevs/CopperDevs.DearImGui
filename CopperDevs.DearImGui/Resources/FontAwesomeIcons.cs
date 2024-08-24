@@ -2,12 +2,13 @@
 // from https://github.com/FortAwesome/Font-Awesome/raw/6.x/metadata/icons.yml
 // for use with https://github.com/FortAwesome/Font-Awesome/blob/6.x/webfonts/fa-regular-400.ttf, https://github.com/FortAwesome/Font-Awesome/blob/6.x/webfonts/fa-solid-900.ttf
 
-namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.FontAwesome;
+namespace CopperDevs.DearImGui.Resources;
 
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
 public static class FontAwesomeIcons
 {
     internal static IntPtr IconFontRanges = IntPtr.Zero;
-    
+
     internal const string FontIconFileNameFar = "fa-regular-400.ttf";
     internal const string FontIconFileNameFas = "fa-solid-900.ttf";
 

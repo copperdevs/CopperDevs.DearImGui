@@ -8,11 +8,9 @@ public static partial class CopperImGui
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
     /// <param name="rendererType">Type of your <see cref="ImGuiRenderer"/></param>
-    /// <param name="backendType">Type of your <see cref="IImGuiBackend"/></param>
-    public static void Setup(Type rendererType, Type backendType, bool isDockingEnabled = true, bool shouldShowTabBar = false)
+    public static void Setup(Type rendererType, bool isDockingEnabled = true, bool shouldShowTabBar = false)
     {
         currentRenderer = (ImGuiRenderer)Activator.CreateInstance(rendererType)!;
-        CurrentBackend = (IImGuiBackend)Activator.CreateInstance(backendType)!;
 
         currentRenderer.Setup();
 
@@ -28,18 +26,6 @@ public static partial class CopperImGui
         dockingEnabled = isDockingEnabled;
     }
 
-    /// <summary>
-    /// Setup the entire system
-    /// </summary>
-    /// <param name="isDockingEnabled">Should docking be enabled</param>
-    /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
-    /// <param name="backendType">Type of your <see cref="IImGuiBackend"/></param>
-    /// <typeparam name="TImGuiRenderer">Type of your <see cref="ImGuiRenderer"/></typeparam>
-    public static void Setup<TImGuiRenderer>(Type backendType, bool isDockingEnabled = true, bool shouldShowTabBar = false)
-        where TImGuiRenderer : ImGuiRenderer, new()
-    {
-        Setup(typeof(TImGuiRenderer), backendType, isDockingEnabled, shouldShowTabBar);
-    }
 
     /// <summary>
     /// Setup the entire system
@@ -47,12 +33,10 @@ public static partial class CopperImGui
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
     /// <typeparam name="TImGuiRenderer">Type of your <see cref="ImGuiRenderer"/></typeparam>
-    /// <typeparam name="TImGuiBackend">Type of your <see cref="IImGuiBackend"/></typeparam>
-    public static void Setup<TImGuiRenderer, TImGuiBackend>(bool isDockingEnabled = true, bool shouldShowTabBar = false)
+    public static void Setup<TImGuiRenderer>(bool isDockingEnabled = true, bool shouldShowTabBar = false)
         where TImGuiRenderer : ImGuiRenderer, new()
-        where TImGuiBackend : IImGuiBackend, new()
     {
-        Setup(typeof(TImGuiRenderer), typeof(TImGuiBackend), isDockingEnabled, shouldShowTabBar);
+        Setup(typeof(TImGuiRenderer), isDockingEnabled, shouldShowTabBar);
     }
 
     /// <summary>
@@ -89,6 +73,7 @@ public static partial class CopperImGui
 
         currentRenderer.Shutdown();
         windows.ForEach(instance => instance.Stop());
+        UnloadFontAwesomeIcons();
     }
 
     private static void RenderBuiltInWindows()

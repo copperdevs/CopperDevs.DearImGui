@@ -1,7 +1,6 @@
 using System.Numerics;
 using CopperDevs.DearImGui.Renderer.Raylib.Internal.FieldRenderers;
 using CopperDevs.DearImGui.Renderer.Raylib.Internal.Rendering;
-using ImGuiNET;
 using Raylib_CSharp.Colors;
 using Raylib_CSharp.Textures;
 using Raylib_CSharp.Transformations;
@@ -12,7 +11,7 @@ public class RlImGuiRenderer : ImGuiRenderer
 {
     public override void Setup()
     {
-        rlImGui.Setup(true, true);
+        rlImGui.Setup();
 
         CopperImGui.RegisterFieldRenderer<Color, ColorFieldRenderer>();
         CopperImGui.RegisterFieldRenderer<Texture2D, Texture2DFieldRenderer>();

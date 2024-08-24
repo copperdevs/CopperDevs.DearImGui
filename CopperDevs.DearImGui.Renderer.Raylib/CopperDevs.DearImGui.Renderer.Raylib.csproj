@@ -36,10 +36,6 @@
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
-        <None Include="FontAwesomeLicense.txt">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-        </None>
     </ItemGroup>
     
     <ItemGroup>
@@ -48,9 +44,5 @@
     
     <ItemGroup>
       <PackageReference Include="Raylib-CSharp" Version="4.1.9" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <EmbeddedResource Include="Resources\FontAwesomeData.txt" />
     </ItemGroup>
 </Project>

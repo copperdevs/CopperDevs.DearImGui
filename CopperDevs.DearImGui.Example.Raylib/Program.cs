@@ -1,5 +1,4 @@
 ﻿using CopperDevs.Core.Utility;
-using CopperDevs.DearImGui.Backend.ImGuiNET;
 using CopperDevs.DearImGui.Renderer.Raylib;
 using Raylib_CSharp.Colors;
 using Raylib_CSharp.Rendering;
@@ -8,7 +7,7 @@ using static Raylib_CSharp.Raylib;
 
 namespace CopperDevs.DearImGui.Example.Raylib;
 
-// this is way to extra for an example but meah i felt like it
+// this is way too extra for an example but meah i felt like it
 public static class Program
 {
     private static readonly Color TransparentColor = new(0, 0, 0, 0);
@@ -24,7 +23,7 @@ public static class Program
         Window.Init(800, 480, "CopperDevs.DearImGui Example");
         SetWindowStyling();
 
-        CopperImGui.Setup<RlImGuiRenderer, ImGuiNetBackend>(true, true); // setup the actual imgui layering, as well as enabling all the built in dearimgui windows
+        CopperImGui.Setup<RlImGuiRenderer>(true, true); // setup the actual imgui layering, as well as enabling all the built in dearimgui windows
         CopperImGui.ShowDearImGuiAboutWindow = true;
         CopperImGui.ShowDearImGuiDemoWindow = true;
         CopperImGui.ShowDearImGuiMetricsWindow = true;

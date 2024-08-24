@@ -1,9 +1,9 @@
 using CopperDevs.DearImGui.Enums;
 
-#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
-namespace CopperDevs.DearImGui;
+namespace CopperDevs.DearImGui.Backend;
 
-public interface IImGuiBackend
+#pragma warning disable CS1591 // Missing XML comment for publicly visible type or member
+internal interface IImGuiBackend
 {
     #region data
 
@@ -14,6 +14,11 @@ public interface IImGuiBackend
     public Vector2 GetWindowPos();
     public Vector2 GetWindowSize();
     public double GetTime();
+
+    public float GetCursorXPos();
+    public float GetCursorYPos();
+    public void SetCursorYPos(float yPos);
+    public void SetCursorXPos(float xPos);
 
     #endregion
 
@@ -84,12 +89,15 @@ public interface IImGuiBackend
     public void EndDisabled();
     public void Indent();
     public void Unindent();
+    public void Image(IntPtr imageId, Vector2 size);
+    public void Image(IntPtr imageId, Vector2 size, Vector2 uv0, Vector2 uv1);
+    public bool ImageButton(string name, IntPtr imageId, Vector2 size);
 
     #endregion
 
     #region styling
 
-    public void SetThemingColor(ImGuiColors colorType, Vector4 color);
+    public void SetThemingColor(ColorTypes colorType, Vector4 color);
     public void AddConfigTheme(ConfigFlags configFlags);
     public void RemoveConfigTheme(ConfigFlags configFlags);
 
@@ -107,12 +115,24 @@ public interface IImGuiBackend
     public void SetSeparatorTextAlign(Vector2 value);
     public void SetSeparatorTextPadding(Vector2 value);
 
+    public void StyleColorsDark();
+    public void StyleColorsLight();
+    
     #endregion
 
     #region fonts
 
     public void LoadFont(string path, float pixelSize);
     public void LoadFontFromMemory(byte[] fontData, int pixelSize, int dataSize);
+    public void LoadDefaultFonts();
+
+    #endregion
+
+    #region context
+
+    public IntPtr CreateContext();
+    public void SetCurrentContext(IntPtr context);
+    public void DestroyContext(IntPtr context);
 
     #endregion
 }

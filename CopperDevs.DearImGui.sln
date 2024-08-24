@@ -6,6 +6,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo", "Repo", "{5B0E440E-F
 	ProjectSection(SolutionItems) = preProject
 		License.txt = License.txt
 		ReadMe.md = ReadMe.md
+		.gitignore = .gitignore
+		temp-notes.txt = temp-notes.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib", "CopperDevs.DearImGui.Example.Raylib\CopperDevs.DearImGui.Example.Raylib.csproj", "{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE}"
@@ -23,12 +25,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D8E6EB8A-4E92-413C-8BED-631098302053}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Testing", "CopperDevs.DearImGui.Testing\CopperDevs.DearImGui.Testing.csproj", "{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Bindings", "Bindings", "{72BA773F-D9D7-408A-9E90-183AFF20B7BC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Backend.ImGuiNET", "CopperDevs.DearImGui.Backend.ImGuiNET\CopperDevs.DearImGui.Backend.ImGuiNET.csproj", "{113CC8F6-7C4D-45F6-9531-0C485B2F6C28}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Backend.HexaNet", "CopperDevs.DearImGui.Backend.HexaNet\CopperDevs.DearImGui.Backend.HexaNet.csproj", "{5C94EAAF-DDB8-44E8-8197-A51C5C53A2CE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.OpenGl.OpenTk", "CopperDevs.DearImGui.Renderer.OpenGl.OpenTk\CopperDevs.DearImGui.Renderer.OpenGl.OpenTk.csproj", "{C9E8714D-8935-4A9D-8818-788A51B39C03}"
 EndProject
@@ -64,14 +60,6 @@ Global
 		{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{113CC8F6-7C4D-45F6-9531-0C485B2F6C28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{113CC8F6-7C4D-45F6-9531-0C485B2F6C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{113CC8F6-7C4D-45F6-9531-0C485B2F6C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{113CC8F6-7C4D-45F6-9531-0C485B2F6C28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5C94EAAF-DDB8-44E8-8197-A51C5C53A2CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5C94EAAF-DDB8-44E8-8197-A51C5C53A2CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5C94EAAF-DDB8-44E8-8197-A51C5C53A2CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5C94EAAF-DDB8-44E8-8197-A51C5C53A2CE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C9E8714D-8935-4A9D-8818-788A51B39C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C9E8714D-8935-4A9D-8818-788A51B39C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C9E8714D-8935-4A9D-8818-788A51B39C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -88,8 +76,6 @@ Global
 		{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE} = {3B522E65-A902-4A40-88D1-B332C2C3D2CB}
 		{91A296BF-CC95-441C-A89A-ABBDFBC94245} = {D8E6EB8A-4E92-413C-8BED-631098302053}
 		{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A} = {D8E6EB8A-4E92-413C-8BED-631098302053}
-		{113CC8F6-7C4D-45F6-9531-0C485B2F6C28} = {72BA773F-D9D7-408A-9E90-183AFF20B7BC}
-		{5C94EAAF-DDB8-44E8-8197-A51C5C53A2CE} = {72BA773F-D9D7-408A-9E90-183AFF20B7BC}
 		{C9E8714D-8935-4A9D-8818-788A51B39C03} = {D80512F7-C352-4BD7-99A8-2D380494B3E8}
 		{579C514D-6C1C-4841-8216-B9BD87BD6593} = {D80512F7-C352-4BD7-99A8-2D380494B3E8}
 	EndGlobalSection

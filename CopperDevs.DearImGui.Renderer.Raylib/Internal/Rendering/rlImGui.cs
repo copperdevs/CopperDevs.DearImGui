@@ -2,7 +2,6 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
 using CopperDevs.Core;
-using CopperDevs.DearImGui.Renderer.Raylib.Internal.FontAwesome;
 using ImGuiNET;
 using Raylib_CSharp;
 using Raylib_CSharp.Images;
@@ -47,19 +46,9 @@ internal static class rlImGui
     /// <summary>
     /// Sets up ImGui, loads fonts and themes
     /// </summary>
-    /// <param name="darkTheme">when true(default) the dark theme is used, when false the light theme is used</param>
-    /// <param name="enableDocking">when true(not default) docking support will be enabled</param>
-    public static void Setup(bool darkTheme = true, bool enableDocking = false)
+    public static void Setup()
     {
         BeginInitImGui();
-
-        if (darkTheme)
-            ImGui.StyleColorsDark();
-        else
-            ImGui.StyleColorsLight();
-
-        if (enableDocking)
-            ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
 
         EndInitImGui();
     }
@@ -277,51 +266,8 @@ internal static class rlImGui
         SetupMouseCursors();
 
         ImGui.SetCurrentContext(imGuiContext);
-
-        var fonts = ImGui.GetIO().Fonts;
-        ImGuiRenderer.LoadUserFonts?.Invoke();
-        fonts.AddFontDefault();
-
-        // remove this part if you don't want font awesome
-        unsafe
-        {
-            var iconsConfig = ImGuiNative.ImFontConfig_ImFontConfig();
-            iconsConfig->MergeMode = 1; // merge the glyph ranges into the default font
-            iconsConfig->PixelSnapH = 1; // don't try to render on partial pixels
-            iconsConfig->FontDataOwnedByAtlas = 0; // the font atlas does not own this font data
-
-            iconsConfig->GlyphMaxAdvanceX = float.MaxValue;
-            iconsConfig->RasterizerMultiply = 1.0f;
-            iconsConfig->OversampleH = 2;
-            iconsConfig->OversampleV = 1;
-
-            var iconRanges = new ushort[3];
-            iconRanges[0] = FontAwesomeIcons.IconMin;
-            iconRanges[1] = FontAwesomeIcons.IconMax;
-            iconRanges[2] = 0;
-
-            // using var stream = typeof(rlImGui).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Renderer.Raylib.FontAwesomeData.txt");
-            fixed (ushort* range = &iconRanges[0])
-            {
-                // this unmanaged memory must remain allocated for the entire run of rlImgui
-                FontAwesomeIcons.IconFontRanges = Marshal.AllocHGlobal(6);
-                Buffer.MemoryCopy(range, FontAwesomeIcons.IconFontRanges.ToPointer(), 6, 6);
-                iconsConfig->GlyphRanges = (ushort*)FontAwesomeIcons.IconFontRanges.ToPointer();
-
-                using var stream = typeof(rlImGui).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Renderer.Raylib.Resources.FontAwesomeData.txt");
-                using var reader = new StreamReader(stream!);
-                var streamTextResult = reader.ReadToEnd();
-
-                var fontDataBuffer = Convert.FromBase64String(streamTextResult);
-
-                fixed (byte* buffer = fontDataBuffer)
-                {
-                    var fontPtr = ImGui.GetIO().Fonts.AddFontFromMemoryTTF(new IntPtr(buffer), fontDataBuffer.Length, 11, iconsConfig, FontAwesomeIcons.IconFontRanges);
-                }
-            }
-
-            ImGuiNative.ImFontConfig_destroy(iconsConfig);
-        }
+        
+        CopperImGui.LoadFonts();
 
         var io = ImGui.GetIO();
 
@@ -647,14 +593,6 @@ internal static class rlImGui
     {
         fontTexture.Unload();
         ImGui.DestroyContext();
-
-        // remove this if you don't want font awesome support
-        {
-            if (FontAwesomeIcons.IconFontRanges != IntPtr.Zero)
-                Marshal.FreeHGlobal(FontAwesomeIcons.IconFontRanges);
-
-            FontAwesomeIcons.IconFontRanges = IntPtr.Zero;
-        }
     }
 
     /// <summary>
