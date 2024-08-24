@@ -6,7 +6,7 @@ public static partial class CopperImGui
 {
     public static void NewFrame()
     {
-        CurrentBackend
+        throw new NotImplementedException();
     }
 
     public static Vector4 ColorConvertU32ToFloat4(object col)
@@ -26,7 +26,6 @@ public static partial class CopperImGui
 
     public static bool BackendHasFlag(ConfigFlags flag)
     {
-        
     }
 
     public static CursorInput GetMouseCursor()
