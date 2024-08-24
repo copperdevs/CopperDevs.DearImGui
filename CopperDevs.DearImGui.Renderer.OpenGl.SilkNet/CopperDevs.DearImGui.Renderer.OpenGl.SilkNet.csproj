@@ -22,10 +22,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\CopperDevs.DearImGui.Backend.ImGuiNET\CopperDevs.DearImGui.Backend.ImGuiNET.csproj" />
+        <ProjectReference Include="..\CopperDevs.DearImGui.Backend.ImGuiNET\CopperDevs.DearImGui.Backend.ImGuiNET.csproj"/>
         <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
     </ItemGroup>
-    
+
     <ItemGroup>
         <PackageReference Include="Silk.NET.Input.Common" Version="2.21.0"/>
         <PackageReference Include="Silk.NET.Input.Extensions" Version="2.21.0"/>

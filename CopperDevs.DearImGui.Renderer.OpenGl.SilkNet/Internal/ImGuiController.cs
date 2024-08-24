@@ -36,8 +36,6 @@ public class ImGuiController : IDisposable
     private int windowWidth;
     private int windowHeight;
 
-    public IntPtr Context;
-
     /// <summary>
     /// Constructs a new ImGuiController
     /// </summary>
@@ -58,11 +56,6 @@ public class ImGuiController : IDisposable
         BeginFrame();
     }
 
-    public void MakeCurrent()
-    {
-        ImGui.SetCurrentContext(Context);
-    }
-
     private void Init(GL newGl, IView newView, IInputContext newInput)
     {
         gl = newGl;
@@ -71,9 +64,7 @@ public class ImGuiController : IDisposable
         windowWidth = newView.Size.X;
         windowHeight = newView.Size.Y;
 
-        Context = ImGui.CreateContext();
-        ImGui.SetCurrentContext(Context);
-        ImGui.StyleColorsDark();
+        CopperImGui.CreateContext(true);
     }
 
     private void BeginFrame()
@@ -148,18 +139,18 @@ public class ImGuiController : IDisposable
 
         var oldCtx = ImGui.GetCurrentContext();
 
-        if (oldCtx != Context)
+        if (oldCtx != CopperImGui.GetCurrentContext())
         {
-            ImGui.SetCurrentContext(Context);
+            CopperImGui.SetCurrentContext(CopperImGui.GetCurrentContext());
         }
 
         frameBegun = false;
         ImGui.Render();
         RenderImDrawData(ImGui.GetDrawData());
 
-        if (oldCtx != Context)
+        if (oldCtx != CopperImGui.GetCurrentContext())
         {
-            ImGui.SetCurrentContext(oldCtx);
+            CopperImGui.SetCurrentContext(oldCtx);
         }
     }
 
@@ -170,9 +161,9 @@ public class ImGuiController : IDisposable
     {
         var oldCtx = ImGui.GetCurrentContext();
 
-        if (oldCtx != Context)
+        if (oldCtx != CopperImGui.GetCurrentContext())
         {
-            ImGui.SetCurrentContext(Context);
+            ImGui.SetCurrentContext(CopperImGui.GetCurrentContext());
         }
 
         if (frameBegun)
@@ -186,7 +177,7 @@ public class ImGuiController : IDisposable
         frameBegun = true;
         ImGui.NewFrame();
 
-        if (oldCtx != Context)
+        if (oldCtx != CopperImGui.GetCurrentContext())
         {
             ImGui.SetCurrentContext(oldCtx);
         }
@@ -393,13 +384,13 @@ public class ImGuiController : IDisposable
         var T = drawDataPtr.DisplayPos.Y;
         var b = drawDataPtr.DisplayPos.Y + drawDataPtr.DisplaySize.Y;
 
-        Span<float> orthoProjection = stackalloc float[]
-        {
+        Span<float> orthoProjection =
+        [
             2.0f / (r - l), 0.0f, 0.0f, 0.0f,
             0.0f, 2.0f / (T - b), 0.0f, 0.0f,
             0.0f, 0.0f, -1.0f, 0.0f,
-            (r + l) / (l - r), (T + b) / (b - T), 0.0f, 1.0f,
-        };
+            (r + l) / (l - r), (T + b) / (b - T), 0.0f, 1.0f
+        ];
 
         shader.UseShader();
         gl.Uniform1(attribLocationTex, 0);
@@ -608,35 +599,15 @@ public class ImGuiController : IDisposable
         gl.GetInteger(GLEnum.ArrayBufferBinding, out var lastArrayBuffer);
         gl.GetInteger(GLEnum.VertexArrayBinding, out var lastVertexArray);
 
-        const string vertexSource = """
-                                    #version 330
-                                            layout (location = 0) in vec2 Position;
-                                            layout (location = 1) in vec2 UV;
-                                            layout (location = 2) in vec4 Color;
-                                            uniform mat4 ProjMtx;
-                                            out vec2 Frag_UV;
-                                            out vec4 Frag_Color;
-                                            void main()
-                                            {
-                                                Frag_UV = UV;
-                                                Frag_Color = Color;
-                                                gl_Position = ProjMtx * vec4(Position.xy,0,1);
-                                            }
-                                    """;
+        using var vertexStream = typeof(ImGuiController).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Resources.shader.vert");
+        using var vertexReader = new StreamReader(vertexStream!);
+        var vertexResult = vertexReader.ReadToEnd();
 
-        const string fragmentSource = """
-                                      #version 330
-                                              in vec2 Frag_UV;
-                                              in vec4 Frag_Color;
-                                              uniform sampler2D Texture;
-                                              layout (location = 0) out vec4 Out_Color;
-                                              void main()
-                                              {
-                                                  Out_Color = Frag_Color * texture(Texture, Frag_UV.st);
-                                              }
-                                      """;
+        using var fragmentStream = typeof(ImGuiController).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Resources.shader.frag");
+        using var fragmentReader = new StreamReader(fragmentStream!);
+        var fragmentResult = fragmentReader.ReadToEnd();
 
-        shader = new Shader(gl, vertexSource, fragmentSource);
+        shader = new Shader(gl, vertexResult, fragmentResult);
 
         attribLocationTex = shader.GetUniformLocation("Texture");
         attribLocationProjMtx = shader.GetUniformLocation("ProjMtx");
@@ -661,7 +632,7 @@ public class ImGuiController : IDisposable
     /// <summary>
     /// Creates the texture used to render text.
     /// </summary>
-    private unsafe void RecreateFontDeviceTexture()
+    private void RecreateFontDeviceTexture()
     {
         // Build texture atlas
         var io = ImGui.GetIO();
@@ -698,6 +669,6 @@ public class ImGuiController : IDisposable
         fontTexture.Dispose();
         shader.Dispose();
 
-        ImGui.DestroyContext(Context);
+        CopperImGui.DestroyCurrentContext();
     }
 }

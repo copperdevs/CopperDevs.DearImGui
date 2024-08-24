@@ -23,10 +23,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CopperDevs.DearImGui.Backend.ImGuiNET\CopperDevs.DearImGui.Backend.ImGuiNET.csproj" />
-      <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
+        <ProjectReference Include="..\CopperDevs.DearImGui.Backend.ImGuiNET\CopperDevs.DearImGui.Backend.ImGuiNET.csproj"/>
+        <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
     </ItemGroup>
-    
+
     <ItemGroup>
         <None Include="ReadMe.md">
             <Pack>True</Pack>
@@ -37,12 +37,12 @@
             <PackagePath>\</PackagePath>
         </None>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <None Remove="FontAwesomeData.txt" />
+        <None Remove="FontAwesomeData.txt"/>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <PackageReference Include="Raylib-CSharp" Version="4.1.9" />
+        <PackageReference Include="Raylib-CSharp" Version="4.1.9"/>
     </ItemGroup>
 </Project>
