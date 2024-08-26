@@ -12,7 +12,7 @@ internal static class ImGuiReflection
     private static readonly Dictionary<Type, FieldRenderer> ImGuiRenderers = new();
     private static readonly Dictionary<Type, List<FieldInfo>> FieldInfoTypeDictionary = [];
 
-    public static void RegisterFieldRenderer<TType, TRenderer>() where TRenderer : FieldRenderer, new()
+    internal static void RegisterFieldRenderer<TType, TRenderer>() where TRenderer : FieldRenderer, new()
     {
         ImGuiRenderers.TryAdd(typeof(TType), new TRenderer());
     }
@@ -82,7 +82,7 @@ internal static class ImGuiReflection
                 (ReadOnlyAttribute?)Attribute.GetCustomAttribute(info, typeof(ReadOnlyAttribute))!;
 
             using (new DisabledScope(currentReadOnlyAttribute is not null))
-                Render();
+                Render(info, component, id, valueChanged, renderingType);
 
             var currentTooltipAttribute =
                 (TooltipAttribute)Attribute.GetCustomAttribute(info, typeof(TooltipAttribute))!;
@@ -91,46 +91,45 @@ internal static class ImGuiReflection
                 continue;
 
             CopperImGui.Tooltip(currentTooltipAttribute.Message);
+        }
+    }
 
-            continue;
 
-            void Render()
+    private static void Render(FieldInfo info, object component, int id, Action valueChanged, RenderingType renderingType)
+    {
+        var isList = info.FieldType is { IsGenericType: true } &&
+                     info.FieldType.GetGenericTypeDefinition() == typeof(List<>);
+
+        if (info.FieldType.IsEnum)
+        {
+            ImGuiRenderers[typeof(Enum)].ReflectionRenderer(info, component, id, valueChanged);
+        }
+        else if (isList)
+        {
+            ListRenderer.Render(info, component, id);
+        }
+        else
+        {
+            if (ImGuiRenderers.TryGetValue(info.FieldType, out var renderer))
+                renderer.ReflectionRenderer(info, component, id, valueChanged);
+            else
             {
-                var isList = info.FieldType is { IsGenericType: true } &&
-                             info.FieldType.GetGenericTypeDefinition() == typeof(List<>);
-
-                if (info.FieldType.IsEnum)
+                try
                 {
-                    ImGuiRenderers[typeof(Enum)].ReflectionRenderer(info, component, id, valueChanged);
-                }
-                else if (isList)
-                {
-                    ListRenderer.Render(info, component, id);
-                }
-                else
-                {
-                    if (ImGuiRenderers.TryGetValue(info.FieldType, out var renderer))
-                        renderer.ReflectionRenderer(info, component, id, valueChanged);
-                    else
+                    CopperImGui.CollapsingHeader($"{info.Name.ToTitleCase()}##{id + 1}", () =>
                     {
-                        try
-                        {
-                            CopperImGui.CollapsingHeader($"{info.Name.ToTitleCase()}##{id + 1}", () =>
-                            {
-                                var subComponent = info.GetValue(component);
-                                if (subComponent is null)
-                                    return;
+                        var subComponent = info.GetValue(component);
+                        if (subComponent is null)
+                            return;
 
-                                RenderValues(subComponent, id + info.GetHashCode(), renderingType, valueChanged);
-                                info.SetValue(component, subComponent);
-                            });
-                        }
-                        catch (Exception e)
-                        {
-                            Log.Exception(e);
-                            CopperImGui.Text(info.FieldType.FullName!, "Unsupported editor value");
-                        }
-                    }
+                        RenderValues(subComponent, id + info.GetHashCode(), renderingType, valueChanged);
+                        info.SetValue(component, subComponent);
+                    });
+                }
+                catch (Exception e)
+                {
+                    Log.Exception(e);
+                    CopperImGui.Text(info.FieldType.FullName!, "Unsupported editor value");
                 }
             }
         }
