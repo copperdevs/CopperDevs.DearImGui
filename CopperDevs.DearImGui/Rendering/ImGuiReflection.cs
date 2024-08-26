@@ -7,8 +7,6 @@ namespace CopperDevs.DearImGui.Rendering;
 
 [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract")]
 [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
-// TODO: Add registering reflection renderers to CopperImGui.ImGuiReflectionLayering
-// TODO: Add getting all reflection renderers to CopperImGui.ImGuiReflectionLayering
 internal static class ImGuiReflection
 {
     private static readonly Dictionary<Type, FieldRenderer> ImGuiRenderers = new();
