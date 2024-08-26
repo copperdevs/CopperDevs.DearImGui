@@ -641,6 +641,7 @@ public static partial class CopperImGui
     /// <param name="id">ID of the rendered tabs</param>
     /// <param name="tabs">The actual tabs to render</param>
     /// <remarks>The string of the tabs tuple is the tab name, while the Action is the on click action</remarks>
+    /// BUG: crashes :(
     public static void TabGroup(string id, params (string, Action?)[] tabs)
     {
         if (!canRender)
