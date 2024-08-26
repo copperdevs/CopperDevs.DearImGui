@@ -23,7 +23,7 @@ public static partial class CopperImGui
 
     /// <summary>
     /// Render all fields with ImGui using any registered <see cref="FieldRenderer"/>.
-    /// This method goes straight to using reflection, instead of attempting to use and registered <see cref="FieldRenderer"/>
+    /// This method goes straight to using reflection, instead of attempting to use any registered <see cref="FieldRenderer"/>
     /// </summary>
     /// <param name="component">Target object to render the fields of</param>
     /// <param name="id">Id of the object (Can usually be left as zero)</param>
@@ -78,7 +78,7 @@ public static partial class CopperImGui
     /// <typeparam name="TRenderer">The actual <see cref="FieldRenderer"/> class</typeparam>
     public static void RegisterFieldRenderer<TType, TRenderer>() where TRenderer : FieldRenderer, new()
     {
-        ImGuiReflection.ImGuiRenderers.TryAdd(typeof(TType), new TRenderer());
+        ImGuiReflection.RegisterFieldRenderer<TType, TRenderer>();
     }
 
     /// <summary>
@@ -87,6 +87,29 @@ public static partial class CopperImGui
     /// <returns>Every registered <see cref="FieldRenderer"/>, with the key being the type it is rendering</returns>
     public static Dictionary<Type, FieldRenderer> GetAllImGuiRenderers()
     {
-        return ImGuiReflection.ImGuiRenderers;
+        return ImGuiReflection.GetAllImGuiRenderers();
+    }
+
+
+    /// <summary>
+    /// Try to get a field renderer for a certain type
+    /// </summary>
+    /// <typeparam name="T">The type of object that's associated with the renderer you wish to get</typeparam>
+    /// <param name="value">The found renderer. If none is found, null is given</param>
+    /// <returns>True if a renderer is found</returns>
+    public static bool TryGetImGuiRenderer<T>(out FieldRenderer? value)
+    {
+        return ImGuiReflection.TryGetImGuiRenderer<T>(out value);
+    }
+
+    /// <summary>
+    /// Try to get a field renderer for a certain type
+    /// </summary>
+    /// <param name="type">The type of object that's associated with the renderer you wish to get</param>
+    /// <param name="value">The found renderer. If none is found, null is given</param>
+    /// <returns>True if a renderer is found</returns>
+    public static bool TryGetImGuiRenderer(Type type, out FieldRenderer? value)
+    {
+        return ImGuiReflection.TryGetImGuiRenderer(type, out value);
     }
 }
