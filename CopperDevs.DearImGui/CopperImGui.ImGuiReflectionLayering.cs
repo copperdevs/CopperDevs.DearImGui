@@ -6,20 +6,20 @@ namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
-    static CopperImGui()
-    {
-        RegisterFieldRenderer<bool, BoolFieldRenderer>();
-        RegisterFieldRenderer<Enum, EnumFieldRenderer>();
-        RegisterFieldRenderer<float, FloatFieldRenderer>();
-        RegisterFieldRenderer<Guid, GuidFieldRenderer>();
-        RegisterFieldRenderer<int, IntFieldRenderer>();
-        RegisterFieldRenderer<Quaternion, QuaternionFieldRenderer>();
-        RegisterFieldRenderer<string, StringFieldRenderer>();
-        RegisterFieldRenderer<Vector2, Vector2FieldRenderer>();
-        RegisterFieldRenderer<Vector2Int, Vector2IntFieldRenderer>();
-        RegisterFieldRenderer<Vector4, Vector4FieldRenderer>();
-        RegisterFieldRenderer<Vector3, Vector3FieldRenderer>();
-    }
+    // static CopperImGui()
+    // {
+    //     RegisterFieldRenderer<bool, BoolFieldRenderer>();
+    //     RegisterFieldRenderer<Enum, EnumFieldRenderer>();
+    //     RegisterFieldRenderer<float, FloatFieldRenderer>();
+    //     RegisterFieldRenderer<Guid, GuidFieldRenderer>();
+    //     RegisterFieldRenderer<int, IntFieldRenderer>();
+    //     RegisterFieldRenderer<Quaternion, QuaternionFieldRenderer>();
+    //     RegisterFieldRenderer<string, StringFieldRenderer>();
+    //     RegisterFieldRenderer<Vector2, Vector2FieldRenderer>();
+    //     RegisterFieldRenderer<Vector2Int, Vector2IntFieldRenderer>();
+    //     RegisterFieldRenderer<Vector4, Vector4FieldRenderer>();
+    //     RegisterFieldRenderer<Vector3, Vector3FieldRenderer>();
+    // }
 
     /// <summary>
     /// Render all fields with ImGui using any registered <see cref="FieldRenderer"/>.
@@ -76,17 +76,17 @@ public static partial class CopperImGui
     /// </summary>
     /// <typeparam name="TType">The type the <see cref="FieldRenderer"/> is assigned to render</typeparam>
     /// <typeparam name="TRenderer">The actual <see cref="FieldRenderer"/> class</typeparam>
-    public static void RegisterFieldRenderer<TType, TRenderer>() where TRenderer : FieldRenderer, new()
-    {
-        ImGuiReflection.ImGuiRenderers.TryAdd(typeof(TType), new TRenderer());
-    }
+    // public static void RegisterFieldRenderer<TType, TRenderer>() where TRenderer : FieldRenderer, new()
+    // {
+    //     ImGuiReflection.ImGuiRenderers.TryAdd(typeof(TType), new TRenderer());
+    // }
 
     /// <summary>
     /// Get all currently registered <see cref="FieldRenderer"/>
     /// </summary>
     /// <returns>Every registered <see cref="FieldRenderer"/>, with the key being the type it is rendering</returns>
-    public static Dictionary<Type, FieldRenderer> GetAllImGuiRenderers()
-    {
-        return ImGuiReflection.ImGuiRenderers;
-    }
+    // public static Dictionary<Type, FieldRenderer> GetAllImGuiRenderers()
+    // {
+    //     return ImGuiReflection.ImGuiRenderers;
+    // }
 }

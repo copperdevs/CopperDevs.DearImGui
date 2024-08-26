@@ -7,16 +7,36 @@ namespace CopperDevs.DearImGui.Rendering;
 
 [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract")]
 [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
+// TODO: Add registering reflection renderers to CopperImGui.ImGuiReflectionLayering
+// TODO: Add getting all reflection renderers to CopperImGui.ImGuiReflectionLayering
 internal static class ImGuiReflection
 {
-    internal static readonly Dictionary<Type, FieldRenderer> ImGuiRenderers = new();
+    private static readonly Dictionary<Type, FieldRenderer> ImGuiRenderers = new();
+    private static readonly Dictionary<Type, List<FieldInfo>> FieldInfoTypeDictionary = [];
 
     internal static FieldRenderer? GetImGuiRenderer<T>()
     {
         return ImGuiRenderers.GetValueOrDefault(typeof(T));
     }
 
-    private static readonly Dictionary<Type, List<FieldInfo>> FieldInfoTypeDictionary = [];
+    // TODO: Add to CopperImGui.ImGuiReflectionLayering
+    internal static bool TryGetImGuiRenderer<T>(out FieldRenderer? value)
+    {
+        return TryGetImGuiRenderer(typeof(T), out value);
+    }
+
+    // TODO: Add to CopperImGui.ImGuiReflectionLayering
+    internal static bool TryGetImGuiRenderer(Type type, out FieldRenderer? value)
+    {
+        if (ImGuiRenderers.ContainsKey(type))
+        {
+            value = ImGuiRenderers.GetValueOrDefault(type);
+            return true;
+        }
+
+        value = null;
+        return false;
+    }
 
     internal static void RenderValues(object component, int id = 0, RenderingType renderingType = RenderingType.All, Action valueChanged = null!)
     {
@@ -79,7 +99,7 @@ internal static class ImGuiReflection
                 }
                 else if (isList)
                 {
-                    ListRenderer(info, component, id);
+                    ListRenderer.Render(info, component, id);
                 }
                 else
                 {
@@ -108,66 +128,6 @@ internal static class ImGuiReflection
                 }
             }
         }
-    }
-
-    private static void ListRenderer(FieldInfo fieldInfo, object component, int id)
-    {
-        var value = (IList)fieldInfo.GetValue(component)!;
-
-
-        CopperImGui.CollapsingHeader($"{fieldInfo.Name.ToTitleCase()}##{fieldInfo.Name}{id}", () =>
-        {
-            CopperImGui.HorizontalGroup(() => { CopperImGui.Text($"{value.Count} Items"); },
-                () =>
-                {
-                    CopperImGui.Button($"+##{fieldInfo.Name}{id}",
-                        () => { value.Add(value.Count > 0 ? value[^1] : Activator.CreateInstance(value.GetType().GenericTypeArguments[0])); });
-                },
-                () =>
-                {
-                    CopperImGui.Button($"-##{fieldInfo.Name}{id}", () =>
-                    {
-                        if (value.Count - 1 > -1)
-                            value.RemoveAt(value.Count - 1);
-                    });
-                });
-
-            CopperImGui.Separator();
-
-            for (var i = 0; i < value.Count; i++)
-            {
-                var item = value[i];
-
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-                var itemType = item.GetType();
-#pragma warning restore CS8602 // Dereference of a possibly null reference.
-
-                if (itemType.IsEnum)
-                {
-                    ImGuiRenderers[typeof(Enum)].ValueRenderer(ref item, id);
-                }
-                else if (ImGuiRenderers.TryGetValue(itemType, out var renderer))
-                {
-                    renderer.ValueRenderer(ref item, int.Parse($"{i}{id}"));
-                }
-                else
-                {
-                    try
-                    {
-                        CopperImGui.CollapsingHeader($"{item.GetType().Name}##{value.IndexOf(item)}",
-                            () => { RenderValues(item, (int)MathUtil.Clamp(float.Parse($"{value.IndexOf(item)}{i}{id}"), int.MinValue, int.MaxValue)); });
-                    }
-                    catch (Exception e)
-                    {
-                        Log.Exception(e);
-                    }
-                }
-
-                value[i] = item;
-            }
-        });
-
-        fieldInfo.SetValue(component, value);
     }
 
     private static void SpaceAttributeRenderer(MemberInfo info)
