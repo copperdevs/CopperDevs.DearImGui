@@ -1,7 +1,7 @@
 ﻿using System.Numerics;
 using System.Reflection;
 using CopperDevs.Core.Utility;
-using CopperDevs.DearImGui.ReflectionRenderers;
+using CopperDevs.DearImGui.Rendering.Renderers;
 using Raylib_CSharp.Colors;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.FieldRenderers;

@@ -1,4 +1,5 @@
 using CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Internal;
+using CopperDevs.DearImGui.Rendering;
 using ImGuiNET;
 using Silk.NET.Input;
 using Silk.NET.OpenGL;

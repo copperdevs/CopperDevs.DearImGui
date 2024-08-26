@@ -1,5 +1,6 @@
 using CopperDevs.Core;
 using CopperDevs.DearImGui.Attributes;
+using CopperDevs.DearImGui.Rendering;
 
 namespace CopperDevs.DearImGui.Testing;
 

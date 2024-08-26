@@ -1,4 +1,6 @@
-﻿namespace CopperDevs.DearImGui;
+﻿using CopperDevs.DearImGui.Rendering;
+
+namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {

@@ -1,4 +1,4 @@
-namespace CopperDevs.DearImGui;
+namespace CopperDevs.DearImGui.Rendering;
 
 /// <summary>
 /// Decides what elements of the script will be rendered

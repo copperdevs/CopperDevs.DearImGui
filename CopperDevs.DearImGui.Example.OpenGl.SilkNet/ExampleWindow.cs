@@ -1,4 +1,5 @@
 using CopperDevs.DearImGui.Attributes;
+using CopperDevs.DearImGui.Rendering;
 
 namespace CopperDevs.DearImGui.Example.OpenGl.SilkNet;
 

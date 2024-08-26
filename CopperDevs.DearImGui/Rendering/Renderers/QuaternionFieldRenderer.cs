@@ -1,4 +1,4 @@
-﻿namespace CopperDevs.DearImGui.ReflectionRenderers;
+﻿namespace CopperDevs.DearImGui.Rendering.Renderers;
 
 internal class QuaternionFieldRenderer : FieldRenderer
 {

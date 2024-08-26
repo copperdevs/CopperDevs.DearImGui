@@ -1,5 +1,6 @@
 ﻿using CopperDevs.Core.Data;
-using CopperDevs.DearImGui.ReflectionRenderers;
+using CopperDevs.DearImGui.Rendering;
+using CopperDevs.DearImGui.Rendering.Renderers;
 
 namespace CopperDevs.DearImGui;
 
@@ -21,8 +22,8 @@ public static partial class CopperImGui
     }
 
     /// <summary>
-    /// Render all fields with ImGui using any registered <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/>.
-    /// This method goes straight to using reflection, instead of attempting to use and registered <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/>
+    /// Render all fields with ImGui using any registered <see cref="FieldRenderer"/>.
+    /// This method goes straight to using reflection, instead of attempting to use and registered <see cref="FieldRenderer"/>
     /// </summary>
     /// <param name="component">Target object to render the fields of</param>
     /// <param name="id">Id of the object (Can usually be left as zero)</param>
@@ -36,8 +37,8 @@ public static partial class CopperImGui
     }
 
     /// <summary>
-    /// Render all fields with ImGui using any registered <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/>.
-    /// This method attempts to use a registered <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/> before breaking the object down into its individual fields to render using other registered field renderers
+    /// Render all fields with ImGui using any registered <see cref="FieldRenderer"/>.
+    /// This method attempts to use a registered <see cref="FieldRenderer"/> before breaking the object down into its individual fields to render using other registered field renderers
     /// </summary>
     /// <param name="targetObject">Target object to render the fields of</param>
     /// <param name="id">Id of the object (Can usually be left as zero)</param>
@@ -61,9 +62,9 @@ public static partial class CopperImGui
     }
 
     /// <summary>
-    /// Get the created <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/> instance
+    /// Get the created <see cref="FieldRenderer"/> instance
     /// </summary>
-    /// <typeparam name="T">The type the <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/> is assigned to render</typeparam>
+    /// <typeparam name="T">The type the <see cref="FieldRenderer"/> is assigned to render</typeparam>
     /// <returns>The created instance of the class</returns>
     public static FieldRenderer? GetFieldRenderer<T>()
     {
@@ -71,19 +72,19 @@ public static partial class CopperImGui
     }
 
     /// <summary>
-    /// Register a new <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/>
+    /// Register a new <see cref="FieldRenderer"/>
     /// </summary>
-    /// <typeparam name="TType">The type the <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/> is assigned to render</typeparam>
-    /// <typeparam name="TRenderer">The actual <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/> class</typeparam>
+    /// <typeparam name="TType">The type the <see cref="FieldRenderer"/> is assigned to render</typeparam>
+    /// <typeparam name="TRenderer">The actual <see cref="FieldRenderer"/> class</typeparam>
     public static void RegisterFieldRenderer<TType, TRenderer>() where TRenderer : FieldRenderer, new()
     {
         ImGuiReflection.ImGuiRenderers.TryAdd(typeof(TType), new TRenderer());
     }
 
     /// <summary>
-    /// Get all currently registered <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/>
+    /// Get all currently registered <see cref="FieldRenderer"/>
     /// </summary>
-    /// <returns>Every registered <see cref="CopperDevs.DearImGui.ReflectionRenderers.FieldRenderer"/>, with the key being the type it is rendering</returns>
+    /// <returns>Every registered <see cref="FieldRenderer"/>, with the key being the type it is rendering</returns>
     public static Dictionary<Type, FieldRenderer> GetAllImGuiRenderers()
     {
         return ImGuiReflection.ImGuiRenderers;

@@ -1,9 +1,9 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using CopperDevs.DearImGui.Attributes;
-using CopperDevs.DearImGui.ReflectionRenderers;
+using CopperDevs.DearImGui.Rendering.Renderers;
 using CopperDevs.DearImGui.Utility;
 
-namespace CopperDevs.DearImGui;
+namespace CopperDevs.DearImGui.Rendering;
 
 [SuppressMessage("ReSharper", "ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract")]
 [SuppressMessage("ReSharper", "AccessToModifiedClosure")]

@@ -59,6 +59,9 @@
         <Compile Update="CopperImGui.Context.cs">
           <DependentUpon>CopperImGui.cs</DependentUpon>
         </Compile>
+        <Compile Update="CopperImGui.Fonts.cs">
+          <DependentUpon>CopperImGui.cs</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>

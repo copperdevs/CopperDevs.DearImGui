@@ -1,6 +1,6 @@
 ﻿
 
-using CopperDevs.DearImGui.Enums;
+using CopperDevs.DearImGui.Backend.Enums;
 
 namespace CopperDevs.DearImGui;
 

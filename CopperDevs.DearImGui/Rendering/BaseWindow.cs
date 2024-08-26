@@ -1,4 +1,4 @@
-﻿namespace CopperDevs.DearImGui;
+﻿namespace CopperDevs.DearImGui.Rendering;
 
 /// <summary>
 /// This isn't required for a window to actually be registered because the windows methods are called through reflection. But you can use this class so the methods are actually there

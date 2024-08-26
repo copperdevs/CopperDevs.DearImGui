@@ -1,6 +1,7 @@
 using System.Numerics;
 using CopperDevs.DearImGui.Renderer.Raylib.Internal.FieldRenderers;
 using CopperDevs.DearImGui.Renderer.Raylib.Internal.Rendering;
+using CopperDevs.DearImGui.Rendering;
 using Raylib_CSharp.Colors;
 using Raylib_CSharp.Textures;
 using Raylib_CSharp.Transformations;

@@ -1,4 +1,4 @@
-using CopperDevs.DearImGui.Enums;
+using CopperDevs.DearImGui.Backend.Enums;
 using ImGuiNET;
 
 namespace CopperDevs.DearImGui.Backend;

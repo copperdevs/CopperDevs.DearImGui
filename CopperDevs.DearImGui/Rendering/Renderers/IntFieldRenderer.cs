@@ -1,8 +1,8 @@
 ﻿using CopperDevs.DearImGui.Attributes;
 
-namespace CopperDevs.DearImGui.ReflectionRenderers;
+namespace CopperDevs.DearImGui.Rendering.Renderers;
 
-internal class FloatFieldRenderer : FieldRenderer
+internal class IntFieldRenderer : FieldRenderer
 {
     public override void ReflectionRenderer(FieldInfo fieldInfo, object component, int id, Action valueChanged = null!)
     {
@@ -11,23 +11,25 @@ internal class FloatFieldRenderer : FieldRenderer
         // ReSharper disable once ConditionIsAlwaysTrueOrFalseAccordingToNullableAPIContract
         if (rangeAttribute is not null)
         {
-            var value = (float)(fieldInfo.GetValue(component) ?? 0);
+            var value = (int)(fieldInfo.GetValue(component) ?? 0);
 
             switch (rangeAttribute.TargetRangeType)
             {
                 case RangeType.Drag:
-                    CopperImGui.DragValue($"{fieldInfo.Name.ToTitleCase()}##{fieldInfo.Name}{id}", ref value, rangeAttribute.Speed, rangeAttribute.Min, rangeAttribute.Max,
-                        interactedValue =>
+                    CopperImGui.DragValue($"{fieldInfo.Name.ToTitleCase()}##{fieldInfo.Name}{id}", ref value,
+                        (int)rangeAttribute.Min, (int)rangeAttribute.Min, (int)rangeAttribute.Max,
+                        newValue =>
                         {
-                            fieldInfo.SetValue(component, interactedValue);
+                            fieldInfo.SetValue(component, newValue);
                             valueChanged?.Invoke();
                         });
                     break;
                 case RangeType.Slider:
-                    CopperImGui.SliderValue($"{fieldInfo.Name.ToTitleCase()}##{fieldInfo.Name}{id}", ref value, rangeAttribute.Min, rangeAttribute.Max,
-                        interactedValue =>
+                    CopperImGui.SliderValue($"{fieldInfo.Name.ToTitleCase()}##{fieldInfo.Name}{id}", ref value,
+                        (int)rangeAttribute.Min, (int)rangeAttribute.Max,
+                        newValue =>
                         {
-                            fieldInfo.SetValue(component, interactedValue);
+                            fieldInfo.SetValue(component, newValue);
                             valueChanged?.Invoke();
                         });
                     break;
@@ -37,7 +39,7 @@ internal class FloatFieldRenderer : FieldRenderer
         }
         else
         {
-            var value = (float)(fieldInfo.GetValue(component) ?? 0);
+            var value = (int)(fieldInfo.GetValue(component) ?? 0);
 
             CopperImGui.DragValue($"{fieldInfo.Name.ToTitleCase()}##{fieldInfo.Name}{id}", ref value,
                 newValue =>
@@ -50,10 +52,10 @@ internal class FloatFieldRenderer : FieldRenderer
 
     public override void ValueRenderer(ref object value, int id, Action valueChanged = null!)
     {
-        var floatValue = (float)value;
+        var intValue = (int)value;
 
-        CopperImGui.DragValue($"{value.GetType().Name}{id}##{id}", ref floatValue, _ => valueChanged?.Invoke());
+        CopperImGui.DragValue($"{value.GetType().Name}##{id}", ref intValue, _ => valueChanged?.Invoke());
 
-        value = floatValue;
+        value = intValue;
     }
 }

@@ -1,4 +1,4 @@
-﻿namespace CopperDevs.DearImGui;
+﻿namespace CopperDevs.DearImGui.Rendering;
 
 /// <summary>
 /// Base interface for implementing custom imgui renderer

@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using CopperDevs.Core.Data;
-using CopperDevs.DearImGui.Enums;
+using CopperDevs.DearImGui.Backend.Enums;
 using CopperDevs.DearImGui.Utility;
 
 namespace CopperDevs.DearImGui;
