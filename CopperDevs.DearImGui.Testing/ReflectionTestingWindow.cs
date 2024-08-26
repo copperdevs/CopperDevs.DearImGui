@@ -3,7 +3,7 @@ using CopperDevs.DearImGui.Rendering;
 
 namespace CopperDevs.DearImGui.Testing;
 
-[Window("Reflection Testing", WindowOpen = true)]
+[Window("Reflection Testing", WindowOpen = false)]
 public class ReflectionTestingWindow : BaseWindow
 {
     private ReflectionTest reflectionTest = new();

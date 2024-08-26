@@ -4,7 +4,7 @@ using CopperDevs.DearImGui.Rendering;
 
 namespace CopperDevs.DearImGui.Testing;
 
-[Window("Popup Testing", WindowOpen = true)]
+[Window("Popup Testing", WindowOpen = false)]
 public class PopupTestingWindow : BaseWindow
 {
     public override void WindowStart()
