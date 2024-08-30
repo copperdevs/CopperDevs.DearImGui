@@ -3,6 +3,7 @@
 
 using System.Drawing;
 using System.Numerics;
+using CopperDevs.Logger;
 using ImGuiNET;
 using Silk.NET.Input;
 using Silk.NET.Input.Extensions;
@@ -599,6 +600,8 @@ public class ImGuiController : IDisposable
         gl.GetInteger(GLEnum.ArrayBufferBinding, out var lastArrayBuffer);
         gl.GetInteger(GLEnum.VertexArrayBinding, out var lastVertexArray);
 
+        typeof(ImGuiController).Assembly.GetManifestResourceNames().ToList().ForEach(Log.Debug);
+        
         using var vertexStream = typeof(ImGuiController).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Resources.shader.vert");
         using var vertexReader = new StreamReader(vertexStream!);
         var vertexResult = vertexReader.ReadToEnd();

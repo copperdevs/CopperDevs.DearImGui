@@ -49,6 +49,9 @@ public static class Program
 
     private static void SetWindowStyling() // windows 11 window styling stuff. its not required at all but it looks really nice
     {
+        if (!WindowsApi.IsWindows11)
+            return;
+        
         var handle = Window.GetHandle();
 
         WindowsApi.SetDwmImmersiveDarkMode(handle, true);

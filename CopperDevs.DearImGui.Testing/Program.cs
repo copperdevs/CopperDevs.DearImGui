@@ -44,6 +44,9 @@ public static class Program
 
     private static void SetWindowStyling()
     {
+        if (!WindowsApi.IsWindows11)
+            return;
+        
         var handle = Window.GetHandle();
 
         WindowsApi.SetDwmImmersiveDarkMode(handle, true);
