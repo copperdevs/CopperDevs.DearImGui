@@ -2,6 +2,7 @@
 using CopperDevs.DearImGui.Attributes;
 using CopperDevs.DearImGui.Rendering.Renderers;
 using CopperDevs.DearImGui.Utility;
+using CopperDevs.Logger;
 
 namespace CopperDevs.DearImGui.Rendering;
 

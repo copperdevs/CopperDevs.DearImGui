@@ -1,4 +1,5 @@
 ﻿using CopperDevs.DearImGui.Attributes;
+using CopperDevs.Logger;
 
 namespace CopperDevs.DearImGui;
 

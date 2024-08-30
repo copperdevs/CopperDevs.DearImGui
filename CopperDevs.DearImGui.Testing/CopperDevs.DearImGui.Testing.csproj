@@ -8,12 +8,13 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CopperDevs.Core" Version="1.1.0" />
+      <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj" />
+      <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj" />
-      <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
+      <PackageReference Include="CopperDevs.Core" Version="1.1.1" />
+      <PackageReference Include="CopperDevs.Logger" Version="1.0.0" />
     </ItemGroup>
 
 </Project>

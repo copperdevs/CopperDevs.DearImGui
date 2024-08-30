@@ -2,6 +2,7 @@ using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
 using CopperDevs.Core;
+using CopperDevs.Logger;
 using ImGuiNET;
 using Raylib_CSharp;
 using Raylib_CSharp.Images;
@@ -266,7 +267,7 @@ internal static class rlImGui
         SetupMouseCursors();
 
         ImGui.SetCurrentContext(imGuiContext);
-        
+
         CopperImGui.LoadFonts();
 
         var io = ImGui.GetIO();

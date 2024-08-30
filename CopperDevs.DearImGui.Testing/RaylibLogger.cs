@@ -1,6 +1,6 @@
-﻿using CopperDevs.Core;
-using CopperDevs.Core.Data;
+﻿using CopperDevs.Logger;
 using Raylib_CSharp.Logging;
+using rlLogger = Raylib_CSharp.Logging.Logger;
 
 namespace CopperDevs.DearImGui.Testing;
 
@@ -8,9 +8,9 @@ public static class RaylibLogger
 {
     public static void Initialize()
     {
-        Logger.Init();
-        Logger.Message += RayLibLog;
-        Logger.SetTraceLogLevel(TraceLogLevel.All);
+        rlLogger.Init();
+        rlLogger.Message += RayLibLog;
+        rlLogger.SetTraceLogLevel(TraceLogLevel.All);
     }
 
     private static bool RayLibLog(TraceLogLevel level, string message)
@@ -50,37 +50,37 @@ public static class RaylibLogger
 
     private static void RaylibLogInfo(object message)
     {
-        var color = ConsoleColors.GetColor(ConsoleColors.Names.Cyan);
-        Log.Info($"{ConsoleColors.Black}{ConsoleColors.WhiteBackground} Raylib {ConsoleColors.Reset}{color} {message}");
+        var color = AnsiColors.GetColor(AnsiColors.Names.Cyan);
+        Log.Info($"{AnsiColors.Black}{AnsiColors.WhiteBackground} Raylib {AnsiColors.Reset}{color} {message}");
     }
 
     private static void RaylibLogTrace(object message)
     {
-        var color = ConsoleColors.GetColor(ConsoleColors.Names.LightBlue);
-        Log.Trace($"{ConsoleColors.Black}{ConsoleColors.WhiteBackground} Raylib {ConsoleColors.Reset}{color} {message}");
+        var color = AnsiColors.GetColor(AnsiColors.Names.LightBlue);
+        Log.Trace($"{AnsiColors.Black}{AnsiColors.WhiteBackground} Raylib {AnsiColors.Reset}{color} {message}");
     }
 
     private static void RaylibLogDebug(object message)
     {
-        var color = ConsoleColors.GetColor(ConsoleColors.Names.Gray);
-        Log.Debug($"{ConsoleColors.Black}{ConsoleColors.WhiteBackground} Raylib {ConsoleColors.Reset}{color} {message}");
+        var color = AnsiColors.GetColor(AnsiColors.Names.Gray);
+        Log.Debug($"{AnsiColors.Black}{AnsiColors.WhiteBackground} Raylib {AnsiColors.Reset}{color} {message}");
     }
 
     private static void RaylibLogWarning(object message)
     {
-        var color = ConsoleColors.GetColor(ConsoleColors.Names.BrightYellow);
-        Log.Warning($"{ConsoleColors.Black}{ConsoleColors.WhiteBackground} Raylib {ConsoleColors.Reset}{color} {message}");
+        var color = AnsiColors.GetColor(AnsiColors.Names.BrightYellow);
+        Log.Warning($"{AnsiColors.Black}{AnsiColors.WhiteBackground} Raylib {AnsiColors.Reset}{color} {message}");
     }
 
     private static void RaylibLogError(object message)
     {
-        var color = ConsoleColors.GetColor(ConsoleColors.Names.Red);
-        Log.Error($"{ConsoleColors.Black}{ConsoleColors.WhiteBackground} Raylib {ConsoleColors.Reset}{color} {message}");
+        var color = AnsiColors.GetColor(AnsiColors.Names.Red);
+        Log.Error($"{AnsiColors.Black}{AnsiColors.WhiteBackground} Raylib {AnsiColors.Reset}{color} {message}");
     }
 
     private static void RaylibLogFatal(object message)
     {
-        var color = ConsoleColors.GetColor(ConsoleColors.Names.DarkRed);
-        Log.Fatal($"{ConsoleColors.Black}{ConsoleColors.WhiteBackground} Raylib {ConsoleColors.Reset}{color} {message}");
+        var color = AnsiColors.GetColor(AnsiColors.Names.DarkRed);
+        Log.Fatal($"{AnsiColors.Black}{AnsiColors.WhiteBackground} Raylib {AnsiColors.Reset}{color} {message}");
     }
 }

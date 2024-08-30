@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using CopperDevs.Logger;
 
 namespace CopperDevs.DearImGui.Rendering.Renderers;
 

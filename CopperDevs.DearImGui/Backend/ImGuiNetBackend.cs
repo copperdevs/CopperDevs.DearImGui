@@ -1,4 +1,5 @@
 using CopperDevs.DearImGui.Backend.Enums;
+using CopperDevs.Logger;
 using ImGuiNET;
 
 namespace CopperDevs.DearImGui.Backend;

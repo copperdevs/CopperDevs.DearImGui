@@ -1,5 +1,5 @@
 using System.Diagnostics;
-using CopperDevs.Core;
+using CopperDevs.Logger;
 using Silk.NET.OpenGL;
 
 namespace CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Internal;

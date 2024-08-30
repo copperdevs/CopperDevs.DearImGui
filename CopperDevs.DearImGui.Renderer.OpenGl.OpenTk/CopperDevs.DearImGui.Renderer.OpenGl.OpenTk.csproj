@@ -7,7 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="CopperDevs.Core" Version="1.1.0" />
+      <PackageReference Include="CopperDevs.Core" Version="1.1.1" />
+      <PackageReference Include="CopperDevs.Logger" Version="1.0.0" />
     </ItemGroup>
 
 </Project>
