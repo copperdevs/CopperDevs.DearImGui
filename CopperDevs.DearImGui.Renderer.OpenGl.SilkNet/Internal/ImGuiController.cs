@@ -599,8 +599,6 @@ public class ImGuiController : IDisposable
         gl.GetInteger(GLEnum.TextureBinding2D, out var lastTexture);
         gl.GetInteger(GLEnum.ArrayBufferBinding, out var lastArrayBuffer);
         gl.GetInteger(GLEnum.VertexArrayBinding, out var lastVertexArray);
-
-        typeof(ImGuiController).Assembly.GetManifestResourceNames().ToList().ForEach(Log.Debug);
         
         using var vertexStream = typeof(ImGuiController).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Resources.shader.vert");
         using var vertexReader = new StreamReader(vertexStream!);

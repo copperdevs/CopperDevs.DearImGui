@@ -19,7 +19,7 @@ dotnet add package CopperDevs.DearImGui.Renderer.Raylib --version 1.1.2
 ```
 
 ```
-dotnet add package CopperDevs.DearImGui.Renderer.OpenGl.SilkNet --version 1.0.3
+dotnet add package CopperDevs.DearImGui.Renderer.OpenGl.SilkNet --version 1.0.4
 ```
 
 ## To Do
