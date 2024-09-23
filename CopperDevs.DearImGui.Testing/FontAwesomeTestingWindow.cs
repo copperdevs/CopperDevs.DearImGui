@@ -17,7 +17,6 @@ public class FontAwesomeTestingWindow : BaseWindow
 
     public override void WindowUpdate()
     {
-        CopperImGui.RenderObjectValues(this);
         foreach (var value in values)
         {
             CopperImGui.Text(value);

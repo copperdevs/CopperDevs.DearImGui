@@ -30,6 +30,7 @@ dotnet add package CopperDevs.DearImGui.Renderer.OpenGl.SilkNet --version 1.0.4
     - [ ] OpenGl ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] Vulkan ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] OpenGl ([OpenTk](https://github.com/opentk/opentk)) ***Maybe***
+    - [X] [Sparkle](https://github.com/MrScautHD/Sparkle/tree/main)
 - Pre-made renderer packages
   - [X] Raylib
       - Currently, the Raylib renderer uses [Raylib-CSharp](https://github.com/MrScautHD/Raylib-CSharp) but in the future more will be supported
