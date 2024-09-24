@@ -1,10 +1,10 @@
 ﻿using System.Reflection;
 using CopperDevs.Core.Utility;
-using CopperDevs.DearImGui.Renderer.Raylib.Internal.Rendering;
 using CopperDevs.DearImGui.Rendering.Renderers;
-using Raylib_CSharp.Textures;
+using Raylib_cs;
+using CopperTexture2D = CopperDevs.DearImGui.Renderer.Raylib.Bindings.Texture2D;
 
-namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.FieldRenderers;
+namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_cs.Internal.FieldRenderers;
 
 internal class RenderTexture2DFieldRenderer : FieldRenderer
 {
@@ -33,7 +33,17 @@ internal class RenderTexture2DFieldRenderer : FieldRenderer
                 CopperImGui.Text(textureValue.Texture.Mipmaps, "Mipmap level");
             });
 
-            CopperImGui.CollapsingHeader("Texture", () => { rlImGui.ImageRenderTextureFit(textureValue); });
+
+            CopperImGui.CollapsingHeader("Texture", () =>
+            {
+                RlImGuiRenderer<RlImGuiBinding>.ImageRenderTexture(new CopperTexture2D()
+                {
+                    Width = textureValue.Texture.Width,
+                    Height = textureValue.Texture.Height,
+                    bindingObject = textureValue.Texture,
+                    Id = textureValue.Id,
+                });
+            });
         });
     }
 }

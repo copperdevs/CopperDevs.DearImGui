@@ -1,11 +1,26 @@
 using System.Numerics;
 using CopperDevs.Core.Data;
 using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
+using CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp_Vinculum.Internal.FieldRenderers;
+using ZeroElectric.Vinculum;
+using ConfigFlags = CopperDevs.DearImGui.Renderer.Raylib.Bindings.ConfigFlags;
+using GamepadAxis = CopperDevs.DearImGui.Renderer.Raylib.Bindings.GamepadAxis;
+using GamepadButton = CopperDevs.DearImGui.Renderer.Raylib.Bindings.GamepadButton;
+using KeyboardKey = CopperDevs.DearImGui.Renderer.Raylib.Bindings.KeyboardKey;
+using MouseButton = CopperDevs.DearImGui.Renderer.Raylib.Bindings.MouseButton;
+using MouseCursor = CopperDevs.DearImGui.Renderer.Raylib.Bindings.MouseCursor;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp_Vinculum;
 
 public class RlImGuiBinding : RlBinding
 {
+    public RlImGuiBinding()
+    {
+        CopperImGui.RegisterFieldRenderer<Color, ColorFieldRenderer>();
+        CopperImGui.RegisterFieldRenderer<Texture, TextureFieldRenderer>();
+        CopperImGui.RegisterFieldRenderer<RenderTexture, RenderTextureFieldRenderer>();
+    }
+    
     public override Texture2D LoadFontTexture(IntPtr data, Vector2Int size)
     {
         throw new NotImplementedException();

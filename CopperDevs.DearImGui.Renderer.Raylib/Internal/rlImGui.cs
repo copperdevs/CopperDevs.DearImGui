@@ -5,7 +5,7 @@ using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
 using CopperDevs.Logger;
 using ImGuiNET;
 
-namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.Rendering;
+namespace CopperDevs.DearImGui.Renderer.Raylib.Internal;
 
 // ReSharper disable once InconsistentNaming
 internal static class rlImGui

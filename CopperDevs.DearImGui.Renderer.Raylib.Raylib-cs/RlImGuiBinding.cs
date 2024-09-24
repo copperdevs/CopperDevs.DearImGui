@@ -1,11 +1,28 @@
 using System.Numerics;
 using CopperDevs.Core.Data;
 using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
+using CopperDevs.DearImGui.Renderer.Raylib.Raylib_cs.Internal.FieldRenderers;
+using Raylib_cs;
+using ConfigFlags = CopperDevs.DearImGui.Renderer.Raylib.Bindings.ConfigFlags;
+using GamepadAxis = CopperDevs.DearImGui.Renderer.Raylib.Bindings.GamepadAxis;
+using GamepadButton = CopperDevs.DearImGui.Renderer.Raylib.Bindings.GamepadButton;
+using KeyboardKey = CopperDevs.DearImGui.Renderer.Raylib.Bindings.KeyboardKey;
+using MouseButton = CopperDevs.DearImGui.Renderer.Raylib.Bindings.MouseButton;
+using MouseCursor = CopperDevs.DearImGui.Renderer.Raylib.Bindings.MouseCursor;
+using Texture2D = CopperDevs.DearImGui.Renderer.Raylib.Bindings.Texture2D;
+using rlTexture2D = Raylib_cs.Texture2D;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_cs;
 
 public class RlImGuiBinding : RlBinding
 {
+    public RlImGuiBinding()
+    {
+        CopperImGui.RegisterFieldRenderer<Color, ColorFieldRenderer>();
+        CopperImGui.RegisterFieldRenderer<rlTexture2D, Texture2DFieldRenderer>();
+        CopperImGui.RegisterFieldRenderer<RenderTexture2D, RenderTexture2DFieldRenderer>();
+    }
+    
     public override Texture2D LoadFontTexture(IntPtr data, Vector2Int size)
     {
         throw new NotImplementedException();

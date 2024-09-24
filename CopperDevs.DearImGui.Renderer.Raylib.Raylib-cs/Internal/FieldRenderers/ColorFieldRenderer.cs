@@ -2,9 +2,9 @@
 using System.Reflection;
 using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.Rendering.Renderers;
-using Raylib_CSharp.Colors;
+using Raylib_cs;
 
-namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.FieldRenderers;
+namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_cs.Internal.FieldRenderers;
 
 internal class ColorFieldRenderer : FieldRenderer
 {

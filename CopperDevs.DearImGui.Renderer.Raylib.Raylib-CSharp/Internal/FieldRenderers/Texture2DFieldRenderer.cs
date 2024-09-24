@@ -1,10 +1,11 @@
 ﻿using System.Reflection;
 using CopperDevs.Core.Utility;
-using CopperDevs.DearImGui.Renderer.Raylib.Internal.Rendering;
 using CopperDevs.DearImGui.Rendering.Renderers;
 using Raylib_CSharp.Textures;
+using CopperTexture2D = CopperDevs.DearImGui.Renderer.Raylib.Bindings.Texture2D;
+using Texture2D = Raylib_CSharp.Textures.Texture2D;
 
-namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.FieldRenderers;
+namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp.Internal.FieldRenderers;
 
 internal class Texture2DFieldRenderer : FieldRenderer
 {
@@ -25,8 +26,17 @@ internal class Texture2DFieldRenderer : FieldRenderer
         CopperImGui.CollapsingHeader(title,
             () =>
             {
-                CopperImGui.HorizontalGroup(() => { rlImGui.ImageSize(textureValue, 64, 64); },
+                CopperImGui.HorizontalGroup(() =>
+                    {
+                        RlImGuiRenderer<RlImGuiBinding>.ImageRenderTexture(new CopperTexture2D()
+                        {
+                            Width = textureValue.Width,
+                            Height = textureValue.Height,
+                            bindingObject = textureValue,
+                            Id = textureValue.Id,
+                        });
+                    },
                     () => { CopperImGui.Text($"Size: <{textureValue.Width},{textureValue.Height}> \nFormat: {textureValue.Format} \nOpenGL id: {textureValue.Id} \nMipmap level: {textureValue.Mipmaps}"); });
-            });
+                });
+            }
     }
-}

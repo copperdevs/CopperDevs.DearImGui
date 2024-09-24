@@ -1,14 +1,24 @@
 using System.Numerics;
 using CopperDevs.Core.Data;
 using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
+using CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp.Internal.FieldRenderers;
+using Raylib_CSharp.Colors;
 using Raylib_CSharp.Images;
-
+using Raylib_CSharp.Textures;
 using rlTexture2D = Raylib_CSharp.Textures.Texture2D;
+using Texture2D = CopperDevs.DearImGui.Renderer.Raylib.Bindings.Texture2D;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp;
 
 public class RlImGuiBinding : RlBinding
 {
+    public RlImGuiBinding()
+    {
+        CopperImGui.RegisterFieldRenderer<Color, ColorFieldRenderer>();
+        CopperImGui.RegisterFieldRenderer<rlTexture2D, Texture2DFieldRenderer>();
+        CopperImGui.RegisterFieldRenderer<RenderTexture2D, RenderTexture2DFieldRenderer>();
+    }
+    
     public override Texture2D LoadFontTexture(IntPtr data, Vector2Int size)
     {
         var image = new Image
