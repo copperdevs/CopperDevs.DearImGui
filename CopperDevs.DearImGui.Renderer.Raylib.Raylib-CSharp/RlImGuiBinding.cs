@@ -1,10 +1,42 @@
 using System.Numerics;
+using CopperDevs.Core.Data;
 using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
+using Raylib_CSharp.Images;
+
+using rlTexture2D = Raylib_CSharp.Textures.Texture2D;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp;
 
 public class RlImGuiBinding : RlBinding
 {
+    public override Texture2D LoadFontTexture(IntPtr data, Vector2Int size)
+    {
+        var image = new Image
+        {
+            Data = data,
+            Width = size.X,
+            Height = size.Y,
+            Mipmaps = 1,
+            Format = PixelFormat.UncompressedR8G8B8A8,
+        };
+        
+        var rlTexture = rlTexture2D.LoadFromImage(image);
+
+        return new Texture2D()
+        {
+            Width = rlTexture.Width,
+            Height = rlTexture.Height,
+            Id = rlTexture.Id,
+            bindingObject = rlTexture
+        };
+    }
+
+    public override void UnloadTexture(Texture2D texture)
+    {
+        ((rlTexture2D)texture.bindingObject).Unload();
+    }
+
+
     public override bool InputIsKeyDown(KeyboardKey key)
     {
         throw new NotImplementedException();

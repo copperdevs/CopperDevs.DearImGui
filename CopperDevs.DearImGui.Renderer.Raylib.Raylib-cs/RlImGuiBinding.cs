@@ -1,10 +1,21 @@
 using System.Numerics;
+using CopperDevs.Core.Data;
 using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_cs;
 
 public class RlImGuiBinding : RlBinding
 {
+    public override Texture2D LoadFontTexture(IntPtr data, Vector2Int size)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override void UnloadTexture(Texture2D texture)
+    {
+        throw new NotImplementedException();
+    }
+
     public override bool InputIsKeyDown(KeyboardKey key)
     {
         throw new NotImplementedException();

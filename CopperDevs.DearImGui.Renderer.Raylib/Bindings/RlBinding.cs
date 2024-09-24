@@ -1,9 +1,17 @@
 using System.Numerics;
+using CopperDevs.Core.Data;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Bindings;
 
 public abstract class RlBinding
 {
+    // wrapped 
+    
+    public abstract Texture2D LoadFontTexture(IntPtr data, Vector2Int size);
+    public abstract void UnloadTexture(Texture2D texture);
+    
+    // direct calls
+    
     public abstract bool InputIsKeyDown(KeyboardKey key);
     public abstract bool WindowIsFocused();
     public abstract string WindowGetClipboardText();

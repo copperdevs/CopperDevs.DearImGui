@@ -207,20 +207,8 @@ internal static class rlImGui
 
         io.Fonts.GetTexDataAsRGBA32(out byte* pixels, out var width, out var height, out _);
 
-        var image = new Image
-        {
-            Data = new IntPtr(pixels),
-            Width = width,
-            Height = height,
-            Mipmaps = 1,
-            Format = PixelFormat.UncompressedR8G8B8A8,
-        };
-
-        if (fontTexture.IsReady())
-            fontTexture.Unload();
-
-        fontTexture = Texture2D.LoadFromImage(image);
-
+        fontTexture = binding.LoadFontTexture(new IntPtr(pixels), new Vector2(width, height));
+        
         io.Fonts.SetTexID(new IntPtr(fontTexture.Id));
     }
 
@@ -588,7 +576,7 @@ internal static class rlImGui
     /// </summary>
     public static void Shutdown()
     {
-        fontTexture.Unload();
+        binding.UnloadTexture(fontTexture);
         ImGui.DestroyContext();
     }
 
@@ -670,9 +658,9 @@ internal static class rlImGui
     /// Draws a render texture as an image an ImGui Context, automatically flipping the Y axis so it will show correctly on screen
     /// </summary>
     /// <param name="image">The render texture to draw</param>
-    public static void ImageRenderTexture(RenderTexture2D image)
+    public static void ImageRenderTexture(Texture2D image)
     {
-        ImageRect(image.Texture, image.Texture.Width, image.Texture.Height, new Rectangle(0, 0, image.Texture.Width, -image.Texture.Height));
+        ImageRect(image, image.Width, image.Height, new Rectangle(0, 0, image.Width, -image.Height));
     }
 
     /// <summary>
@@ -681,20 +669,20 @@ internal static class rlImGui
     /// </summary>
     /// <param name="image">The render texture to draw</param>
     /// <param name="center">When true the texture will be centered in the content area. When false the image will be left and top justified</param>
-    public static void ImageRenderTextureFit(RenderTexture2D image, bool center = true)
+    public static void ImageRenderTextureFit(Texture2D image, bool center = true)
     {
         var area = ImGui.GetContentRegionAvail();
 
-        var scale = area.X / image.Texture.Width;
+        var scale = area.X / image.Width;
 
-        var y = image.Texture.Height * scale;
+        var y = image.Height * scale;
         if (y > area.Y)
         {
-            scale = area.Y / image.Texture.Height;
+            scale = area.Y / image.Height;
         }
 
-        var sizeX = (int)(image.Texture.Width * scale);
-        var sizeY = (int)(image.Texture.Height * scale);
+        var sizeX = (int)(image.Width * scale);
+        var sizeY = (int)(image.Height * scale);
 
         if (center)
         {
@@ -703,7 +691,7 @@ internal static class rlImGui
             ImGui.SetCursorPosY(ImGui.GetCursorPosY() + ((area.Y / 2f) - (sizeY / 2f)));
         }
 
-        ImageRect(image.Texture, sizeX, sizeY, new Rectangle(0, 0, (image.Texture.Width), -(image.Texture.Height)));
+        ImageRect(image, sizeX, sizeY, new Rectangle(0, 0, (image.Width), -(image.Height)));
     }
 
     /// <summary>
