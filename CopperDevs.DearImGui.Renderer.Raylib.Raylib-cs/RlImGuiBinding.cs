@@ -22,7 +22,7 @@ public class RlImGuiBinding : RlBinding
         CopperImGui.RegisterFieldRenderer<rlTexture2D, Texture2DFieldRenderer>();
         CopperImGui.RegisterFieldRenderer<RenderTexture2D, RenderTexture2DFieldRenderer>();
     }
-    
+
     public override Texture2D LoadFontTexture(IntPtr data, Vector2Int size)
     {
         throw new NotImplementedException();
