@@ -1,4 +1,5 @@
 using System.Numerics;
+using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
 using CopperDevs.DearImGui.Renderer.Raylib.Internal.FieldRenderers;
 using CopperDevs.DearImGui.Renderer.Raylib.Internal.Rendering;
 using CopperDevs.DearImGui.Rendering;
@@ -8,11 +9,11 @@ using Raylib_CSharp.Transformations;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib;
 
-public class RlImGuiRenderer : ImGuiRenderer
+public class RlImGuiRenderer<TBinding> : ImGuiRenderer where TBinding : RlBinding, new()
 {
     public override void Setup()
     {
-        rlImGui.Setup();
+        rlImGui.Setup(new TBinding());
 
         CopperImGui.RegisterFieldRenderer<Color, ColorFieldRenderer>();
         CopperImGui.RegisterFieldRenderer<Texture2D, Texture2DFieldRenderer>();

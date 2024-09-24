@@ -1,22 +1,16 @@
 using System.Numerics;
 using System.Runtime.InteropServices;
 using System.Text;
-using CopperDevs.Core;
+using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
 using CopperDevs.Logger;
 using ImGuiNET;
-using Raylib_CSharp;
-using Raylib_CSharp.Images;
-using Raylib_CSharp.Interact;
-using Raylib_CSharp.Rendering.Gl;
-using Raylib_CSharp.Textures;
-using Raylib_CSharp.Transformations;
-using Raylib_CSharp.Windowing;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Internal.Rendering;
 
 // ReSharper disable once InconsistentNaming
 internal static class rlImGui
 {
+    private static RlBinding binding = null!;
     private static IntPtr imGuiContext = IntPtr.Zero;
 
     private static ImGuiMouseCursor currentMouseCursor = ImGuiMouseCursor.COUNT;
@@ -33,22 +27,24 @@ internal static class rlImGui
     private static bool lastSuperPressed;
 
     // ReSharper disable once InconsistentNaming
-    private static bool rlImGuiIsControlDown() => Input.IsKeyDown(KeyboardKey.RightControl) || Input.IsKeyDown(KeyboardKey.LeftControl);
+    private static bool rlImGuiIsControlDown() => binding.InputIsKeyDown(KeyboardKey.RightControl) || binding.InputIsKeyDown(KeyboardKey.LeftControl);
 
     // ReSharper disable once InconsistentNaming
-    private static bool rlImGuiIsShiftDown() => Input.IsKeyDown(KeyboardKey.RightShift) || Input.IsKeyDown(KeyboardKey.LeftShift);
+    private static bool rlImGuiIsShiftDown() => binding.InputIsKeyDown(KeyboardKey.RightShift) || binding.InputIsKeyDown(KeyboardKey.LeftShift);
 
     // ReSharper disable once InconsistentNaming
-    private static bool rlImGuiIsAltDown() => Input.IsKeyDown(KeyboardKey.RightAlt) || Input.IsKeyDown(KeyboardKey.LeftAlt);
+    private static bool rlImGuiIsAltDown() => binding.InputIsKeyDown(KeyboardKey.RightAlt) || binding.InputIsKeyDown(KeyboardKey.LeftAlt);
 
     // ReSharper disable once InconsistentNaming
-    private static bool rlImGuiIsSuperDown() => Input.IsKeyDown(KeyboardKey.RightSuper) || Input.IsKeyDown(KeyboardKey.LeftSuper);
+    private static bool rlImGuiIsSuperDown() => binding.InputIsKeyDown(KeyboardKey.RightSuper) || binding.InputIsKeyDown(KeyboardKey.LeftSuper);
 
     /// <summary>
     /// Sets up ImGui, loads fonts and themes
     /// </summary>
-    public static void Setup()
+    /// <param name="rlBinding"></param>
+    public static void Setup(RlBinding rlBinding)
     {
+        binding = rlBinding;
         BeginInitImGui();
 
         EndInitImGui();
@@ -62,7 +58,7 @@ internal static class rlImGui
     {
         mouseCursorMap = new Dictionary<ImGuiMouseCursor, MouseCursor>();
 
-        lastFrameFocused = Window.IsFocused();
+        lastFrameFocused = binding.WindowIsFocused();
         lastControlPressed = false;
         lastShiftPressed = false;
         lastAltPressed = false;
@@ -80,7 +76,6 @@ internal static class rlImGui
         if (RaylibKeyMap.Count > 0)
             return;
 
-        // build up a map of raylib keys to ImGuiKeys
         RaylibKeyMap[KeyboardKey.Apostrophe] = ImGuiKey.Apostrophe;
         RaylibKeyMap[KeyboardKey.Comma] = ImGuiKey.Comma;
         RaylibKeyMap[KeyboardKey.Minus] = ImGuiKey.Minus;
@@ -232,7 +227,7 @@ internal static class rlImGui
     // ReSharper disable once InconsistentNaming
     private static unsafe sbyte* rlImGuiGetClipText(IntPtr userData)
     {
-        var bytes = Encoding.ASCII.GetBytes(Window.GetClipboardText());
+        var bytes = Encoding.ASCII.GetBytes(binding.WindowGetClipboardText());
 
         fixed (byte* p = bytes)
             return (sbyte*)p;
@@ -243,7 +238,7 @@ internal static class rlImGui
     {
         try
         {
-            Window.SetClipboardText(text->ToString());
+            binding.WindowSetClipboardText(text->ToString());
         }
         catch (Exception e)
         {
@@ -293,9 +288,9 @@ internal static class rlImGui
 
     private static void SetMouseEvent(ImGuiIOPtr io, MouseButton rayMouse, ImGuiMouseButton imGuiMouse)
     {
-        if (Input.IsMouseButtonPressed(rayMouse))
+        if (binding.InputIsMouseButtonPressed(rayMouse))
             io.AddMouseButtonEvent((int)imGuiMouse, true);
-        else if (Input.IsMouseButtonReleased(rayMouse))
+        else if (binding.InputIsMouseButtonReleased(rayMouse))
             io.AddMouseButtonEvent((int)imGuiMouse, false);
     }
 
@@ -303,30 +298,30 @@ internal static class rlImGui
     {
         var io = ImGui.GetIO();
 
-        if (Window.IsFullscreen())
+        if (binding.WindowIsFullscreen())
         {
-            var monitor = Window.GetCurrentMonitor();
-            io.DisplaySize = new Vector2(Window.GetMonitorWidth(monitor), Window.GetMonitorHeight(monitor));
+            var monitor = binding.WindowGetCurrentMonitor();
+            io.DisplaySize = new Vector2(binding.WindowGetMonitorWidth(monitor), binding.WindowGetMonitorHeight(monitor));
         }
         else
         {
-            io.DisplaySize = new Vector2(Window.GetScreenWidth(), Window.GetScreenHeight());
+            io.DisplaySize = new Vector2(binding.WindowGetScreenWidth(), binding.WindowGetScreenHeight());
         }
 
         io.DisplayFramebufferScale = new Vector2(1, 1);
 
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) || Window.IsState(ConfigFlags.HighDpiWindow))
-            io.DisplayFramebufferScale = Window.GetScaleDPI();
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) || binding.WindowIsState(ConfigFlags.HighDpiWindow))
+            io.DisplayFramebufferScale = binding.WindowGetScaleDPI();
 
-        io.DeltaTime = dt >= 0 ? dt : Time.GetFrameTime();
+        io.DeltaTime = dt >= 0 ? dt : binding.TimeGetFrameTime();
 
         if (io.WantSetMousePos)
         {
-            Input.SetMousePosition((int)io.MousePos.X, (int)io.MousePos.Y);
+            binding.InputSetMousePosition((int)io.MousePos.X, (int)io.MousePos.Y);
         }
         else
         {
-            io.AddMousePosEvent(Input.GetMouseX(), Input.GetMouseY());
+            io.AddMousePosEvent(binding.InputGetMouseX(), binding.InputGetMouseY());
         }
 
         SetMouseEvent(io, MouseButton.Left, ImGuiMouseButton.Left);
@@ -335,7 +330,7 @@ internal static class rlImGui
         SetMouseEvent(io, MouseButton.Forward, ImGuiMouseButton.Middle + 1);
         SetMouseEvent(io, MouseButton.Back, ImGuiMouseButton.Middle + 2);
 
-        var wheelMove = Input.GetMouseWheelMoveV();
+        var wheelMove = binding.InputGetMouseWheelMoveV();
         io.AddMouseWheelEvent(wheelMove.X, wheelMove.Y);
 
         if ((io.ConfigFlags & ImGuiConfigFlags.NoMouseCursorChange) != 0)
@@ -349,14 +344,14 @@ internal static class rlImGui
         currentMouseCursor = imguiCursor;
         if (io.MouseDrawCursor || imguiCursor == ImGuiMouseCursor.None)
         {
-            Input.HideCursor();
+            binding.InputHideCursor();
         }
         else
         {
-            Input.ShowCursor();
+            binding.InputShowCursor();
 
             if ((io.ConfigFlags & ImGuiConfigFlags.NoMouseCursorChange) == 0)
-                Input.SetMouseCursor(mouseCursorMap.GetValueOrDefault(imguiCursor, MouseCursor.Default));
+                binding.InputSetMouseCursor(mouseCursorMap.GetValueOrDefault(imguiCursor, MouseCursor.Default));
         }
     }
 
@@ -364,7 +359,7 @@ internal static class rlImGui
     {
         var io = ImGui.GetIO();
 
-        var focused = Window.IsFocused();
+        var focused = binding.WindowIsFocused();
         if (focused != lastFrameFocused)
             io.AddFocusEvent(focused);
         lastFrameFocused = focused;
@@ -392,32 +387,33 @@ internal static class rlImGui
         lastSuperPressed = superDown;
 
         // get the pressed keys, they are in event order
-        var keyId = Input.GetKeyPressed();
+        var keyId = binding.InputGetKeyPressed();
         while (keyId != 0)
         {
             var key = (KeyboardKey)keyId;
             if (RaylibKeyMap.TryGetValue(key, out var value))
                 io.AddKeyEvent(value, true);
-            keyId = Input.GetKeyPressed();
+            keyId = binding.InputGetKeyPressed();
         }
 
         // look for any keys that were down last frame and see if they were down and are released
+        // ReSharper disable once ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
         foreach (var keyItr in RaylibKeyMap)
         {
-            if (Input.IsKeyReleased(keyItr.Key))
+            if (binding.InputIsKeyReleased(keyItr.Key))
                 io.AddKeyEvent(keyItr.Value, false);
         }
 
         // add the text input in order
-        var pressed = Input.GetCharPressed();
+        var pressed = binding.InputGetCharPressed();
         while (pressed != 0)
         {
             io.AddInputCharacter((uint)pressed);
-            pressed = Input.GetCharPressed();
+            pressed = binding.InputGetCharPressed();
         }
 
         // gamepads
-        if ((io.ConfigFlags & ImGuiConfigFlags.NavEnableGamepad) == 0 || !Input.IsGamepadAvailable(0))
+        if ((io.ConfigFlags & ImGuiConfigFlags.NavEnableGamepad) == 0 || !binding.InputIsGamepadAvailable(0))
             return;
 
         HandleGamepadButtonEvent(io, GamepadButton.LeftFaceUp, ImGuiKey.GamepadDpadUp);
@@ -452,9 +448,9 @@ internal static class rlImGui
 
     private static void HandleGamepadButtonEvent(ImGuiIOPtr io, GamepadButton button, ImGuiKey key)
     {
-        if (Input.IsGamepadButtonPressed(0, button))
+        if (binding.InputIsGamepadButtonPressed(0, button))
             io.AddKeyEvent(key, true);
-        else if (Input.IsGamepadButtonReleased(0, button))
+        else if (binding.InputIsGamepadButtonReleased(0, button))
             io.AddKeyEvent(key, false);
     }
 
@@ -462,7 +458,7 @@ internal static class rlImGui
     {
         const float deadZone = 0.20f;
 
-        var axisValue = Input.GetGamepadAxisMovement(0, axis);
+        var axisValue = binding.InputGetGamepadAxisMovement(0, axis);
 
         io.AddKeyAnalogEvent(negKey, axisValue < -deadZone, axisValue < -deadZone ? -axisValue : 0);
         io.AddKeyAnalogEvent(posKey, axisValue > deadZone, axisValue > deadZone ? axisValue : 0);
@@ -483,23 +479,23 @@ internal static class rlImGui
 
     private static void EnableScissor(float x, float y, float width, float height)
     {
-        RlGl.EnableScissorTest();
+        binding.RlGlEnableScissorTest();
         var io = ImGui.GetIO();
 
         var scale = new Vector2(1.0f, 1.0f);
-        if (Window.IsState(ConfigFlags.HighDpiWindow) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+        if (binding.WindowIsState(ConfigFlags.HighDpiWindow) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
             scale = io.DisplayFramebufferScale;
 
-        RlGl.Scissor((int)(x * scale.X), (int)((io.DisplaySize.Y - (int)(y + height)) * scale.Y), (int)(width * scale.X), (int)(height * scale.Y));
+        binding.RlGlScissor((int)(x * scale.X), (int)((io.DisplaySize.Y - (int)(y + height)) * scale.Y), (int)(width * scale.X), (int)(height * scale.Y));
     }
 
     private static void TriangleVert(ImDrawVertPtr idxVert)
     {
         var color = ImGui.ColorConvertU32ToFloat4(idxVert.col);
 
-        RlGl.Color4F(color.X, color.Y, color.Z, color.W);
-        RlGl.TexCoord2F(idxVert.uv.X, idxVert.uv.Y);
-        RlGl.Vertex2F(idxVert.pos.X, idxVert.pos.Y);
+        binding.RlGlColor4F(color.X, color.Y, color.Z, color.W);
+        binding.RlGlTexCoord2F(idxVert.uv.X, idxVert.uv.Y);
+        binding.RlGlVertex2F(idxVert.pos.X, idxVert.pos.Y);
     }
 
     private static void RenderTriangles(uint count, uint indexStart, ImVector<ushort> indexBuffer, ImPtrVector<ImDrawVertPtr> vertBuffer, IntPtr texturePtr)
@@ -511,15 +507,15 @@ internal static class rlImGui
         if (texturePtr != IntPtr.Zero)
             textureId = (uint)texturePtr.ToInt32();
 
-        RlGl.Begin(DrawMode.Triangles);
-        RlGl.SetTexture(textureId);
+        binding.RlGlBegin(4);
+        binding.RlGlSetTexture(textureId);
 
         for (var i = 0; i <= (count - 3); i += 3)
         {
-            if (RlGl.CheckRenderBatchLimit(3))
+            if (binding.RlGlCheckRenderBatchLimit(3))
             {
-                RlGl.Begin(DrawMode.Triangles);
-                RlGl.SetTexture(textureId);
+                binding.RlGlBegin(4);
+                binding.RlGlSetTexture(textureId);
             }
 
             var indexA = indexBuffer[(int)indexStart + i];
@@ -535,15 +531,15 @@ internal static class rlImGui
             TriangleVert(vertexC);
         }
 
-        RlGl.End();
+        binding.RlGlEnd();
     }
 
     private delegate void Callback(ImDrawListPtr list, ImDrawCmdPtr cmd);
 
     private static void RenderData()
     {
-        RlGl.DrawRenderBatchActive();
-        RlGl.DisableBackfaceCulling();
+        binding.RlGlDrawRenderBatchActive();
+        binding.RlGlDisableBackfaceCulling();
 
         var data = ImGui.GetDrawData();
 
@@ -568,13 +564,13 @@ internal static class rlImGui
 
                 RenderTriangles(cmd.ElemCount, cmd.IdxOffset, commandList.IdxBuffer, commandList.VtxBuffer, cmd.TextureId);
 
-                RlGl.DrawRenderBatchActive();
+                binding.RlGlDrawRenderBatchActive();
             }
         }
 
-        RlGl.SetTexture(0);
-        RlGl.DisableScissorTest();
-        RlGl.EnableBackfaceCulling();
+        binding.RlGlSetTexture(0);
+        binding.RlGlDisableScissorTest();
+        binding.RlGlEnableBackfaceCulling();
     }
 
     /// <summary>

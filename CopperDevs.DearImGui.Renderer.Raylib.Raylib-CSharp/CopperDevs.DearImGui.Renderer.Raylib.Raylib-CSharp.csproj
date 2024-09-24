@@ -11,4 +11,8 @@
       <PackageReference Include="Raylib-CSharp" Version="4.1.9" />
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj" />
+    </ItemGroup>
+
 </Project>
