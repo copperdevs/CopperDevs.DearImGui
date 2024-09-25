@@ -35,7 +35,7 @@ public abstract class RlBinding
     public abstract void InputShowCursor();
     public abstract void InputSetMouseCursor(MouseCursor value);
     public abstract KeyboardKey InputGetKeyPressed();
-    public abstract bool InputIsKeyReleased(KeyboardKey keyItrKey);
+    public abstract bool InputIsKeyReleased(KeyboardKey key);
     public abstract int InputGetCharPressed();
     public abstract bool InputIsGamepadAvailable(int i);
     public abstract bool InputIsGamepadButtonPressed(int i, GamepadButton button);

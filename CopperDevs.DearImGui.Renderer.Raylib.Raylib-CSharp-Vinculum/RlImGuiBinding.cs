@@ -146,7 +146,7 @@ public class RlImGuiBinding : RlBinding
         throw new NotImplementedException();
     }
 
-    public override bool InputIsKeyReleased(KeyboardKey keyItrKey)
+    public override bool InputIsKeyReleased(KeyboardKey key)
     {
         throw new NotImplementedException();
     }

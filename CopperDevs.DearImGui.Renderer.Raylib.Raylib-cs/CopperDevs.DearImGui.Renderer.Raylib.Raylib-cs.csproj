@@ -5,6 +5,7 @@
         <RootNamespace>CopperDevs.DearImGui.Renderer.Raylib.Raylib_cs</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>

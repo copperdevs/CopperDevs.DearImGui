@@ -11,6 +11,13 @@ using MouseButton = CopperDevs.DearImGui.Renderer.Raylib.Bindings.MouseButton;
 using MouseCursor = CopperDevs.DearImGui.Renderer.Raylib.Bindings.MouseCursor;
 using Texture2D = CopperDevs.DearImGui.Renderer.Raylib.Bindings.Texture2D;
 using rlTexture2D = Raylib_cs.Texture2D;
+using rlKeyboardKey = Raylib_cs.KeyboardKey;
+using rlMouseButton = Raylib_cs.MouseButton;
+using rlConfigFlags = Raylib_cs.ConfigFlags;
+using rlMouseCursor = Raylib_cs.MouseCursor;
+using rlGamepadButton = Raylib_cs.GamepadButton;
+using rlGamepadAxis = Raylib_cs.GamepadAxis;
+using Rl = Raylib_cs.Raylib;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_cs;
 
@@ -23,223 +30,240 @@ public class RlImGuiBinding : RlBinding
         CopperImGui.RegisterFieldRenderer<RenderTexture2D, RenderTexture2DFieldRenderer>();
     }
 
-    public override Texture2D LoadFontTexture(IntPtr data, Vector2Int size)
+    public override unsafe Texture2D LoadFontTexture(IntPtr data, Vector2Int size)
     {
-        throw new NotImplementedException();
+        var image = new Image
+        {
+            Data = data.ToPointer(),
+            Width = size.X,
+            Height = size.Y,
+            Mipmaps = 1,
+            Format = PixelFormat.UncompressedR8G8B8A8,
+        };
+
+        var rlTexture = Rl.LoadTextureFromImage(image);
+
+        return new Texture2D()
+        {
+            Width = rlTexture.Width,
+            Height = rlTexture.Height,
+            Id = rlTexture.Id,
+            bindingObject = rlTexture
+        };
     }
 
     public override void UnloadTexture(Texture2D texture)
     {
-        throw new NotImplementedException();
+        Rl.UnloadTexture((rlTexture2D)texture.bindingObject);
     }
 
     public override bool InputIsKeyDown(KeyboardKey key)
     {
-        throw new NotImplementedException();
+        return Rl.IsKeyDown((rlKeyboardKey)key);
     }
 
     public override bool WindowIsFocused()
     {
-        throw new NotImplementedException();
+        return Rl.IsWindowFocused();
     }
 
     public override string WindowGetClipboardText()
     {
-        throw new NotImplementedException();
+        return Rl.GetClipboardText_();
     }
 
     public override void WindowSetClipboardText(string text)
     {
-        throw new NotImplementedException();
+        Rl.SetClipboardText(text);
     }
 
     public override bool InputIsMouseButtonPressed(MouseButton button)
     {
-        throw new NotImplementedException();
+        return Rl.IsMouseButtonPressed((rlMouseButton)button);
     }
 
     public override bool InputIsMouseButtonReleased(MouseButton button)
     {
-        throw new NotImplementedException();
+        return Rl.IsMouseButtonReleased((rlMouseButton)button);
     }
 
     public override bool WindowIsFullscreen()
     {
-        throw new NotImplementedException();
+        return Rl.IsWindowFullscreen();
     }
 
     public override int WindowGetCurrentMonitor()
     {
-        throw new NotImplementedException();
+        return Rl.GetCurrentMonitor();
     }
 
     public override int WindowGetMonitorWidth(int monitor)
     {
-        throw new NotImplementedException();
+        return Rl.GetMonitorWidth(monitor);
     }
 
     public override int WindowGetMonitorHeight(int monitor)
     {
-        throw new NotImplementedException();
+        return Rl.GetMonitorHeight(monitor);
     }
 
     public override int WindowGetScreenWidth()
     {
-        throw new NotImplementedException();
+        return Rl.GetScreenWidth();
     }
 
     public override int WindowGetScreenHeight()
     {
-        throw new NotImplementedException();
+        return Rl.GetScreenHeight();
     }
 
     public override bool WindowIsState(ConfigFlags flag)
     {
-        throw new NotImplementedException();
+        return Rl.IsWindowState((rlConfigFlags)flag);
     }
 
     public override Vector2 WindowGetScaleDPI()
     {
-        throw new NotImplementedException();
+        return Rl.GetWindowScaleDPI();
     }
 
     public override float TimeGetFrameTime()
     {
-        throw new NotImplementedException();
+        return Rl.GetFrameTime();
     }
 
     public override void InputSetMousePosition(int mousePosX, int mousePosY)
     {
-        throw new NotImplementedException();
+        Rl.SetMousePosition(mousePosX, mousePosY);
     }
 
     public override int InputGetMouseX()
     {
-        throw new NotImplementedException();
+        return Rl.GetMouseX();
     }
 
     public override int InputGetMouseY()
     {
-        throw new NotImplementedException();
+        return Rl.GetMouseY();
     }
 
     public override Vector2 InputGetMouseWheelMoveV()
     {
-        throw new NotImplementedException();
+        return Rl.GetMouseWheelMoveV();
     }
 
     public override void InputHideCursor()
     {
-        throw new NotImplementedException();
+        Rl.HideCursor();
     }
 
     public override void InputShowCursor()
     {
-        throw new NotImplementedException();
+        Rl.ShowCursor();
     }
 
     public override void InputSetMouseCursor(MouseCursor value)
     {
-        throw new NotImplementedException();
+        Rl.SetMouseCursor((rlMouseCursor)value);
     }
 
     public override KeyboardKey InputGetKeyPressed()
     {
-        throw new NotImplementedException();
+        return (KeyboardKey)Rl.GetKeyPressed();
     }
 
-    public override bool InputIsKeyReleased(KeyboardKey keyItrKey)
+    public override bool InputIsKeyReleased(KeyboardKey key)
     {
-        throw new NotImplementedException();
+        return Rl.IsKeyReleased((rlKeyboardKey)key);
     }
 
     public override int InputGetCharPressed()
     {
-        throw new NotImplementedException();
+        return Rl.GetCharPressed();
     }
 
     public override bool InputIsGamepadAvailable(int i)
     {
-        throw new NotImplementedException();
+        return Rl.IsGamepadAvailable(i);
     }
 
     public override bool InputIsGamepadButtonPressed(int i, GamepadButton button)
     {
-        throw new NotImplementedException();
+        return Rl.IsGamepadButtonPressed(i, (rlGamepadButton)button);
     }
 
     public override bool InputIsGamepadButtonReleased(int i, GamepadButton button)
     {
-        throw new NotImplementedException();
+        return Rl.IsGamepadButtonReleased(i, (rlGamepadButton)button);
     }
 
     public override float InputGetGamepadAxisMovement(int i, GamepadAxis axis)
     {
-        throw new NotImplementedException();
+        return Rl.GetGamepadAxisMovement(i, (rlGamepadAxis)axis);
     }
 
     public override void RlGlEnableScissorTest()
     {
-        throw new NotImplementedException();
+        Rlgl.EnableScissorTest();
     }
 
     public override void RlGlScissor(int scaleX, int displaySizeY, int width, int scaleY)
     {
-        throw new NotImplementedException();
+        Rlgl.Scissor(scaleX, displaySizeY, width, scaleY);
     }
 
     public override void RlGlColor4F(float colorX, float colorY, float colorZ, float colorW)
     {
-        throw new NotImplementedException();
+        Rlgl.Color4f(colorX, colorY, colorZ, colorW);
     }
 
     public override void RlGlTexCoord2F(float uvX, float uvY)
     {
-        throw new NotImplementedException();
+        Rlgl.TexCoord2f(uvX, uvY);
     }
 
     public override void RlGlVertex2F(float posX, float posY)
     {
-        throw new NotImplementedException();
+        Rlgl.Vertex2f(posX, posY);
     }
 
     public override void RlGlBegin(int p0)
     {
-        throw new NotImplementedException();
+        Rlgl.Begin(p0);
     }
 
     public override void RlGlSetTexture(uint textureId)
     {
-        throw new NotImplementedException();
+        Rlgl.SetTexture(textureId);
     }
 
     public override bool RlGlCheckRenderBatchLimit(int i)
     {
-        throw new NotImplementedException();
+        return Rlgl.CheckRenderBatchLimit(i);
     }
 
     public override void RlGlEnd()
     {
-        throw new NotImplementedException();
+        Rlgl.End();
     }
 
     public override void RlGlDrawRenderBatchActive()
     {
-        throw new NotImplementedException();
+        Rlgl.DrawRenderBatchActive();
     }
 
     public override void RlGlDisableBackfaceCulling()
     {
-        throw new NotImplementedException();
+        Rlgl.DisableBackfaceCulling();
     }
 
     public override void RlGlDisableScissorTest()
     {
-        throw new NotImplementedException();
+        Rlgl.DisableScissorTest();
     }
 
     public override void RlGlEnableBackfaceCulling()
     {
-        throw new NotImplementedException();
+        Rlgl.EnableBackfaceCulling();
     }
 }
