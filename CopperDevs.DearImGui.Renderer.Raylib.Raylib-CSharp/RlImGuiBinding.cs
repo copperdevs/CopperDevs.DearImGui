@@ -120,7 +120,7 @@ public class RlImGuiBinding : RlBinding
 
     public override int WindowGetScreenHeight()
     {
-        return Window.GetScreenWidth();
+        return Window.GetScreenHeight();
     }
 
     public override bool WindowIsState(ConfigFlags flag)
