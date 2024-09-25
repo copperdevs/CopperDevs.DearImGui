@@ -5,6 +5,7 @@
         <RootNamespace>CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp_Vinculum</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
     <ItemGroup>
