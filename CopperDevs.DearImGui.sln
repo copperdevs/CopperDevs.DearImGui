@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo", "Repo", "{5B0E440E-F
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib", "CopperDevs.DearImGui.Example.Raylib\CopperDevs.DearImGui.Example.Raylib.csproj", "{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp", "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp\CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp.csproj", "{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib", "CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj", "{4E1BE947-CDE9-42D0-833F-A398005634F1}"
 EndProject
@@ -42,6 +42,10 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs", "CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs\CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs.csproj", "{B203660B-7105-45F7-A03D-5CD5EC86A66A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum", "CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum.csproj", "{F35E4079-EDEA-497B-A86C-28A0205262CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib.Raylib-cs", "CopperDevs.DearImGui.Example.Raylib.Raylib-cs\CopperDevs.DearImGui.Example.Raylib.Raylib-cs.csproj", "{F619F39D-73DF-4D7F-96FC-BA158F86FE89}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum", "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum\CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum.csproj", "{F13384AB-5504-4F74-8CF3-B33CEA76B397}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -97,6 +101,14 @@ Global
 		{F35E4079-EDEA-497B-A86C-28A0205262CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F35E4079-EDEA-497B-A86C-28A0205262CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F35E4079-EDEA-497B-A86C-28A0205262CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F619F39D-73DF-4D7F-96FC-BA158F86FE89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F619F39D-73DF-4D7F-96FC-BA158F86FE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F619F39D-73DF-4D7F-96FC-BA158F86FE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F619F39D-73DF-4D7F-96FC-BA158F86FE89}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F13384AB-5504-4F74-8CF3-B33CEA76B397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F13384AB-5504-4F74-8CF3-B33CEA76B397}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F13384AB-5504-4F74-8CF3-B33CEA76B397}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F13384AB-5504-4F74-8CF3-B33CEA76B397}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{00084F80-B522-4A3C-A094-1A5421155AF9} = {3B522E65-A902-4A40-88D1-B332C2C3D2CB}
@@ -114,5 +126,7 @@ Global
 		{2E0FC782-3A2F-4BA3-8E0C-777A2A88BD1A} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
 		{B203660B-7105-45F7-A03D-5CD5EC86A66A} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
 		{F35E4079-EDEA-497B-A86C-28A0205262CC} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
+		{F619F39D-73DF-4D7F-96FC-BA158F86FE89} = {3B522E65-A902-4A40-88D1-B332C2C3D2CB}
+		{F13384AB-5504-4F74-8CF3-B33CEA76B397} = {3B522E65-A902-4A40-88D1-B332C2C3D2CB}
 	EndGlobalSection
 EndGlobal

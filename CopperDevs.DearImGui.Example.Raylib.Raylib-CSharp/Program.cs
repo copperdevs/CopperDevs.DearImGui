@@ -6,13 +6,13 @@ using Raylib_CSharp.Rendering;
 using Raylib_CSharp.Windowing;
 using static Raylib_CSharp.Raylib;
 
-namespace CopperDevs.DearImGui.Example.Raylib;
+namespace CopperDevs.DearImGui.Example.Raylib.Raylib_CSharp;
 
 // this is way too extra for an example but meah i felt like it
 public static class Program
 {
-    private static readonly Color TransparentColor = new(0, 0, 0, 0);
     private const bool TransparentWindow = true;
+    private static readonly Color TransparentColor = new(0, 0, 0, 0);
 
     public static void Main()
     {
@@ -52,7 +52,7 @@ public static class Program
     {
         if (!WindowsApi.IsWindows11)
             return;
-        
+
         var handle = Window.GetHandle();
 
         WindowsApi.SetDwmImmersiveDarkMode(handle, true);

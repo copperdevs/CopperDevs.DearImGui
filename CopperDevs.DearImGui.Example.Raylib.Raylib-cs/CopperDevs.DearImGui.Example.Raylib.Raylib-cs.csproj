@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>CopperDevs.DearImGui.Example.Raylib.Raylib_cs</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs\CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs.csproj"/>
+    </ItemGroup>
+
+</Project>
