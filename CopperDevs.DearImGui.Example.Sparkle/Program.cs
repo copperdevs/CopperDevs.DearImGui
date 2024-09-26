@@ -14,9 +14,8 @@ public static class Program
             Width = 650,
             Height = 450,
         };
-
-        using var game = new OverlayExampleGame(settings);
-        // using var game = new BaseExampleGame(settings);
+        
+        using var game = new BaseExampleGame(settings);
         game.Run(null);
     }
 }
