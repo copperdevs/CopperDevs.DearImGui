@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Publish CopperDevs.DearImGui to folder" type="DotNetFolderPublish" factoryName="Publish to folder">
+  <configuration default="false" name="Publish - Core" type="DotNetFolderPublish" factoryName="Publish to folder">
     <riderPublish configuration="Release" platform="Any CPU" runtime="Portable" target_folder="$PROJECT_DIR$/src/Core/CopperDevs.DearImGui/bin/Release/net8.0/publish" target_framework="net8.0" uuid_high="1541310867237388715" uuid_low="-5220530830540174629" />
     <method v="2" />
   </configuration>
