@@ -30,9 +30,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CopperDevs.Core" Version="1.1.1" />
-        <PackageReference Include="CopperDevs.Logger" Version="1.0.0" />
-        <PackageReference Include="ImGui.NET" Version="1.91.0.1" />
+        <PackageReference Include="CopperDevs.Core" Version="1.1.1"/>
+        <PackageReference Include="CopperDevs.Logger" Version="1.0.0"/>
+        <PackageReference Include="ImGui.NET" Version="1.91.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
@@ -58,30 +58,31 @@
             <DependentUpon>CopperImGui.cs</DependentUpon>
         </Compile>
         <Compile Update="CopperImGui.Context.cs">
-          <DependentUpon>CopperImGui.cs</DependentUpon>
+            <DependentUpon>CopperImGui.cs</DependentUpon>
         </Compile>
         <Compile Update="CopperImGui.Fonts.cs">
-          <DependentUpon>CopperImGui.cs</DependentUpon>
+            <DependentUpon>CopperImGui.cs</DependentUpon>
         </Compile>
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="..\ReadMe.md">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-        </None>
-        <None Include="..\License.txt">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-        </None>
         <None Update="FontAwesomeLicense.txt">
-          <Pack>True</Pack>
-          <PackagePath>\</PackagePath>
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
         </None>
     </ItemGroup>
 
     <ItemGroup>
-      <EmbeddedResource Include="Resources\FontAwesomeData.txt" />
+        <EmbeddedResource Include="Resources\FontAwesomeData.txt"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\..\License.txt">
+            <Link>License.txt</Link>
+        </Content>
+        <Content Include="..\..\..\ReadMe.md">
+            <Link>ReadMe.md</Link>
+        </Content>
     </ItemGroup>
 
 </Project>

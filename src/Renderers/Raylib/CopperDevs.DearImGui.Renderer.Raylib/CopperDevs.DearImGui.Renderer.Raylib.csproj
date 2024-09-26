@@ -27,10 +27,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Include="ReadMe.md">
-            <Pack>True</Pack>
-            <PackagePath>\</PackagePath>
-        </None>
         <None Include="License.txt">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
@@ -44,5 +40,11 @@
     <ItemGroup>
         <PackageReference Include="CopperDevs.Core" Version="1.1.1"/>
         <PackageReference Include="CopperDevs.Logger" Version="1.0.0"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\ReadMe.md">
+            <Link>ReadMe.md</Link>
+        </Content>
     </ItemGroup>
 </Project>
