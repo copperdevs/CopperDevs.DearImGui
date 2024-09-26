@@ -4,3 +4,15 @@ obj/
 riderModule.iml
 /_ReSharper.Caches/
 temp-notes.txt
+.idea
+
+# rider default crap
+/shelf/
+/workspace.xml
+/contentModel.xml
+/.idea.CopperDevs.DearImGui.iml
+/modules.xml
+/projectSettingsUpdater.xml
+/httpRequests/
+/dataSources/
+/dataSources.local.xml
