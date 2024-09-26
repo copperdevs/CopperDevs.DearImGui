@@ -5,7 +5,7 @@
 > [!NOTE]
 > This package is a modification of [rlImGui-cs](https://github.com/raylib-extras/rlImGui-cs/tree/main) to fit my uses
 
-> [!IMPORTANT] <br>
+> [!IMPORTANT]
 > This package is just the base raylib renderer. You need to also install a package for your choice of binding.
 > Currently there are three pre-made binding packages.
 >
