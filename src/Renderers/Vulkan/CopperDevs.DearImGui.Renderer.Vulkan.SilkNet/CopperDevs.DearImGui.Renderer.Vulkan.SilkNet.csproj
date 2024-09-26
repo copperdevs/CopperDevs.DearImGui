@@ -2,17 +2,17 @@
 
     <PropertyGroup>
         <TargetFramework>net8.0</TargetFramework>
-        <RootNamespace>CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Raylib-CSharp" Version="4.1.9" />
+        <PackageReference Include="CopperDevs.Core" Version="1.1.1"/>
+        <PackageReference Include="CopperDevs.Logger" Version="1.0.0"/>
     </ItemGroup>
-
+    
     <ItemGroup>
-      <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj" />
+        <ProjectReference Include="..\..\..\Core\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
     </ItemGroup>
 
 </Project>

@@ -5,13 +5,11 @@
         <TargetFramework>net8.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <RootNamespace>CopperDevs.DearImGui.Example.Raylib.Raylib_CSharp</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp.csproj"/>
-        <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj"/>
+        <ProjectReference Include="..\..\Renderers\Raylib\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp.csproj"/>
+        <ProjectReference Include="..\..\Renderers\Raylib\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj"/>
         <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
     </ItemGroup>
 

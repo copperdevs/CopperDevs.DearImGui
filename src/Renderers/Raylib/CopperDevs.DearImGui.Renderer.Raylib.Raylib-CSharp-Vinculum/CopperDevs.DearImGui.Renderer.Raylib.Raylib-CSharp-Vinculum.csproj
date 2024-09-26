@@ -9,11 +9,12 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="Raylib-CSharp-Vinculum" Version="5.0.1" />
+        <PackageReference Include="Raylib-CSharp-Vinculum" Version="5.0.1"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj" />
+        <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj"/>
+        <ProjectReference Include="..\..\..\Core\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
     </ItemGroup>
 
 </Project>

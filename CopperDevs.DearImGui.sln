@@ -1,7 +1,5 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui", "CopperDevs.DearImGui\CopperDevs.DearImGui.csproj", "{91A296BF-CC95-441C-A89A-ABBDFBC94245}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo", "Repo", "{5B0E440E-FC7D-4306-86AC-FC8B75BB1ED8}"
 	ProjectSection(SolutionItems) = preProject
 		License.txt = License.txt
@@ -9,27 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repo", "Repo", "{5B0E440E-F
 		.gitignore = .gitignore
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp", "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp\CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp.csproj", "{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib", "CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj", "{4E1BE947-CDE9-42D0-833F-A398005634F1}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.OpenGl.SilkNet", "CopperDevs.DearImGui.Example.OpenGl.SilkNet\CopperDevs.DearImGui.Example.OpenGl.SilkNet.csproj", "{00084F80-B522-4A3C-A094-1A5421155AF9}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.OpenGl.SilkNet", "CopperDevs.DearImGui.Renderer.OpenGl.SilkNet\CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.csproj", "{647AE06D-93BF-4C4B-9D53-0FAA4F03757D}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Examples", "Examples", "{3B522E65-A902-4A40-88D1-B332C2C3D2CB}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Renderers", "Renderers", "{D80512F7-C352-4BD7-99A8-2D380494B3E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D8E6EB8A-4E92-413C-8BED-631098302053}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Testing", "CopperDevs.DearImGui.Testing\CopperDevs.DearImGui.Testing.csproj", "{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.OpenGl.OpenTk", "CopperDevs.DearImGui.Renderer.OpenGl.OpenTk\CopperDevs.DearImGui.Renderer.OpenGl.OpenTk.csproj", "{C9E8714D-8935-4A9D-8818-788A51B39C03}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Vulkan.SilkNet", "CopperDevs.DearImGui.Renderer.Vulkan.SilkNet\CopperDevs.DearImGui.Renderer.Vulkan.SilkNet.csproj", "{579C514D-6C1C-4841-8216-B9BD87BD6593}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Sparkle", "CopperDevs.DearImGui.Example.Sparkle\CopperDevs.DearImGui.Example.Sparkle.csproj", "{9D51330A-9B79-4FBA-87BC-A75B7D6FFE00}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenGl", "OpenGl", "{BCB5D11D-AC1A-4B7A-9415-BD38C8FA6584}"
 EndProject
@@ -37,21 +19,39 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vulkan", "Vulkan", "{27388D
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Raylib", "Raylib", "{CF55A0AE-A454-41C7-A921-82E1CA126DFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp", "CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp.csproj", "{2E0FC782-3A2F-4BA3-8E0C-777A2A88BD1A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs", "CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs\CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs.csproj", "{B203660B-7105-45F7-A03D-5CD5EC86A66A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum", "CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum.csproj", "{F35E4079-EDEA-497B-A86C-28A0205262CC}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib.Raylib-cs", "CopperDevs.DearImGui.Example.Raylib.Raylib-cs\CopperDevs.DearImGui.Example.Raylib.Raylib-cs.csproj", "{F619F39D-73DF-4D7F-96FC-BA158F86FE89}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum", "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum\CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum.csproj", "{F13384AB-5504-4F74-8CF3-B33CEA76B397}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenGl", "OpenGl", "{DEAC363D-2625-4A0D-AE28-AA26D8DCA005}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Raylib", "Raylib", "{C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{4223FF19-0D8A-4F4B-A056-A1FDFC0602F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui", "src\Core\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj", "{1563D611-4A22-41AB-B78C-F2DE82AD8ADB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Testing", "src\Core\CopperDevs.DearImGui.Testing\CopperDevs.DearImGui.Testing.csproj", "{63C8DD3F-08AC-4AD9-B12A-69DFED81D841}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.OpenGl.OpenTk", "src\Renderers\OpenGl\CopperDevs.DearImGui.Renderer.OpenGl.OpenTk\CopperDevs.DearImGui.Renderer.OpenGl.OpenTk.csproj", "{2A26B0E6-E32D-47F2-82E2-4846DCD68581}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.OpenGl.SilkNet", "src\Renderers\OpenGl\CopperDevs.DearImGui.Renderer.OpenGl.SilkNet\CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.csproj", "{B8EBC35C-DCD7-477D-9F55-E98738A38DFE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Vulkan.SilkNet", "src\Renderers\Vulkan\CopperDevs.DearImGui.Renderer.Vulkan.SilkNet\CopperDevs.DearImGui.Renderer.Vulkan.SilkNet.csproj", "{A6C6CB75-F6A9-4530-A043-92D97D49D57C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib", "src\Renderers\Raylib\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj", "{E2559F59-4655-42BB-84DC-467FCC7963E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs", "src\Renderers\Raylib\CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs\CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs.csproj", "{820CC650-48C9-4A5F-94E2-4FA35BF9316A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp", "src\Renderers\Raylib\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp.csproj", "{9DC9DA21-78B3-4592-99F7-5424031C64DF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum", "src\Renderers\Raylib\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum.csproj", "{D0B6E6C0-7D6C-4AF7-BBF1-DACB1416B449}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Sparkle", "src\Examples\Library\CopperDevs.DearImGui.Example.Sparkle\CopperDevs.DearImGui.Example.Sparkle.csproj", "{0A97E0F3-C134-4B28-824B-B572F909130C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.OpenGl.SilkNet", "src\Examples\OpenGl\CopperDevs.DearImGui.Example.OpenGl.SilkNet\CopperDevs.DearImGui.Example.OpenGl.SilkNet.csproj", "{87F3C297-5D0B-4178-8162-545C8462BE61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib.Raylib-cs", "src\Examples\Raylib\CopperDevs.DearImGui.Example.Raylib.Raylib-cs\CopperDevs.DearImGui.Example.Raylib.Raylib-cs.csproj", "{6A8A9C0C-F2E8-48A8-9FC2-9B041E381B6D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp", "src\Examples\Raylib\CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp\CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp.csproj", "{C98F8037-E5E1-4DD0-99EF-1522DA861A06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum", "src\Examples\Raylib\CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum\CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum.csproj", "{CB536AF6-86A5-449A-9E2B-CEB6446547DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,83 +59,83 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{91A296BF-CC95-441C-A89A-ABBDFBC94245}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{91A296BF-CC95-441C-A89A-ABBDFBC94245}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{91A296BF-CC95-441C-A89A-ABBDFBC94245}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{91A296BF-CC95-441C-A89A-ABBDFBC94245}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4E1BE947-CDE9-42D0-833F-A398005634F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4E1BE947-CDE9-42D0-833F-A398005634F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4E1BE947-CDE9-42D0-833F-A398005634F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4E1BE947-CDE9-42D0-833F-A398005634F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00084F80-B522-4A3C-A094-1A5421155AF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00084F80-B522-4A3C-A094-1A5421155AF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00084F80-B522-4A3C-A094-1A5421155AF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00084F80-B522-4A3C-A094-1A5421155AF9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{647AE06D-93BF-4C4B-9D53-0FAA4F03757D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{647AE06D-93BF-4C4B-9D53-0FAA4F03757D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{647AE06D-93BF-4C4B-9D53-0FAA4F03757D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{647AE06D-93BF-4C4B-9D53-0FAA4F03757D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C9E8714D-8935-4A9D-8818-788A51B39C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C9E8714D-8935-4A9D-8818-788A51B39C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C9E8714D-8935-4A9D-8818-788A51B39C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C9E8714D-8935-4A9D-8818-788A51B39C03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{579C514D-6C1C-4841-8216-B9BD87BD6593}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{579C514D-6C1C-4841-8216-B9BD87BD6593}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{579C514D-6C1C-4841-8216-B9BD87BD6593}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{579C514D-6C1C-4841-8216-B9BD87BD6593}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9D51330A-9B79-4FBA-87BC-A75B7D6FFE00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9D51330A-9B79-4FBA-87BC-A75B7D6FFE00}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9D51330A-9B79-4FBA-87BC-A75B7D6FFE00}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9D51330A-9B79-4FBA-87BC-A75B7D6FFE00}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E0FC782-3A2F-4BA3-8E0C-777A2A88BD1A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E0FC782-3A2F-4BA3-8E0C-777A2A88BD1A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E0FC782-3A2F-4BA3-8E0C-777A2A88BD1A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E0FC782-3A2F-4BA3-8E0C-777A2A88BD1A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B203660B-7105-45F7-A03D-5CD5EC86A66A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B203660B-7105-45F7-A03D-5CD5EC86A66A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B203660B-7105-45F7-A03D-5CD5EC86A66A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B203660B-7105-45F7-A03D-5CD5EC86A66A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F35E4079-EDEA-497B-A86C-28A0205262CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F35E4079-EDEA-497B-A86C-28A0205262CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F35E4079-EDEA-497B-A86C-28A0205262CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F35E4079-EDEA-497B-A86C-28A0205262CC}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F619F39D-73DF-4D7F-96FC-BA158F86FE89}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F619F39D-73DF-4D7F-96FC-BA158F86FE89}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F619F39D-73DF-4D7F-96FC-BA158F86FE89}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F619F39D-73DF-4D7F-96FC-BA158F86FE89}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F13384AB-5504-4F74-8CF3-B33CEA76B397}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F13384AB-5504-4F74-8CF3-B33CEA76B397}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F13384AB-5504-4F74-8CF3-B33CEA76B397}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F13384AB-5504-4F74-8CF3-B33CEA76B397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1563D611-4A22-41AB-B78C-F2DE82AD8ADB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1563D611-4A22-41AB-B78C-F2DE82AD8ADB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1563D611-4A22-41AB-B78C-F2DE82AD8ADB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1563D611-4A22-41AB-B78C-F2DE82AD8ADB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{63C8DD3F-08AC-4AD9-B12A-69DFED81D841}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{63C8DD3F-08AC-4AD9-B12A-69DFED81D841}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{63C8DD3F-08AC-4AD9-B12A-69DFED81D841}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{63C8DD3F-08AC-4AD9-B12A-69DFED81D841}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A26B0E6-E32D-47F2-82E2-4846DCD68581}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A26B0E6-E32D-47F2-82E2-4846DCD68581}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A26B0E6-E32D-47F2-82E2-4846DCD68581}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A26B0E6-E32D-47F2-82E2-4846DCD68581}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8EBC35C-DCD7-477D-9F55-E98738A38DFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8EBC35C-DCD7-477D-9F55-E98738A38DFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8EBC35C-DCD7-477D-9F55-E98738A38DFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8EBC35C-DCD7-477D-9F55-E98738A38DFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A6C6CB75-F6A9-4530-A043-92D97D49D57C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A6C6CB75-F6A9-4530-A043-92D97D49D57C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A6C6CB75-F6A9-4530-A043-92D97D49D57C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A6C6CB75-F6A9-4530-A043-92D97D49D57C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E2559F59-4655-42BB-84DC-467FCC7963E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E2559F59-4655-42BB-84DC-467FCC7963E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E2559F59-4655-42BB-84DC-467FCC7963E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E2559F59-4655-42BB-84DC-467FCC7963E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{820CC650-48C9-4A5F-94E2-4FA35BF9316A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{820CC650-48C9-4A5F-94E2-4FA35BF9316A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{820CC650-48C9-4A5F-94E2-4FA35BF9316A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{820CC650-48C9-4A5F-94E2-4FA35BF9316A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DC9DA21-78B3-4592-99F7-5424031C64DF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DC9DA21-78B3-4592-99F7-5424031C64DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DC9DA21-78B3-4592-99F7-5424031C64DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DC9DA21-78B3-4592-99F7-5424031C64DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0B6E6C0-7D6C-4AF7-BBF1-DACB1416B449}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0B6E6C0-7D6C-4AF7-BBF1-DACB1416B449}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0B6E6C0-7D6C-4AF7-BBF1-DACB1416B449}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0B6E6C0-7D6C-4AF7-BBF1-DACB1416B449}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A97E0F3-C134-4B28-824B-B572F909130C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A97E0F3-C134-4B28-824B-B572F909130C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A97E0F3-C134-4B28-824B-B572F909130C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A97E0F3-C134-4B28-824B-B572F909130C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{87F3C297-5D0B-4178-8162-545C8462BE61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87F3C297-5D0B-4178-8162-545C8462BE61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87F3C297-5D0B-4178-8162-545C8462BE61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87F3C297-5D0B-4178-8162-545C8462BE61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6A8A9C0C-F2E8-48A8-9FC2-9B041E381B6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6A8A9C0C-F2E8-48A8-9FC2-9B041E381B6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6A8A9C0C-F2E8-48A8-9FC2-9B041E381B6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6A8A9C0C-F2E8-48A8-9FC2-9B041E381B6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C98F8037-E5E1-4DD0-99EF-1522DA861A06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C98F8037-E5E1-4DD0-99EF-1522DA861A06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C98F8037-E5E1-4DD0-99EF-1522DA861A06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C98F8037-E5E1-4DD0-99EF-1522DA861A06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB536AF6-86A5-449A-9E2B-CEB6446547DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CB536AF6-86A5-449A-9E2B-CEB6446547DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CB536AF6-86A5-449A-9E2B-CEB6446547DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CB536AF6-86A5-449A-9E2B-CEB6446547DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{91A296BF-CC95-441C-A89A-ABBDFBC94245} = {D8E6EB8A-4E92-413C-8BED-631098302053}
-		{899D94B5-AAB0-4E91-AE5B-B9D7E67CD86A} = {D8E6EB8A-4E92-413C-8BED-631098302053}
 		{BCB5D11D-AC1A-4B7A-9415-BD38C8FA6584} = {D80512F7-C352-4BD7-99A8-2D380494B3E8}
 		{27388D37-9EC6-4936-8772-E48BBF23D780} = {D80512F7-C352-4BD7-99A8-2D380494B3E8}
 		{CF55A0AE-A454-41C7-A921-82E1CA126DFE} = {D80512F7-C352-4BD7-99A8-2D380494B3E8}
-		{C9E8714D-8935-4A9D-8818-788A51B39C03} = {BCB5D11D-AC1A-4B7A-9415-BD38C8FA6584}
-		{647AE06D-93BF-4C4B-9D53-0FAA4F03757D} = {BCB5D11D-AC1A-4B7A-9415-BD38C8FA6584}
-		{579C514D-6C1C-4841-8216-B9BD87BD6593} = {27388D37-9EC6-4936-8772-E48BBF23D780}
-		{4E1BE947-CDE9-42D0-833F-A398005634F1} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
-		{2E0FC782-3A2F-4BA3-8E0C-777A2A88BD1A} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
-		{B203660B-7105-45F7-A03D-5CD5EC86A66A} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
-		{F35E4079-EDEA-497B-A86C-28A0205262CC} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
 		{DEAC363D-2625-4A0D-AE28-AA26D8DCA005} = {3B522E65-A902-4A40-88D1-B332C2C3D2CB}
 		{C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1} = {3B522E65-A902-4A40-88D1-B332C2C3D2CB}
 		{4223FF19-0D8A-4F4B-A056-A1FDFC0602F7} = {3B522E65-A902-4A40-88D1-B332C2C3D2CB}
-		{F619F39D-73DF-4D7F-96FC-BA158F86FE89} = {C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1}
-		{49F9692E-8A73-49C5-BCDA-2E6DC4EFDADE} = {C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1}
-		{F13384AB-5504-4F74-8CF3-B33CEA76B397} = {C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1}
-		{00084F80-B522-4A3C-A094-1A5421155AF9} = {DEAC363D-2625-4A0D-AE28-AA26D8DCA005}
-		{9D51330A-9B79-4FBA-87BC-A75B7D6FFE00} = {4223FF19-0D8A-4F4B-A056-A1FDFC0602F7}
+		{1563D611-4A22-41AB-B78C-F2DE82AD8ADB} = {D8E6EB8A-4E92-413C-8BED-631098302053}
+		{63C8DD3F-08AC-4AD9-B12A-69DFED81D841} = {D8E6EB8A-4E92-413C-8BED-631098302053}
+		{2A26B0E6-E32D-47F2-82E2-4846DCD68581} = {BCB5D11D-AC1A-4B7A-9415-BD38C8FA6584}
+		{B8EBC35C-DCD7-477D-9F55-E98738A38DFE} = {BCB5D11D-AC1A-4B7A-9415-BD38C8FA6584}
+		{A6C6CB75-F6A9-4530-A043-92D97D49D57C} = {27388D37-9EC6-4936-8772-E48BBF23D780}
+		{E2559F59-4655-42BB-84DC-467FCC7963E7} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
+		{820CC650-48C9-4A5F-94E2-4FA35BF9316A} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
+		{9DC9DA21-78B3-4592-99F7-5424031C64DF} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
+		{D0B6E6C0-7D6C-4AF7-BBF1-DACB1416B449} = {CF55A0AE-A454-41C7-A921-82E1CA126DFE}
+		{0A97E0F3-C134-4B28-824B-B572F909130C} = {4223FF19-0D8A-4F4B-A056-A1FDFC0602F7}
+		{87F3C297-5D0B-4178-8162-545C8462BE61} = {DEAC363D-2625-4A0D-AE28-AA26D8DCA005}
+		{6A8A9C0C-F2E8-48A8-9FC2-9B041E381B6D} = {C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1}
+		{C98F8037-E5E1-4DD0-99EF-1522DA861A06} = {C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1}
+		{CB536AF6-86A5-449A-9E2B-CEB6446547DE} = {C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1}
 	EndGlobalSection
 EndGlobal
