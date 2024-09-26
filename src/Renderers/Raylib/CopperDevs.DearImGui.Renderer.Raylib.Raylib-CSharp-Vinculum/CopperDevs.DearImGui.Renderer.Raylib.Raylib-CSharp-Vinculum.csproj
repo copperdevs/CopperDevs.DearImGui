@@ -9,11 +9,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum</Title>
         <Authors>copperdevs</Authors>
-        <Description>Coppers DearImGui - Raylib Renderer for Raylib-CSharp-Vinculum
-            &gt; Raylib-cs support for my raylib renderer
-
-            This package is just support for the Raylib-CSharp-Vinculum bindings for the raylib renderer for my DearImGui layering
-        </Description>
+        <Description>This package is just support for the Raylib-CSharp-Vinculum bindings for the raylib renderer for my DearImGui layering</Description>
         <Copyright>MIT</Copyright>
         <PackageProjectUrl>https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/src/Renderers/Raylib/CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum</PackageProjectUrl>
         <RepositoryUrl>https://github.com/copperdevs/CopperDevs.DearImGui</RepositoryUrl>

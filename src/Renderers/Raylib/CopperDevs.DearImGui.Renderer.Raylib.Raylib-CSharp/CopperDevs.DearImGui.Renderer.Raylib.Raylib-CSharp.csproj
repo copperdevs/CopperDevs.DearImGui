@@ -8,11 +8,7 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp</Title>
         <Authors>copperdevs</Authors>
-        <Description>Coppers DearImGui - Raylib Renderer for Raylib-CSharp
-            &gt; Raylib-cs support for my raylib renderer
-
-            This package is just support for the Raylib-CSharp bindings for the raylib renderer for my DearImGui layering
-        </Description>
+        <Description>This package is just support for the Raylib-CSharp bindings for the raylib renderer for my DearImGui layering</Description>
         <Copyright>MIT</Copyright>
         <PackageProjectUrl>https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/src/Renderers/Raylib/CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp</PackageProjectUrl>
         <RepositoryUrl>https://github.com/copperdevs/CopperDevs.DearImGui</RepositoryUrl>
