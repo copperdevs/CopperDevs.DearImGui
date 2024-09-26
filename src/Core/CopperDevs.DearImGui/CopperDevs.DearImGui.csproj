@@ -12,9 +12,9 @@
         <PackageProjectUrl>https://github.com/copperdevs/copperdevs.dearimgui</PackageProjectUrl>
         <RepositoryUrl>https://github.com/copperdevs/copperdevs.dearimgui</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <AssemblyVersion>1.2.1</AssemblyVersion>
         <FileVersion>1.2.1</FileVersion>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseFile>License.txt</PackageLicenseFile>
         <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
         <Version>1.2.1</Version>
@@ -68,21 +68,19 @@
     <ItemGroup>
         <None Update="FontAwesomeLicense.txt">
             <Pack>True</Pack>
+        </None>
+        <None Include="..\..\..\ReadMe.md">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+        <None Include="..\..\..\License.txt">
+            <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
     </ItemGroup>
 
     <ItemGroup>
         <EmbeddedResource Include="Resources\FontAwesomeData.txt"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <Content Include="..\..\..\License.txt">
-            <Link>License.txt</Link>
-        </Content>
-        <Content Include="..\..\..\ReadMe.md">
-            <Link>ReadMe.md</Link>
-        </Content>
     </ItemGroup>
 
 </Project>

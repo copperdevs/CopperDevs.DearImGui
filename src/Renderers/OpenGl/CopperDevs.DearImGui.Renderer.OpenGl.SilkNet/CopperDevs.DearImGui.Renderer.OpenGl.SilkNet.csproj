@@ -39,12 +39,12 @@
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
-        <None Include="License.txt">
+        <None Include="..\..\..\..\License.txt">
             <Pack>True</Pack>
             <PackagePath>\</PackagePath>
         </None>
     </ItemGroup>
-
+    
     <ItemGroup>
         <None Remove="Resources\shader.frag"/>
         <EmbeddedResource Include="Resources\shader.frag"/>

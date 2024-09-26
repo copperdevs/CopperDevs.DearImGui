@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Publish all projects" type="CompoundRunConfigurationType">
+    <toRun name="Publish CopperDevs.DearImGui to folder" type="DotNetFolderPublish" />
+    <toRun name="Publish CopperDevs.DearImGui.Renderer.OpenGl.SilkNet to folder" type="DotNetFolderPublish" />
+    <toRun name="Publish CopperDevs.DearImGui.Renderer.Raylib to folder" type="DotNetFolderPublish" />
+    <toRun name="Publish CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp to folder" type="DotNetFolderPublish" />
+    <toRun name="Publish CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum to folder" type="DotNetFolderPublish" />
+    <toRun name="Publish CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs to folder" type="DotNetFolderPublish" />
+    <method v="2" />
+  </configuration>
+</component>
