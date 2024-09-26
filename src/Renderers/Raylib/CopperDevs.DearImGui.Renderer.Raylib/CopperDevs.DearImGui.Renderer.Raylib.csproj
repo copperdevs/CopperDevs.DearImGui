@@ -15,7 +15,7 @@
         <FileVersion>1.1.2</FileVersion>
         <Title>CopperDevs.DearImGui.Renderer.Raylib</Title>
         <Authors>copperdevs</Authors>
-        <Description>Raylib renderer for my ImGui wrapper</Description>
+        <Description>Base raylib renderer for my ImGui wrapper</Description>
         <PackageLicenseFile>License.txt</PackageLicenseFile>
         <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
