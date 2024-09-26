@@ -14,7 +14,7 @@ wdotnet add package CopperDevs.DearImGui --version 1.2.2
 
 Additionally, you need to install a relevant renderer package. There is currently two pre-made packages available.
 
-Note - When using raylib there's some extra steps that can be found [here](https://github.com/copperdevs/CopperDevs.DearImGui/blob/master/src/Renderers/Raylib/ReadMe.md)
+*Note - When using raylib there's some extra steps that can be found [here](https://github.com/copperdevs/CopperDevs.DearImGui/blob/master/src/Renderers/Raylib/ReadMe.md)*
 
 ```bash
 dotnet add package CopperDevs.DearImGui.Renderer.Raylib --version 2.0.0
