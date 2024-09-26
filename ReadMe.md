@@ -29,18 +29,18 @@ dotnet add package CopperDevs.DearImGui.Renderer.OpenGl.SilkNet --version 1.0.4
 - [ ] Documentation
 - [ ] Examples
     - [X] Raylib
-        - [X] Raylib-cs
-        - [X] Raylib-CSharp
-        - [X] Raylib-CSharp-Vinculum
+        - [X] [Raylib-CSharp](https://github.com/MrScautHD/Raylib-CSharp)
+        - [X] [Raylib-Cs](https://github.com/chrisdill/raylib-cs)
+        - [X] [Raylib-CSharp-Vinculum](https://github.com/ZeroElectric/Raylib-CSharp-Vinculum)
     - [ ] OpenGl ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] Vulkan ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] OpenGl ([OpenTk](https://github.com/opentk/opentk)) ***Maybe***
     - [X] [Sparkle](https://github.com/MrScautHD/Sparkle/tree/main)
 - Pre-made renderer packages
     - [X] Raylib
-        - [X] Raylib-cs
-        - [X] Raylib-CSharp
-        - [X] Raylib-CSharp-Vinculum
+        - [X] [Raylib-CSharp](https://github.com/MrScautHD/Raylib-CSharp)
+        - [X] [Raylib-Cs](https://github.com/chrisdill/raylib-cs)
+        - [X] [Raylib-CSharp-Vinculum](https://github.com/ZeroElectric/Raylib-CSharp-Vinculum)
     - [X] OpenGl ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] Vulkan ([Silk.NET](https://github.com/dotnet/Silk.NET))
     - [ ] OpenGl ([OpenTk](https://github.com/opentk/opentk)) ***Maybe***
@@ -51,4 +51,6 @@ dotnet add package CopperDevs.DearImGui.Renderer.OpenGl.SilkNet --version 1.0.4
 ## Examples
 
 - [OpenGl](https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/CopperDevs.DearImGui.Renderer.OpenGl.SilkNet) ([Silk.NET](https://github.com/dotnet/Silk.NET))
-- [Raylib](https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/CopperDevs.DearImGui.Renderer.Raylib) ([Raylib-CSharp](https://github.com/MrScautHD/Raylib-CSharp))
+- [Raylib](https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/src/Renderers/Raylib/CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp) ([Raylib-CSharp](https://github.com/MrScautHD/Raylib-CSharp))
+- [Raylib](https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/src/Renderers/Raylib/CopperDevs.DearImGui.Renderer.Raylib.Raylib-cs) ([Raylib-Cs](https://github.com/chrisdill/raylib-cs))
+- [Raylib](https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/src/Renderers/Raylib/CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum) ([Raylib-CSharp-Vinculum](https://github.com/ZeroElectric/Raylib-CSharp-Vinculum))
