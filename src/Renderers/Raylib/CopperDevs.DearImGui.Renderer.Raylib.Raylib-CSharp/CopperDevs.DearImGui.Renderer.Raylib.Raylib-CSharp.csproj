@@ -5,6 +5,24 @@
         <RootNamespace>CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp</RootNamespace>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Title>CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp</Title>
+        <Authors>copperdevs</Authors>
+        <Description>Coppers DearImGui - Raylib Renderer for Raylib-CSharp
+            &gt; Raylib-cs support for my raylib renderer
+
+            This package is just support for the Raylib-CSharp bindings for the raylib renderer for my DearImGui layering
+        </Description>
+        <Copyright>MIT</Copyright>
+        <PackageProjectUrl>https://github.com/copperdevs/CopperDevs.DearImGui/tree/master/src/Renderers/Raylib/CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/copperdevs/CopperDevs.DearImGui</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+        <Company>copperdevs</Company>
+        <AssemblyVersion>1.0.0</AssemblyVersion>
+        <FileVersion>1.0.0</FileVersion>
+        <PackageLicenseFile>License.txt</PackageLicenseFile>
+        <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
     </PropertyGroup>
 
     <ItemGroup>
@@ -14,6 +32,12 @@
     <ItemGroup>
         <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj"/>
         <ProjectReference Include="..\..\..\Core\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Content Include="..\..\..\..\License.txt">
+            <Link>License.txt</Link>
+        </Content>
     </ItemGroup>
 
 </Project>
