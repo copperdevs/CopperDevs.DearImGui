@@ -2,7 +2,6 @@
 using CopperDevs.DearImGui.Attributes;
 using CopperDevs.DearImGui.Rendering.Renderers;
 using CopperDevs.DearImGui.Utility;
-using CopperDevs.Logger;
 
 namespace CopperDevs.DearImGui.Rendering;
 
@@ -68,10 +67,8 @@ internal static class ImGuiReflection
         foreach (var info in fields)
         {
             if (renderingType == RenderingType.Exposed && !info.IsPublic)
-            {
                 if (Attribute.GetCustomAttribute(info, typeof(ExposedAttribute)) is null)
                     continue;
-            }
 
             SpaceAttributeRenderer(info);
             SeperatorAttributeRenderer(info);
@@ -83,7 +80,9 @@ internal static class ImGuiReflection
                 (ReadOnlyAttribute?)Attribute.GetCustomAttribute(info, typeof(ReadOnlyAttribute))!;
 
             using (new DisabledScope(currentReadOnlyAttribute is not null))
+            {
                 Render(info, component, id, valueChanged, renderingType);
+            }
 
             var currentTooltipAttribute =
                 (TooltipAttribute)Attribute.GetCustomAttribute(info, typeof(TooltipAttribute))!;
@@ -114,7 +113,6 @@ internal static class ImGuiReflection
             if (ImGuiRenderers.TryGetValue(info.FieldType, out var renderer))
                 renderer.ReflectionRenderer(info, component, id, valueChanged);
             else
-            {
                 try
                 {
                     CopperImGui.CollapsingHeader($"{info.Name.ToTitleCase()}##{id + 1}", () =>
@@ -132,7 +130,6 @@ internal static class ImGuiReflection
                     Log.Exception(e);
                     CopperImGui.Text(info.FieldType.FullName!, "Unsupported editor value");
                 }
-            }
         }
     }
 

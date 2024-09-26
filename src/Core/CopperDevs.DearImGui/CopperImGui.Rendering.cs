@@ -1,81 +1,117 @@
 ﻿using CopperDevs.DearImGui.Rendering;
+using CopperDevs.DearImGui.Utility;
 
 namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
     /// <summary>
-    /// Setup the entire system
+    ///     Setup the entire system
     /// </summary>
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
-    /// <param name="rendererType">Type of your <see cref="ImGuiRenderer"/></param>
+    /// <param name="rendererType">Type of your <see cref="ImGuiRenderer" /></param>
     public static void Setup(Type rendererType, bool isDockingEnabled = true, bool shouldShowTabBar = false)
     {
-        currentRenderer = (ImGuiRenderer)Activator.CreateInstance(rendererType)!;
+        try
+        {
+            Log.Info($"Setting up {rendererType.Name} to use for rendering with {typeof(CopperImGui)}");
 
-        currentRenderer.Setup();
+            currentRenderer = (ImGuiRenderer)Activator.CreateInstance(rendererType)!;
 
-        LoadConfig();
-        LoadStyle();
+            currentRenderer.Setup();
 
-        windows = LoadWindows();
+            // loading config and styles
 
-        windows.ForEach(instance => instance.Start());
+            LoadConfig();
+            LoadStyle();
 
-        canRender = true;
-        showTabBar = shouldShowTabBar;
-        dockingEnabled = isDockingEnabled;
+            Log.Debug("Loading windows");
+
+            windows = LoadWindows();
+
+            windows.ForEach(instance => instance.Start());
+
+            Log.Debug($"Loaded {windows.Count} windows");
+
+            canRender = true;
+            showTabBar = shouldShowTabBar;
+            dockingEnabled = isDockingEnabled;
+            
+            Log.Success($"Finished setting up {typeof(CopperImGui)}");
+        }
+        catch (Exception e)
+        {
+            Log.Critical($"Setting up the rendering for {typeof(CopperImGui)} failed");
+            Log.Exception(e);
+        }
     }
 
 
     /// <summary>
-    /// Setup the entire system
+    ///     Set up the entire system
     /// </summary>
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
-    /// <typeparam name="TImGuiRenderer">Type of your <see cref="ImGuiRenderer"/></typeparam>
-    public static void Setup<TImGuiRenderer>(bool isDockingEnabled = true, bool shouldShowTabBar = false)
-        where TImGuiRenderer : ImGuiRenderer, new()
+    /// <typeparam name="TImGuiRenderer">Type of your <see cref="ImGuiRenderer" /></typeparam>
+    public static void Setup<TImGuiRenderer>(bool isDockingEnabled = true, bool shouldShowTabBar = false) where TImGuiRenderer : ImGuiRenderer, new()
     {
         Setup(typeof(TImGuiRenderer), isDockingEnabled, shouldShowTabBar);
     }
 
     /// <summary>
-    /// Render all registered items
+    ///     Render all registered items
     /// </summary>
     public static void Render()
     {
         if (!canRender)
             return;
 
-        currentRenderer.Begin();
+        try
+        {
+            currentRenderer.Begin();
 
-        PreRendered?.Invoke();
+            PreRendered?.Invoke();
 
-        if (dockingEnabled)
-            CurrentBackend.DockSpaceOverMainViewport();
+            if (dockingEnabled)
+                CurrentBackend.DockSpaceOverMainViewport();
 
-        RenderWindows();
-        RenderBuiltInWindows();
-        RenderPopups();
+            RenderWindows();
+            RenderBuiltInWindows();
+            RenderPopups();
 
-        Rendered?.Invoke();
+            Rendered?.Invoke();
 
-        currentRenderer.End();
+            currentRenderer.End();
+        }
+        catch (Exception e)
+        {
+            Log.Critical($"Rendering for {typeof(CopperImGui)} has had an error");
+            Log.Exception(e);
+        }
     }
 
     /// <summary>
-    /// Shutdown the entire system
+    ///     Shutdown the entire system
     /// </summary>
     public static void Shutdown()
     {
         if (!canRender)
             return;
 
-        currentRenderer.Shutdown();
-        windows.ForEach(instance => instance.Stop());
-        UnloadFontAwesomeIcons();
+        try
+        {
+            Log.Info($"Shutting down the rendering for {typeof(CopperImGui)}");
+            
+            currentRenderer.Shutdown();
+            windows.ForEach(instance => instance.Stop());
+            UnloadFontAwesomeIcons();
+        }
+        catch (Exception e)
+        {
+            Log.Critical($"Shutting down the rendering for {typeof(CopperImGui)} failed");
+            Log.Exception(e);
+        }
     }
 
     private static void RenderBuiltInWindows()
