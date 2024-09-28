@@ -5,6 +5,8 @@ namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
+    private static WindowAttribute? currentlyRenderingWindow = null!;
+    
     private static List<WindowAttribute> LoadWindows()
     {
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -46,11 +48,15 @@ public static partial class CopperImGui
             if (!window.WindowOpen)
                 continue;
 
-            if (!CurrentBackend.Begin(window.WindowName, ref window.WindowOpen))
+            currentlyRenderingWindow = window;
+
+            if (!CurrentBackend.Begin(window.WindowName, ref window.WindowOpen, window.Flags))
                 continue;
 
             window.Update();
             CurrentBackend.End();
+
+            currentlyRenderingWindow = null;
         }
     }
 

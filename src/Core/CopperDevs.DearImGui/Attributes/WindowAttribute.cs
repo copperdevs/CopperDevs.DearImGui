@@ -1,4 +1,6 @@
-﻿namespace CopperDevs.DearImGui.Attributes;
+﻿using CopperDevs.DearImGui.Backend.Enums;
+
+namespace CopperDevs.DearImGui.Attributes;
 
 /// <summary>
 /// Attribute for deciding if a class should a window
@@ -16,6 +18,11 @@ public class WindowAttribute(string windowName) : Attribute
     /// Currently state of window 
     /// </summary>
     public bool WindowOpen = false;
+
+    /// <summary>
+    /// Flags to use when rendering the window
+    /// </summary>
+    public WindowFlags Flags = WindowFlags.None;
 
     internal object TargetClass = null!;
 

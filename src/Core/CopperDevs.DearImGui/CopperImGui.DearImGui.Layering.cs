@@ -729,8 +729,22 @@ public static partial class CopperImGui
     /// <remarks>The string of the subMenus tuple is the menus name, while the Action is invoked on click of that item</remarks>
     public static void MenuBar(bool isMainMenuBar = false, params (string, Action?)[] subMenus)
     {
-        if (isMainMenuBar ? !CurrentBackend.BeginMainMenuBar() : !CurrentBackend.BeginMenuBar())
-            return;
+        if (!isMainMenuBar)
+        {
+            if (!currentlyRenderingWindow!.Flags.HasFlag(WindowFlags.MenuBar))
+                Log.Error($"Trying to render a menu bar for {currentlyRenderingWindow.WindowName} window without the {WindowFlags.MenuBar} flag");
+        }
+
+        if (isMainMenuBar)
+        {
+            if (!CurrentBackend.BeginMainMenuBar())
+                return;
+        }
+        else
+        {
+            if (!CurrentBackend.BeginMenuBar())
+                return;
+        }
 
         foreach (var subMenu in subMenus)
         {
