@@ -25,6 +25,14 @@ public static class Program
         SetWindowStyling();
 
         CopperImGui.Setup<RlImGuiRenderer<RlImGuiBinding>>(true, true);
+        CopperImGui.PreRendered += () =>
+        {
+            CopperImGui.MenuBar(true, ("Item One", null));
+            CopperImGui.MenuBar(true, ("Item Two", null));
+            CopperImGui.MenuBar(true, ("Item Three", null));
+            CopperImGui.MenuBar(true, ("Windows", null));
+            CopperImGui.MenuBar(true, ("Item Five", null));
+        };
 
         while (!Window.ShouldClose())
             RenderGame();
