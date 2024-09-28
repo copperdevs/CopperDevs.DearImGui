@@ -8,8 +8,8 @@ Personally direct DearImGui didn't feel the best in C#, so I made this package t
 
 ## Installation
 
-```
-dotnet add package CopperDevs.DearImGui --version 1.2.3
+```bash
+dotnet add package CopperDevs.DearImGui --version 1.2.4
 ```
 
 Additionally, you need to install a relevant renderer package. There is currently two pre-made packages available.
