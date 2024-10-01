@@ -12,12 +12,12 @@
         <PackageProjectUrl>https://github.com/copperdevs/copperdevs.dearimgui</PackageProjectUrl>
         <RepositoryUrl>https://github.com/copperdevs/copperdevs.dearimgui</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <AssemblyVersion>1.2.4</AssemblyVersion>
-        <FileVersion>1.2.4</FileVersion>
+        <AssemblyVersion>1.2.5</AssemblyVersion>
+        <FileVersion>1.2.5</FileVersion>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseFile>License.txt</PackageLicenseFile>
         <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
-        <Version>1.2.4</Version>
+        <Version>1.2.5</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
@@ -66,8 +66,9 @@
     </ItemGroup>
 
     <ItemGroup>
-        <None Update="FontAwesomeLicense.txt">
+        <None Include="FontAwesomeLicense.txt">
             <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
         </None>
         <None Include="..\..\..\ReadMe.md">
             <Pack>True</Pack>

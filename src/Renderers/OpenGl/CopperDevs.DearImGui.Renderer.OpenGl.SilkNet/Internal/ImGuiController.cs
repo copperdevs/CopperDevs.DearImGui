@@ -205,7 +205,7 @@ public class ImGuiController : IDisposable
     {
         var io = ImGui.GetIO();
 
-        var mouseState = input.Mice[0].CaptureState();
+        using var mouseState = input.Mice[0].CaptureState();
 
         io.MouseDown[0] = mouseState.IsButtonPressed(MouseButton.Left);
         io.MouseDown[1] = mouseState.IsButtonPressed(MouseButton.Right);
@@ -599,7 +599,7 @@ public class ImGuiController : IDisposable
         gl.GetInteger(GLEnum.TextureBinding2D, out var lastTexture);
         gl.GetInteger(GLEnum.ArrayBufferBinding, out var lastArrayBuffer);
         gl.GetInteger(GLEnum.VertexArrayBinding, out var lastVertexArray);
-        
+
         using var vertexStream = typeof(ImGuiController).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Resources.shader.vert");
         using var vertexReader = new StreamReader(vertexStream!);
         var vertexResult = vertexReader.ReadToEnd();
