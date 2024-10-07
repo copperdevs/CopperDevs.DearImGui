@@ -1,0 +1,7 @@
+https://github.com/ocornut/imgui/releases
+https://github.com/HexaEngine/Hexa.NET.ImGui/issues/12
+https://github.com/HexaEngine/HexaEngine
+https://github.com/mufaka/Nickel.AI/blob/master/Nickel.AI.Desktop/rlImGui/rlImGui.cs
+https://github.com/mufaka/Nickel.AI/tree/master/Nickel.AI.Desktop
+https://github.com/HexaEngine/Hexa.NET.Raylib/tree/master/Hexa.NET.Raylib
+https://github.com/ocornut/imgui/wiki/Useful-Extensions
