@@ -1,36 +1,38 @@
+using Hexa.NET.ImGui;
+
 namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
-    private static IntPtr currentContext = IntPtr.Zero;
+    private static ImGuiContextPtr currentContext;
 
     /// <summary>
-    /// Get the current ImGui context
+    ///     Get the current ImGui context
     /// </summary>
     /// <returns>The context pointer</returns>
-    public static IntPtr GetCurrentContext()
+    public static ImGuiContextPtr GetCurrentContext()
     {
         return currentContext;
     }
 
     /// <summary>
-    /// Set the current context
+    ///     Set the current context
     /// </summary>
     /// <param name="context">The context to set</param>
-    public static void SetCurrentContext(IntPtr context)
+    public static void SetCurrentContext(ImGuiContextPtr context)
     {
         currentContext = context;
-        CurrentBackend.SetCurrentContext(context);
+        ImGui.SetCurrentContext(context);
     }
 
     /// <summary>
-    /// Create a new context, and optionally set it as the current one
+    ///     Create a new context, and optionally set it as the current one
     /// </summary>
     /// <param name="setAsCurrent">Option to set the created context as the new one</param>
     /// <returns>The created context</returns>
-    public static IntPtr CreateContext(bool setAsCurrent = false)
+    public static ImGuiContextPtr CreateContext(bool setAsCurrent = false)
     {
-        var context = CurrentBackend.CreateContext();
+        var context = ImGui.CreateContext();
 
         if (setAsCurrent)
             SetCurrentContext(context);
@@ -39,23 +41,23 @@ public static partial class CopperImGui
     }
 
     /// <summary>
-    /// Destroy the currently set context
+    ///     Destroy the currently set context
     /// </summary>
-    /// <remarks>Once destroyed it sets the current context to <see cref="IntPtr.Zero"/></remarks>
+    /// <remarks>Once destroyed it sets the current context to <see cref="Hexa.NET.ImGui.ImGuiContextPtr.Null" /></remarks>
     public static void DestroyCurrentContext()
     {
-        CurrentBackend.DestroyContext(currentContext);
-        currentContext = IntPtr.Zero;
+        ImGui.DestroyContext(currentContext);
+        currentContext = ImGuiContextPtr.Null;
     }
 
     /// <summary>
-    /// Destroys a specific context
+    ///     Destroys a specific context
     /// </summary>
     /// <param name="context">Context to destroy</param>
-    /// <remarks>Once destroyed it sets that context to null</remarks>
-    public static void DestroyContext(IntPtr context)
+    /// <remarks>Once destroyed it sets that context to <see cref="Hexa.NET.ImGui.ImGuiContextPtr.Null" /></remarks>
+    public static void DestroyContext(ImGuiContextPtr context)
     {
-        CurrentBackend.DestroyContext(context);
-        currentContext = IntPtr.Zero;
+        ImGui.DestroyContext(context);
+        context = ImGuiContextPtr.Null;
     }
 }

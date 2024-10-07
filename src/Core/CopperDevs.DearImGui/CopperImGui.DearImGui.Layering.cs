@@ -775,6 +775,7 @@ public static partial class CopperImGui
         render?.Invoke();
         CurrentBackend.End();
     }
+    
 
     /// <summary>
     /// Render a window
