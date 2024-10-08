@@ -1,4 +1,5 @@
 ﻿using CopperDevs.DearImGui.Attributes;
+using CopperDevs.DearImGui.Backend;
 using CopperDevs.DearImGui.Rendering;
 
 namespace CopperDevs.DearImGui;
@@ -14,7 +15,6 @@ public static partial class CopperImGui
     private static bool showTabBar;
 
     private static ImGuiRenderer currentRenderer = null!;
-    internal static IImGuiBackend CurrentBackend { get; private set; } = new ImGuiNetBackend();
 
     // ---------------- windows ---------------- //
     private static List<WindowAttribute> windows = [];
@@ -59,4 +59,6 @@ public static partial class CopperImGui
     ///     Called right before the renderer is ending for this frame, but after everything else
     /// </summary>
     public static Action? Rendered;
+
+    internal static IImGuiBackend CurrentBackend { get; } = new ImGuiNetBackend();
 }

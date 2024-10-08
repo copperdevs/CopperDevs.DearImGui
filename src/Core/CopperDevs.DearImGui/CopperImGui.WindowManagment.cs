@@ -1,5 +1,6 @@
 ﻿using CopperDevs.DearImGui.Attributes;
 using CopperDevs.DearImGui.Utility;
+using Hexa.NET.ImGui;
 
 namespace CopperDevs.DearImGui;
 
@@ -34,15 +35,15 @@ public static partial class CopperImGui
         foreach (var window in windows)
         {
             if (showTabBar)
-                if (CurrentBackend.BeginMainMenuBar())
+                if (ImGui.BeginMainMenuBar())
                 {
-                    if (CurrentBackend.BeginMenu("Windows"))
+                    if (ImGui.BeginMenu("Windows"))
                     {
-                        CurrentBackend.MenuItem(window.WindowName, null, ref window.WindowOpen);
-                        CurrentBackend.EndMenu();
+                        ImGui.MenuItem(window.WindowName, string.Empty, ref window.WindowOpen);
+                        ImGui.EndMenu();
                     }
 
-                    CurrentBackend.EndMainMenuBar();
+                    ImGui.EndMainMenuBar();
                 }
 
             if (!window.WindowOpen)
@@ -50,11 +51,11 @@ public static partial class CopperImGui
 
             currentlyRenderingWindow = window;
 
-            if (!CurrentBackend.Begin(window.WindowName, ref window.WindowOpen, window.Flags))
+            if (!ImGui.Begin(window.WindowName, ref window.WindowOpen, window.Flags))
                 continue;
 
             window.Update();
-            CurrentBackend.End();
+            ImGui.End();
 
             currentlyRenderingWindow = null;
         }

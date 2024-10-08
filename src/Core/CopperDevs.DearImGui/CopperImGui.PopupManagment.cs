@@ -1,4 +1,6 @@
-﻿namespace CopperDevs.DearImGui;
+﻿using Hexa.NET.ImGui;
+
+namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
@@ -29,7 +31,7 @@ public static partial class CopperImGui
     /// <param name="id">ID of the popup to render</param>
     public static void ShowPopup(string id)
     {
-        CurrentBackend.OpenPopup(id);
+        ImGui.OpenPopup(id);
     }
 
     private static void RenderPopups()
@@ -47,10 +49,10 @@ public static partial class CopperImGui
         if (!RegisteredPopups.TryGetValue(id, out var popup))
             return;
 
-        if (!CurrentBackend.BeginPopup(id))
+        if (!ImGui.BeginPopup(id))
             return;
 
         popup?.Invoke();
-        CurrentBackend.EndPopup();
+        ImGui.EndPopup();
     }
 }

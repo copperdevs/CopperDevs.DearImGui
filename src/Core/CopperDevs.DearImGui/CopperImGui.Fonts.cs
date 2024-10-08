@@ -1,6 +1,7 @@
 using System.Runtime.InteropServices;
 using CopperDevs.DearImGui.Rendering;
 using CopperDevs.DearImGui.Resources;
+using CopperDevs.DearImGui.Utility;
 using ImGuiNET;
 
 namespace CopperDevs.DearImGui;
@@ -8,28 +9,36 @@ namespace CopperDevs.DearImGui;
 public static partial class CopperImGui
 {
     /// <summary>
-    /// Load the default font, font awesome icons, as well as invoke the <see cref="ImGuiRenderer.LoadUserFonts"/> callback
+    ///     Load the default font, font awesome icons, as well as invoke the <see cref="ImGuiRenderer.LoadUserFonts" />
+    ///     callback
     /// </summary>
     public static void LoadFonts()
     {
-        CurrentBackend.LoadDefaultFonts();
         ImGuiRenderer.LoadUserFonts?.Invoke();
+        ImGui.GetIO().Fonts.AddFontDefault();
         LoadFontAwesomeIcons();
     }
 
     /// <summary>
-    /// Load a font from the disc
+    ///     Load a font from the disc
     /// </summary>
     /// <param name="path">The path of the TTF font on disc</param>
     /// <param name="pixelSize">pixelSize</param>
     /// <remarks>Only TTF fonts are supported</remarks>
     public static void LoadFont(string path, float pixelSize)
     {
-        CurrentBackend.LoadFont(path, pixelSize);
+        try
+        {
+            ImGui.GetIO().Fonts.AddFontFromFileTTF(path, pixelSize);
+        }
+        catch (Exception e)
+        {
+            Log.Exception(e);
+        }
     }
 
     /// <summary>
-    /// Load a font from memory
+    ///     Load a font from memory
     /// </summary>
     /// <param name="fontData">The data of the TTF font</param>
     /// <param name="pixelSize">pixelSize</param>
@@ -37,7 +46,20 @@ public static partial class CopperImGui
     /// <remarks>Only TTF fonts are supported</remarks>
     public static void LoadFontFromMemory(byte[] fontData, int pixelSize, int dataSize)
     {
-        CurrentBackend.LoadFontFromMemory(fontData, pixelSize, dataSize);
+        try
+        {
+            unsafe
+            {
+                fixed (byte* p = fontData)
+                {
+                    ImGui.GetIO().Fonts.AddFontFromMemoryTTF((IntPtr)p, dataSize, pixelSize);
+                }
+            }
+        }
+        catch (Exception e)
+        {
+            Log.Exception(e);
+        }
     }
 
     internal static void LoadFontAwesomeIcons()

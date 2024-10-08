@@ -18,10 +18,10 @@ public static partial class CopperImGui
             Log.Info($"Setting up {rendererType.Name} to use for rendering with {typeof(CopperImGui)}");
 
             currentRenderer = (ImGuiRenderer)Activator.CreateInstance(rendererType)!;
+            showTabBar = shouldShowTabBar;
+            dockingEnabled = isDockingEnabled;
 
             currentRenderer.Setup();
-
-            // loading config and styles
 
             LoadConfig();
             LoadStyle();
@@ -35,9 +35,7 @@ public static partial class CopperImGui
             Log.Debug($"Loaded {windows.Count} windows");
 
             canRender = true;
-            showTabBar = shouldShowTabBar;
-            dockingEnabled = isDockingEnabled;
-            
+
             Log.Success($"Finished setting up {typeof(CopperImGui)}");
         }
         catch (Exception e)
@@ -102,7 +100,7 @@ public static partial class CopperImGui
         try
         {
             Log.Info($"Shutting down the rendering for {typeof(CopperImGui)}");
-            
+
             currentRenderer.Shutdown();
             windows.ForEach(instance => instance.Stop());
             UnloadFontAwesomeIcons();

@@ -1,4 +1,5 @@
-﻿using CopperDevs.DearImGui.Backend.Enums;
+﻿
+using Hexa.NET.ImGui;
 
 namespace CopperDevs.DearImGui.Attributes;
 
@@ -22,7 +23,7 @@ public class WindowAttribute(string windowName) : Attribute
     /// <summary>
     /// Flags to use when rendering the window
     /// </summary>
-    public WindowFlags Flags = WindowFlags.None;
+    public ImGuiWindowFlags Flags = ImGuiWindowFlags.None;
 
     internal object TargetClass = null!;
 
