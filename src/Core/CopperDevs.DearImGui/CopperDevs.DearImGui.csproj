@@ -30,10 +30,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CopperDevs.Core" Version="1.1.1"/>
+        <PackageReference Include="CopperDevs.Core" Version="1.1.2" />
         <PackageReference Include="CopperDevs.Logger" Version="1.0.0"/>
         <PackageReference Include="Hexa.NET.ImGui" Version="2.1.6"/>
-        <PackageReference Include="ImGui.NET" Version="1.91.0.1"/>
     </ItemGroup>
 
     <ItemGroup>

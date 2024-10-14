@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using CopperDevs.Core.Data;
-using CopperDevs.DearImGui.Backend.Enums;
 using CopperDevs.DearImGui.Utility;
 using Hexa.NET.ImGui;
 
@@ -733,7 +732,7 @@ public static partial class CopperImGui
         if (!isMainMenuBar)
         {
             if (!currentlyRenderingWindow!.Flags.HasFlag(ImGuiWindowFlags.MenuBar))
-                Log.Error($"Trying to render a menu bar for {currentlyRenderingWindow.WindowName} window without the {WindowFlags.MenuBar} flag");
+                Log.Error($"Trying to render a menu bar for {currentlyRenderingWindow.WindowName} window without the {ImGuiWindowFlags.MenuBar} flag");
         }
 
         if (isMainMenuBar)
