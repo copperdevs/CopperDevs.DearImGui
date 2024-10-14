@@ -9,9 +9,8 @@ namespace CopperDevs.DearImGui;
 public static partial class CopperImGui
 {
     /// <summary>
-    ///     Load the default font, font awesome icons, as well as invoke the <see cref="ImGuiRenderer.LoadUserFonts" />
-    ///     callback
-    /// </summary>
+    ///     Load the default font, font awesome icons, as well as invoke the <see cref="ImGuiRenderer.LoadUserFonts" /> callback
+    /// </summary> 
     public static void LoadFonts()
     {
         ImGuiRenderer.LoadUserFonts?.Invoke();
@@ -64,10 +63,12 @@ public static partial class CopperImGui
 
     internal static void LoadFontAwesomeIcons()
     {
+        Log.Warning("FontAwesome icons are currently not supported.");
+        return;
+
         unsafe
         {
-            ImFontConfig* iconsConfig = null;
-            *iconsConfig = new ImFontConfig
+            var iconsConfig = new ImFontConfig
             {
                 MergeMode = 1, // merge the glyph ranges into the default font
                 PixelSnapH = 1, // don't try to render on partial pixels
@@ -89,7 +90,7 @@ public static partial class CopperImGui
                 // this unmanaged memory must remain allocated for the entire run of rlImgui
                 FontAwesomeIcons.IconFontRanges = Marshal.AllocHGlobal(6);
                 Buffer.MemoryCopy(range, FontAwesomeIcons.IconFontRanges.ToPointer(), 6, 6);
-                iconsConfig->GlyphRanges = (char*)FontAwesomeIcons.IconFontRanges.ToPointer(); // TODO: used to cast to ushort*, but now uses char*. make sure this still works
+                iconsConfig.GlyphRanges = (char*)FontAwesomeIcons.IconFontRanges.ToPointer();
 
                 using var stream = typeof(CopperImGui).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Resources.FontAwesomeData.txt");
                 using var reader = new StreamReader(stream!);
@@ -99,11 +100,11 @@ public static partial class CopperImGui
 
                 fixed (byte* buffer = fontDataBuffer)
                 {
-                    ImGui.GetIO().Fonts.AddFontFromMemoryTTF(buffer, fontDataBuffer.Length, 11, iconsConfig, iconsConfig->GlyphRanges);
+                    ImGui.GetIO().Fonts.AddFontFromMemoryTTF(buffer, fontDataBuffer.Length, 11, &iconsConfig, iconsConfig.GlyphRanges);
                 }
             }
 
-            iconsConfig->Destroy();
+            iconsConfig.Destroy();
         }
     }
 

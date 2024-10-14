@@ -634,20 +634,19 @@ public class ImGuiController : IDisposable
     /// </summary>
     private unsafe void RecreateFontDeviceTexture()
     {
-        byte** pixels = null;
-        int* width = null;
-        int* height = null;
+        byte* pixels;
+        int width;
+        int height;
 
-        
         // Build texture atlas
         var io = ImGui.GetIO();
-        io.Fonts.GetTexDataAsRGBA32(pixels, width, height);
+        ImGui.GetTexDataAsRGBA32(io.Fonts, &pixels, &width, &height, null);
         // Load as RGBA 32-bit (75% of the memory is wasted, but default font is so small) because it is more likely to be compatible with user's existing shaders. If your ImTextureId represent a higher-level concept than just a GL texture id, consider calling GetTexDataAsAlpha8() instead to save on GPU memory.
 
         // Upload texture to graphics system
         gl.GetInteger(GLEnum.TextureBinding2D, out var lastTexture);
 
-        fontTexture = new Texture(gl, *width, *height, (IntPtr)(*pixels));
+        fontTexture = new Texture(gl, width, height, *pixels);
         fontTexture.Bind();
         fontTexture.SetMagFilter(TextureMagFilter.Linear);
         fontTexture.SetMinFilter(TextureMinFilter.Linear);

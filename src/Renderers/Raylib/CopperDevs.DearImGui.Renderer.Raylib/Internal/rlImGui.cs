@@ -202,16 +202,16 @@ internal static class rlImGui
     /// </summary>
     public static unsafe void ReloadFonts()
     {
-        ImGui.SetCurrentContext(imGuiContext);
+        CopperImGui.SetCurrentContext(imGuiContext);
         var io = ImGui.GetIO();
 
-        byte** pixels = null;
-        int* width = null;
-        int* height = null;
+        byte* pixels;
+        int width;
+        int height;
+        
+        ImGui.GetTexDataAsRGBA32(io.Fonts, &pixels, &width, &height, null);
 
-        io.Fonts.GetTexDataAsRGBA32(pixels, width, height);
-
-        fontTexture = binding.LoadFontTexture(new IntPtr(pixels), new Vector2(*width, *height));
+        fontTexture = binding.LoadFontTexture(new IntPtr(pixels), new Vector2(width, height));
 
         io.Fonts.SetTexID(new IntPtr(fontTexture.Id));
     }
@@ -253,8 +253,8 @@ internal static class rlImGui
     {
         SetupMouseCursors();
 
-        ImGui.SetCurrentContext(imGuiContext);
-
+        CopperImGui.SetCurrentContext(imGuiContext);
+        
         CopperImGui.LoadFonts();
 
         var io = ImGui.GetIO();
@@ -461,7 +461,7 @@ internal static class rlImGui
     /// <param name="dt">optional delta time, any value less than 0 will use raylib GetFrameTime</param>
     public static void Begin(float dt = -1)
     {
-        ImGui.SetCurrentContext(imGuiContext);
+        CopperImGui.SetCurrentContext(imGuiContext);
 
         NewFrame(dt);
         FrameEvents();
@@ -569,7 +569,7 @@ internal static class rlImGui
     /// </summary>
     public static void End()
     {
-        ImGui.SetCurrentContext(imGuiContext);
+        CopperImGui.SetCurrentContext(imGuiContext);
         ImGui.Render();
         RenderData();
     }
@@ -580,7 +580,7 @@ internal static class rlImGui
     public static void Shutdown()
     {
         binding.UnloadTexture(fontTexture);
-        ImGui.DestroyContext();
+        CopperImGui.DestroyContext(imGuiContext);
     }
 
     /// <summary>
