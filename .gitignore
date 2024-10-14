@@ -17,3 +17,17 @@ CopperDevs.DearImGui.sln.DotSettings.user
 /httpRequests/
 /dataSources/
 /dataSources.local.xml
+
+# DocFx
+.cache
+**/_site/
+
+/docs/**/DROP/
+/docs/**/TEMP/
+/docs/**/packages/
+/docs/**/bin/
+/docs/**/obj
+/docs/api/*
+!/docs/api/index.md
+!/docs/api/toc.yml
+/docs/log.txt
