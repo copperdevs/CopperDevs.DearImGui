@@ -10,12 +10,10 @@
     <ItemGroup>
         <ProjectReference Include="..\..\..\Core\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
         <ProjectReference Include="..\..\..\Renderers\OpenGl\CopperDevs.DearImGui.Renderer.OpenGl.SilkNet\CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.csproj"/>
-        <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.OpenGl.SilkNet\CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.csproj"/>
-        <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CopperDevs.Core" Version="1.1.1"/>
+        <PackageReference Include="CopperDevs.Core" Version="1.1.2" />
         <PackageReference Include="CopperDevs.Logger" Version="1.0.0"/>
         <PackageReference Include="Silk.NET.Input.Glfw" Version="2.21.0"/>
         <PackageReference Include="Silk.NET.Windowing" Version="2.21.0"/>
