@@ -1,4 +1,6 @@
-﻿namespace CopperDevs.DearImGui.Utility;
+﻿using Hexa.NET.ImGui;
+
+namespace CopperDevs.DearImGui.Utility;
 
 /// <summary>
 /// Create a indent scope
@@ -23,7 +25,7 @@ public sealed class IndentScope : Scope
         this.condition = condition;
 
         if (condition)
-            CopperImGui.CurrentBackend.Indent();
+            ImGui.Indent();
     }
 
     /// <summary>
@@ -32,6 +34,6 @@ public sealed class IndentScope : Scope
     protected override void CloseScope()
     {
         if (condition)
-            CopperImGui.CurrentBackend.Unindent();
+            ImGui.Unindent();
     }
 }

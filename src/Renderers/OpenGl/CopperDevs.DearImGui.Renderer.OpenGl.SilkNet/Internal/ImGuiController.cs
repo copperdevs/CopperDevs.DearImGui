@@ -3,13 +3,12 @@
 
 using System.Drawing;
 using System.Numerics;
-using CopperDevs.Logger;
-using ImGuiNET;
 using Silk.NET.Input;
 using Silk.NET.Input.Extensions;
 using Silk.NET.Maths;
 using Silk.NET.OpenGL;
 using Silk.NET.Windowing;
+using Hexa.NET.ImGui;
 
 namespace CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Internal;
 
@@ -303,16 +302,16 @@ public class ImGuiController : IDisposable
             Key.AltRight => ImGuiKey.RightAlt,
             Key.SuperRight => ImGuiKey.RightSuper,
             Key.Menu => ImGuiKey.Menu,
-            Key.Number0 => ImGuiKey._0,
-            Key.Number1 => ImGuiKey._1,
-            Key.Number2 => ImGuiKey._2,
-            Key.Number3 => ImGuiKey._3,
-            Key.Number4 => ImGuiKey._4,
-            Key.Number5 => ImGuiKey._5,
-            Key.Number6 => ImGuiKey._6,
-            Key.Number7 => ImGuiKey._7,
-            Key.Number8 => ImGuiKey._8,
-            Key.Number9 => ImGuiKey._9,
+            Key.Number0 => ImGuiKey.Key0,
+            Key.Number1 => ImGuiKey.Key1,
+            Key.Number2 => ImGuiKey.Key2,
+            Key.Number3 => ImGuiKey.Key3,
+            Key.Number4 => ImGuiKey.Key4,
+            Key.Number5 => ImGuiKey.Key5,
+            Key.Number6 => ImGuiKey.Key6,
+            Key.Number7 => ImGuiKey.Key7,
+            Key.Number8 => ImGuiKey.Key8,
+            Key.Number9 => ImGuiKey.Key9,
             Key.A => ImGuiKey.A,
             Key.B => ImGuiKey.B,
             Key.C => ImGuiKey.C,
@@ -486,7 +485,7 @@ public class ImGuiController : IDisposable
             {
                 var cmdPtr = cmdListPtr.CmdBuffer[cmdI];
 
-                if (cmdPtr.UserCallback != IntPtr.Zero)
+                if (cmdPtr.UserCallback != null)
                 {
                     throw new NotImplementedException();
                 }
@@ -506,7 +505,7 @@ public class ImGuiController : IDisposable
                     gl.CheckGlError("Scissor");
 
                     // Bind texture, Draw
-                    gl.BindTexture(GLEnum.Texture2D, (uint)cmdPtr.TextureId);
+                    gl.BindTexture(GLEnum.Texture2D, (uint)cmdPtr.TextureId.Handle);
                     gl.CheckGlError("Texture");
 
                     gl.DrawElementsBaseVertex(GLEnum.Triangles, cmdPtr.ElemCount, GLEnum.UnsignedShort, (void*)(cmdPtr.IdxOffset * sizeof(ushort)), (int)cmdPtr.VtxOffset);
@@ -633,17 +632,21 @@ public class ImGuiController : IDisposable
     /// <summary>
     /// Creates the texture used to render text.
     /// </summary>
-    private void RecreateFontDeviceTexture()
+    private unsafe void RecreateFontDeviceTexture()
     {
+        byte* pixels;
+        int width;
+        int height;
+
         // Build texture atlas
         var io = ImGui.GetIO();
-        io.Fonts.GetTexDataAsRGBA32(out IntPtr pixels, out var width, out var height, out _);
+        ImGui.GetTexDataAsRGBA32(io.Fonts, &pixels, &width, &height, null);
         // Load as RGBA 32-bit (75% of the memory is wasted, but default font is so small) because it is more likely to be compatible with user's existing shaders. If your ImTextureId represent a higher-level concept than just a GL texture id, consider calling GetTexDataAsAlpha8() instead to save on GPU memory.
 
         // Upload texture to graphics system
         gl.GetInteger(GLEnum.TextureBinding2D, out var lastTexture);
 
-        fontTexture = new Texture(gl, width, height, pixels);
+        fontTexture = new Texture(gl, width, height, *pixels);
         fontTexture.Bind();
         fontTexture.SetMagFilter(TextureMagFilter.Linear);
         fontTexture.SetMinFilter(TextureMinFilter.Linear);

@@ -1,4 +1,6 @@
 ﻿
+using Hexa.NET.ImGui;
+
 namespace CopperDevs.DearImGui.Utility;
 
 /// <summary>
@@ -24,7 +26,7 @@ public sealed class DisabledScope : Scope
         this.condition = condition;
 
         if (condition)
-            CopperImGui.CurrentBackend.BeginDisabled();
+            ImGui.BeginDisabled();
     }
 
     /// <summary>
@@ -33,6 +35,6 @@ public sealed class DisabledScope : Scope
     protected override void CloseScope()
     {
         if (condition)
-            CopperImGui.CurrentBackend.EndDisabled();
+            ImGui.EndDisabled();
     }
 }

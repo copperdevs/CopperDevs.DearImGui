@@ -1,12 +1,13 @@
 ﻿using CopperDevs.DearImGui.Rendering;
 using CopperDevs.DearImGui.Utility;
+using Hexa.NET.ImGui;
 
 namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
     /// <summary>
-    ///     Setup the entire system
+    ///     Set up the entire system
     /// </summary>
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
@@ -18,10 +19,10 @@ public static partial class CopperImGui
             Log.Info($"Setting up {rendererType.Name} to use for rendering with {typeof(CopperImGui)}");
 
             currentRenderer = (ImGuiRenderer)Activator.CreateInstance(rendererType)!;
+            showTabBar = shouldShowTabBar;
+            dockingEnabled = isDockingEnabled;
 
             currentRenderer.Setup();
-
-            // loading config and styles
 
             LoadConfig();
             LoadStyle();
@@ -35,9 +36,7 @@ public static partial class CopperImGui
             Log.Debug($"Loaded {windows.Count} windows");
 
             canRender = true;
-            showTabBar = shouldShowTabBar;
-            dockingEnabled = isDockingEnabled;
-            
+
             Log.Success($"Finished setting up {typeof(CopperImGui)}");
         }
         catch (Exception e)
@@ -74,7 +73,7 @@ public static partial class CopperImGui
             PreRendered?.Invoke();
 
             if (dockingEnabled)
-                CurrentBackend.DockSpaceOverMainViewport();
+                ImGui.DockSpaceOverViewport(0, ImGui.GetMainViewport(), ImGuiDockNodeFlags.PassthruCentralNode | ImGuiDockNodeFlags.AutoHideTabBar);
 
             RenderWindows();
             RenderBuiltInWindows();
@@ -102,7 +101,7 @@ public static partial class CopperImGui
         try
         {
             Log.Info($"Shutting down the rendering for {typeof(CopperImGui)}");
-            
+
             currentRenderer.Shutdown();
             windows.ForEach(instance => instance.Stop());
             UnloadFontAwesomeIcons();
@@ -117,18 +116,18 @@ public static partial class CopperImGui
     private static void RenderBuiltInWindows()
     {
         if (ShowDearImGuiAboutWindow)
-            CurrentBackend.ShowAboutWindow(ref ShowDearImGuiAboutWindow);
+            ImGui.ShowAboutWindow(ref ShowDearImGuiAboutWindow);
 
         if (ShowDearImGuiDemoWindow)
-            CurrentBackend.ShowDemoWindow(ref ShowDearImGuiDemoWindow);
+            ImGui.ShowDemoWindow(ref ShowDearImGuiDemoWindow);
 
         if (ShowDearImGuiMetricsWindow)
-            CurrentBackend.ShowMetricsWindow(ref ShowDearImGuiMetricsWindow);
+            ImGui.ShowMetricsWindow(ref ShowDearImGuiMetricsWindow);
 
         if (ShowDearImGuiDebugLogWindow)
-            CurrentBackend.ShowDebugLogWindow(ref ShowDearImGuiDebugLogWindow);
+            ImGui.ShowDebugLogWindow(ref ShowDearImGuiDebugLogWindow);
 
         if (ShowDearImGuiIdStackToolWindow)
-            CurrentBackend.ShowIdStackToolWindow(ref ShowDearImGuiIdStackToolWindow);
+            ImGui.ShowIDStackToolWindow(ref ShowDearImGuiIdStackToolWindow);
     }
 }

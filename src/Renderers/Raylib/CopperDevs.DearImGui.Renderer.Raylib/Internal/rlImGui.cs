@@ -3,7 +3,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
 using CopperDevs.Logger;
-using ImGuiNET;
+using Hexa.NET.ImGui;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Internal;
 
@@ -11,9 +11,9 @@ namespace CopperDevs.DearImGui.Renderer.Raylib.Internal;
 internal static class rlImGui
 {
     private static RlBinding binding = null!;
-    private static IntPtr imGuiContext = IntPtr.Zero;
+    private static ImGuiContextPtr imGuiContext = ImGuiContextPtr.Null;
 
-    private static ImGuiMouseCursor currentMouseCursor = ImGuiMouseCursor.COUNT;
+    private static ImGuiMouseCursor currentMouseCursor = ImGuiMouseCursor.Count;
     private static Dictionary<ImGuiMouseCursor, MouseCursor> mouseCursorMap = [];
     private static Texture2D fontTexture;
 
@@ -68,7 +68,7 @@ internal static class rlImGui
 
         SetupKeymap();
 
-        imGuiContext = ImGui.CreateContext();
+        imGuiContext = CopperImGui.CreateContext(true);
     }
 
     internal static void SetupKeymap()
@@ -81,16 +81,16 @@ internal static class rlImGui
         RaylibKeyMap[KeyboardKey.Minus] = ImGuiKey.Minus;
         RaylibKeyMap[KeyboardKey.Period] = ImGuiKey.Period;
         RaylibKeyMap[KeyboardKey.Slash] = ImGuiKey.Slash;
-        RaylibKeyMap[KeyboardKey.Zero] = ImGuiKey._0;
-        RaylibKeyMap[KeyboardKey.One] = ImGuiKey._1;
-        RaylibKeyMap[KeyboardKey.Two] = ImGuiKey._2;
-        RaylibKeyMap[KeyboardKey.Three] = ImGuiKey._3;
-        RaylibKeyMap[KeyboardKey.Four] = ImGuiKey._4;
-        RaylibKeyMap[KeyboardKey.Five] = ImGuiKey._5;
-        RaylibKeyMap[KeyboardKey.Six] = ImGuiKey._6;
-        RaylibKeyMap[KeyboardKey.Seven] = ImGuiKey._7;
-        RaylibKeyMap[KeyboardKey.Eight] = ImGuiKey._8;
-        RaylibKeyMap[KeyboardKey.Nine] = ImGuiKey._9;
+        RaylibKeyMap[KeyboardKey.Zero] = ImGuiKey.Key0;
+        RaylibKeyMap[KeyboardKey.One] = ImGuiKey.Key1;
+        RaylibKeyMap[KeyboardKey.Two] = ImGuiKey.Key2;
+        RaylibKeyMap[KeyboardKey.Three] = ImGuiKey.Key3;
+        RaylibKeyMap[KeyboardKey.Four] = ImGuiKey.Key4;
+        RaylibKeyMap[KeyboardKey.Five] = ImGuiKey.Key5;
+        RaylibKeyMap[KeyboardKey.Six] = ImGuiKey.Key6;
+        RaylibKeyMap[KeyboardKey.Seven] = ImGuiKey.Key7;
+        RaylibKeyMap[KeyboardKey.Eight] = ImGuiKey.Key8;
+        RaylibKeyMap[KeyboardKey.Nine] = ImGuiKey.Key9;
         RaylibKeyMap[KeyboardKey.Semicolon] = ImGuiKey.Semicolon;
         RaylibKeyMap[KeyboardKey.Equal] = ImGuiKey.Equal;
         RaylibKeyMap[KeyboardKey.A] = ImGuiKey.A;
@@ -190,10 +190,10 @@ internal static class rlImGui
         mouseCursorMap[ImGuiMouseCursor.TextInput] = MouseCursor.IBeam;
         mouseCursorMap[ImGuiMouseCursor.Hand] = MouseCursor.PointingHand;
         mouseCursorMap[ImGuiMouseCursor.ResizeAll] = MouseCursor.ResizeAll;
-        mouseCursorMap[ImGuiMouseCursor.ResizeEW] = MouseCursor.ResizeEw;
-        mouseCursorMap[ImGuiMouseCursor.ResizeNESW] = MouseCursor.ResizeNesw;
-        mouseCursorMap[ImGuiMouseCursor.ResizeNS] = MouseCursor.ResizeNs;
-        mouseCursorMap[ImGuiMouseCursor.ResizeNWSE] = MouseCursor.ResizeNwse;
+        mouseCursorMap[ImGuiMouseCursor.ResizeEw] = MouseCursor.ResizeEw;
+        mouseCursorMap[ImGuiMouseCursor.ResizeNesw] = MouseCursor.ResizeNesw;
+        mouseCursorMap[ImGuiMouseCursor.ResizeNs] = MouseCursor.ResizeNs;
+        mouseCursorMap[ImGuiMouseCursor.ResizeNwse] = MouseCursor.ResizeNwse;
         mouseCursorMap[ImGuiMouseCursor.NotAllowed] = MouseCursor.NotAllowed;
     }
 
@@ -202,13 +202,17 @@ internal static class rlImGui
     /// </summary>
     public static unsafe void ReloadFonts()
     {
-        ImGui.SetCurrentContext(imGuiContext);
+        CopperImGui.SetCurrentContext(imGuiContext);
         var io = ImGui.GetIO();
 
-        io.Fonts.GetTexDataAsRGBA32(out byte* pixels, out var width, out var height, out _);
+        byte* pixels;
+        int width;
+        int height;
+        
+        ImGui.GetTexDataAsRGBA32(io.Fonts, &pixels, &width, &height, null);
 
         fontTexture = binding.LoadFontTexture(new IntPtr(pixels), new Vector2(width, height));
-        
+
         io.Fonts.SetTexID(new IntPtr(fontTexture.Id));
     }
 
@@ -249,28 +253,27 @@ internal static class rlImGui
     {
         SetupMouseCursors();
 
-        ImGui.SetCurrentContext(imGuiContext);
-
+        CopperImGui.SetCurrentContext(imGuiContext);
+        
         CopperImGui.LoadFonts();
 
         var io = ImGui.GetIO();
-
         io.BackendFlags |= ImGuiBackendFlags.HasMouseCursors | ImGuiBackendFlags.HasSetMousePos | ImGuiBackendFlags.HasGamepad;
 
         io.MousePos.X = 0;
         io.MousePos.Y = 0;
 
         // copy/paste callbacks
-        unsafe
-        {
-            setClipCallback = rlImGuiSetClipText;
-            io.SetClipboardTextFn = Marshal.GetFunctionPointerForDelegate(setClipCallback);
-
-            getClipCallback = rlImGuiGetClipText;
-            io.GetClipboardTextFn = Marshal.GetFunctionPointerForDelegate(getClipCallback);
-        }
-
-        io.ClipboardUserData = IntPtr.Zero;
+        // unsafe
+        // {
+        //     setClipCallback = rlImGuiSetClipText;
+        //     io.SetClipboardTextFn = Marshal.GetFunctionPointerForDelegate(setClipCallback);
+        //
+        //     getClipCallback = rlImGuiGetClipText;
+        //     io.GetClipboardTextFn = Marshal.GetFunctionPointerForDelegate(getClipCallback);
+        // }
+        //
+        // io.ClipboardUserData = IntPtr.Zero;
         ReloadFonts();
     }
 
@@ -458,7 +461,7 @@ internal static class rlImGui
     /// <param name="dt">optional delta time, any value less than 0 will use raylib GetFrameTime</param>
     public static void Begin(float dt = -1)
     {
-        ImGui.SetCurrentContext(imGuiContext);
+        CopperImGui.SetCurrentContext(imGuiContext);
 
         NewFrame(dt);
         FrameEvents();
@@ -477,23 +480,23 @@ internal static class rlImGui
         binding.RlGlScissor((int)(x * scale.X), (int)((io.DisplaySize.Y - (int)(y + height)) * scale.Y), (int)(width * scale.X), (int)(height * scale.Y));
     }
 
-    private static void TriangleVert(ImDrawVertPtr idxVert)
+    private static void TriangleVert(ImDrawVert idxVert)
     {
-        var color = ImGui.ColorConvertU32ToFloat4(idxVert.col);
+        var color = ImGui.ColorConvertU32ToFloat4(idxVert.Col);
 
         binding.RlGlColor4F(color.X, color.Y, color.Z, color.W);
-        binding.RlGlTexCoord2F(idxVert.uv.X, idxVert.uv.Y);
-        binding.RlGlVertex2F(idxVert.pos.X, idxVert.pos.Y);
+        binding.RlGlTexCoord2F(idxVert.Uv.X, idxVert.Uv.Y);
+        binding.RlGlVertex2F(idxVert.Pos.X, idxVert.Pos.Y);
     }
 
-    private static void RenderTriangles(uint count, uint indexStart, ImVector<ushort> indexBuffer, ImPtrVector<ImDrawVertPtr> vertBuffer, IntPtr texturePtr)
+    private static void RenderTriangles(uint count, uint indexStart, ImVector<ushort> indexBuffer, ImVector<ImDrawVert> vertBuffer, ImTextureID texturePtr)
     {
         if (count < 3)
             return;
 
         uint textureId = 0;
         if (texturePtr != IntPtr.Zero)
-            textureId = (uint)texturePtr.ToInt32();
+            textureId = (uint)texturePtr.Handle.ToInt32();
 
         binding.RlGlBegin(4);
         binding.RlGlSetTexture(textureId);
@@ -524,7 +527,7 @@ internal static class rlImGui
 
     private delegate void Callback(ImDrawListPtr list, ImDrawCmdPtr cmd);
 
-    private static void RenderData()
+    private static unsafe void RenderData()
     {
         binding.RlGlDrawRenderBatchActive();
         binding.RlGlDisableBackfaceCulling();
@@ -543,10 +546,10 @@ internal static class rlImGui
                     cmd.ClipRect.Z - (cmd.ClipRect.X - data.DisplayPos.X),
                     cmd.ClipRect.W - (cmd.ClipRect.Y - data.DisplayPos.Y));
 
-                if (cmd.UserCallback != IntPtr.Zero)
+                if (cmd.UserCallback != null)
                 {
-                    var cb = Marshal.GetDelegateForFunctionPointer<Callback>(cmd.UserCallback);
-                    cb(commandList, cmd);
+                    var cb = Marshal.GetDelegateForFunctionPointer<Callback>(new IntPtr(cmd.UserCallback));
+                    cb(commandList, new ImDrawCmdPtr(&cmd));
                     continue;
                 }
 
@@ -566,7 +569,7 @@ internal static class rlImGui
     /// </summary>
     public static void End()
     {
-        ImGui.SetCurrentContext(imGuiContext);
+        CopperImGui.SetCurrentContext(imGuiContext);
         ImGui.Render();
         RenderData();
     }
@@ -577,7 +580,7 @@ internal static class rlImGui
     public static void Shutdown()
     {
         binding.UnloadTexture(fontTexture);
-        ImGui.DestroyContext();
+        CopperImGui.DestroyContext(imGuiContext);
     }
 
     /// <summary>
