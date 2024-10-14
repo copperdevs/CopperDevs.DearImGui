@@ -729,6 +729,9 @@ public static partial class CopperImGui
     /// <remarks>The string of the subMenus tuple is the menus name, while the Action is invoked on click of that item</remarks>
     public static void MenuBar(bool isMainMenuBar = false, params (string, Action?)[] subMenus)
     {
+        if (!canRender)
+            return;
+        
         if (!isMainMenuBar)
         {
             if (!currentlyRenderingWindow!.Flags.HasFlag(ImGuiWindowFlags.MenuBar))
@@ -769,13 +772,15 @@ public static partial class CopperImGui
     /// <param name="flags">Flags to render the window with</param>
     public static void Window(string title, Action? render, ImGuiWindowFlags flags = ImGuiWindowFlags.None)
     {
-        if (!ImGui.Begin(title, flags))
+        if (!canRender)
             return;
+        
+        if (ImGui.Begin(title, flags))
+            render?.Invoke();
 
-        render?.Invoke();
         ImGui.End();
     }
-    
+
 
     /// <summary>
     /// Render a window
@@ -786,13 +791,15 @@ public static partial class CopperImGui
     /// <param name="flags">Flags to render the window with</param>
     public static void Window(string title, Action render, ref bool isOpen, ImGuiWindowFlags flags = ImGuiWindowFlags.None)
     {
+        if (!canRender)
+            return;
+        
         if (!isOpen)
             return;
 
-        if (!ImGui.Begin(title, ref isOpen, flags))
-            return;
-
-        render.Invoke();
+        if (ImGui.Begin(title, ref isOpen, flags))
+            render.Invoke();
+        
         ImGui.End();
     }
 }

@@ -51,10 +51,8 @@ public static partial class CopperImGui
 
             currentlyRenderingWindow = window;
 
-            if (!ImGui.Begin(window.WindowName, ref window.WindowOpen, window.Flags))
-                continue;
+            if (ImGui.Begin(window.WindowName, ref window.WindowOpen, window.Flags)) window.Update();
 
-            window.Update();
             ImGui.End();
 
             currentlyRenderingWindow = null;
