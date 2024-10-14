@@ -113,7 +113,7 @@ public static partial class CopperImGui
         {
             return ImGuiReflection.TryGetImGuiRenderer<T>(out value);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             value = null;
             return false;
@@ -132,7 +132,7 @@ public static partial class CopperImGui
         {
             return ImGuiReflection.TryGetImGuiRenderer(type, out value);
         }
-        catch (Exception e)
+        catch (Exception)
         {
             value = null;
             return false;
