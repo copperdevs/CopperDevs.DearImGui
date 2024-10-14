@@ -1,10 +1,10 @@
 using CopperDevs.DearImGui.Attributes;
-using CopperDevs.DearImGui.Backend.Enums;
 using CopperDevs.DearImGui.Rendering;
+using Hexa.NET.ImGui;
 
 namespace CopperDevs.DearImGui.Testing;
 
-[Window("Menu Bar Testing", Flags = WindowFlags.MenuBar)]
+[Window("Menu Bar Testing", Flags = ImGuiWindowFlags.MenuBar)]
 public class MenuBarTesting : BaseWindow
 {
     public override void WindowUpdate()
