@@ -12,7 +12,7 @@ using Hexa.NET.ImGui;
 
 namespace CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Internal;
 
-public class ImGuiController : IDisposable
+internal class ImGuiController : IDisposable
 {
     private GL gl = null!;
     private IView view = null!;

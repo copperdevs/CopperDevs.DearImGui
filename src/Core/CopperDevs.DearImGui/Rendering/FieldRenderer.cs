@@ -1,4 +1,4 @@
-﻿namespace CopperDevs.DearImGui.Rendering.Renderers;
+﻿namespace CopperDevs.DearImGui.Rendering;
 
 /// <summary>
 /// Base class for creating a new renderer for an item to be rendered with reflection

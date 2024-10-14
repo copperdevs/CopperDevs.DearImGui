@@ -4,7 +4,7 @@ using Silk.NET.OpenGL;
 
 namespace CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Internal;
 
-public static class Extensions
+internal static class Extensions
 {
     [Conditional("DEBUG")]
     public static void CheckGlError(this GL gl, string title)

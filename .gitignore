@@ -21,7 +21,6 @@ CopperDevs.DearImGui.sln.DotSettings.user
 # DocFx
 .cache
 **/_site/
-
 /docs/**/DROP/
 /docs/**/TEMP/
 /docs/**/packages/
