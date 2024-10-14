@@ -2,7 +2,7 @@ using System.Runtime.InteropServices;
 using CopperDevs.DearImGui.Rendering;
 using CopperDevs.DearImGui.Resources;
 using CopperDevs.DearImGui.Utility;
-using ImGuiNET;
+using Hexa.NET.ImGui;
 
 namespace CopperDevs.DearImGui;
 
@@ -52,7 +52,7 @@ public static partial class CopperImGui
             {
                 fixed (byte* p = fontData)
                 {
-                    ImGui.GetIO().Fonts.AddFontFromMemoryTTF((IntPtr)p, dataSize, pixelSize);
+                    ImGui.GetIO().Fonts.AddFontFromMemoryTTF(p, dataSize, pixelSize);
                 }
             }
         }
@@ -66,15 +66,17 @@ public static partial class CopperImGui
     {
         unsafe
         {
-            var iconsConfig = ImGuiNative.ImFontConfig_ImFontConfig();
-            iconsConfig->MergeMode = 1; // merge the glyph ranges into the default font
-            iconsConfig->PixelSnapH = 1; // don't try to render on partial pixels
-            iconsConfig->FontDataOwnedByAtlas = 0; // the font atlas does not own this font data
-
-            iconsConfig->GlyphMaxAdvanceX = float.MaxValue;
-            iconsConfig->RasterizerMultiply = 1.0f;
-            iconsConfig->OversampleH = 2;
-            iconsConfig->OversampleV = 1;
+            ImFontConfig* iconsConfig = null;
+            *iconsConfig = new ImFontConfig
+            {
+                MergeMode = 1, // merge the glyph ranges into the default font
+                PixelSnapH = 1, // don't try to render on partial pixels
+                FontDataOwnedByAtlas = 0, // the font atlas does not own this font data
+                GlyphMaxAdvanceX = float.MaxValue,
+                RasterizerMultiply = 1.0f,
+                OversampleH = 2,
+                OversampleV = 1
+            };
 
             var iconRanges = new ushort[3];
             iconRanges[0] = FontAwesomeIcons.IconMin;
@@ -87,7 +89,7 @@ public static partial class CopperImGui
                 // this unmanaged memory must remain allocated for the entire run of rlImgui
                 FontAwesomeIcons.IconFontRanges = Marshal.AllocHGlobal(6);
                 Buffer.MemoryCopy(range, FontAwesomeIcons.IconFontRanges.ToPointer(), 6, 6);
-                iconsConfig->GlyphRanges = (ushort*)FontAwesomeIcons.IconFontRanges.ToPointer();
+                iconsConfig->GlyphRanges = (char*)FontAwesomeIcons.IconFontRanges.ToPointer(); // TODO: used to cast to ushort*, but now uses char*. make sure this still works
 
                 using var stream = typeof(CopperImGui).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Resources.FontAwesomeData.txt");
                 using var reader = new StreamReader(stream!);
@@ -97,11 +99,11 @@ public static partial class CopperImGui
 
                 fixed (byte* buffer = fontDataBuffer)
                 {
-                    ImGui.GetIO().Fonts.AddFontFromMemoryTTF(new IntPtr(buffer), fontDataBuffer.Length, 11, iconsConfig, FontAwesomeIcons.IconFontRanges);
+                    ImGui.GetIO().Fonts.AddFontFromMemoryTTF(buffer, fontDataBuffer.Length, 11, iconsConfig, iconsConfig->GlyphRanges);
                 }
             }
 
-            ImGuiNative.ImFontConfig_destroy(iconsConfig);
+            iconsConfig->Destroy();
         }
     }
 
