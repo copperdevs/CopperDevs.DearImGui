@@ -6,7 +6,7 @@ namespace CopperDevs.DearImGui;
 public static partial class CopperImGui
 {
     private static WindowAttribute? currentlyRenderingWindow = null!;
-    
+
     private static List<WindowAttribute> LoadWindows()
     {
         var assemblies = AppDomain.CurrentDomain.GetAssemblies();
@@ -65,10 +65,43 @@ public static partial class CopperImGui
     /// </summary>
     /// <typeparam name="T">Type of the window you want to get</typeparam>
     /// <returns>The instance of the window</returns>
-    public static T? GetWindow<T>()
+    public static WindowAttribute? GetWindow<T>()
     {
-        foreach (var window in windows.Where(window => window.TargetClass.GetType() == typeof(T))) return (T)window.TargetClass;
+        var windowAttribute = windows.FirstOrDefault(window => window.TargetClass.GetType() == typeof(T));
 
-        return default;
+        if (windowAttribute is null)
+            throw new NullReferenceException($"Window {typeof(T).FullName} not found");
+
+        return windowAttribute;
+    }
+
+    /// <summary>
+    /// Returns the created instance of the window 
+    /// </summary>
+    /// <typeparam name="T">Type of the window you want to get</typeparam>
+    /// <returns>Instance of the target window</returns>
+    /// <remarks>Use <see cref="GetWindow{T}"/> instead. This is here for legacy reasons.</remarks>
+    [Obsolete("Since windows have been moved from a class inheritance solution to using attributes, there is no reason to get the class. Use GetWindow<T> instead.")]
+    public static object? GetWindowClass<T>()
+    {
+        return windows.FirstOrDefault(window => window.TargetClass.GetType() == typeof(T))!.TargetClass;
+    }
+
+    /// <summary>
+    /// Opens a target window
+    /// </summary>
+    /// <typeparam name="T">Type of the window</typeparam>
+    public static void ShowWindow<T>()
+    {
+        GetWindow<T>()!.WindowOpen = true;
+    }
+
+    /// <summary>
+    /// Hides a target window
+    /// </summary>
+    /// <typeparam name="T">Type of the window</typeparam>
+    public static void HideWindow<T>()
+    {
+        GetWindow<T>()!.WindowOpen = false;
     }
 }
