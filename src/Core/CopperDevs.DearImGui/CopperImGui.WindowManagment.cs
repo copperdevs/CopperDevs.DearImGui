@@ -64,7 +64,7 @@ public static partial class CopperImGui
     /// </summary>
     /// <typeparam name="T">Type of the window you want to get</typeparam>
     /// <returns>The instance of the window</returns>
-    public static WindowAttribute? GetWindow<T>()
+    public static WindowAttribute? GetWindow<T>() where T : class
     {
         var windowAttribute = windows.FirstOrDefault(window => window.TargetClass.GetType() == typeof(T));
 
@@ -81,16 +81,16 @@ public static partial class CopperImGui
     /// <returns>Instance of the target window</returns>
     /// <remarks>Use <see cref="GetWindow{T}"/> instead. This is here for legacy reasons.</remarks>
     [Obsolete("Since windows have been moved from a class inheritance solution to using attributes, there is no reason to get the class. Use GetWindow<T> instead.")]
-    public static object? GetWindowClass<T>()
+    public static T? GetWindowClass<T>() where T : class
     {
-        return windows.FirstOrDefault(window => window.TargetClass.GetType() == typeof(T))!.TargetClass;
+        return windows.FirstOrDefault(window => window.TargetClass.GetType() == typeof(T))!.TargetClass as T;
     }
 
     /// <summary>
     /// Opens a target window
     /// </summary>
     /// <typeparam name="T">Type of the window</typeparam>
-    public static void ShowWindow<T>()
+    public static void ShowWindow<T>() where T : class
     {
         GetWindow<T>()!.WindowOpen = true;
     }
@@ -99,7 +99,7 @@ public static partial class CopperImGui
     /// Hides a target window
     /// </summary>
     /// <typeparam name="T">Type of the window</typeparam>
-    public static void HideWindow<T>()
+    public static void HideWindow<T>() where T : class
     {
         GetWindow<T>()!.WindowOpen = false;
     }
