@@ -7,6 +7,18 @@ namespace CopperDevs.DearImGui;
 /// </summary>
 public static partial class CopperImGui
 {
+    internal static bool IsDebug
+    {
+        get
+        {
+#if DEBUG
+            return true;
+#else
+            return false;
+#endif
+        }
+    }
+
     // ---------------- render settings ---------------- // 
     private static bool canRender;
     private static bool dockingEnabled;

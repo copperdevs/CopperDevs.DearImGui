@@ -45,7 +45,6 @@ public static class Program
     {
         Graphics.BeginDrawing();
         Graphics.ClearBackground(WindowsApi.IsWindows11 && TransparentWindow ? TransparentColor : Color.RayWhite);
-
         
         CopperImGui.Render();
 

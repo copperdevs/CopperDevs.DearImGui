@@ -20,10 +20,13 @@ public static partial class CopperImGui
         {
             if (type.GetCustomAttributes(targetAttribute, true).Length <= 0)
                 continue;
-            
+
             if (Attribute.GetCustomAttribute(type, typeof(DisabledAttribute)) is not null)
                 continue;
-            
+
+            if (Attribute.GetCustomAttribute(type, typeof(DebugOnlyAttribute)) is not null && IsDebug)
+                continue;
+
             var attribute = (WindowAttribute)type.GetCustomAttribute(targetAttribute)!;
             attribute.GetMethods(Activator.CreateInstance(type)!);
             Log.Debug($"Found and loaded {type.FullName} window");
@@ -35,7 +38,7 @@ public static partial class CopperImGui
 
     private static void RenderWindows()
     {
-        Profiler.Begin("Rendering Windows");
+        Profiler.Begin("Rendering Windows", 50);
 
         foreach (var window in windows)
         {
@@ -56,13 +59,13 @@ public static partial class CopperImGui
 
             currentlyRenderingWindow = window;
 
-            Profiler.Begin(window.WindowName.ToKebabCase());
+            Profiler.Begin($"Window: {window.WindowName.ToKebabCase()}");
 
             if (ImGui.Begin(window.WindowName, ref window.WindowOpen, window.Flags)) window.Update();
 
             ImGui.End();
 
-            Profiler.End(window.WindowName.ToKebabCase());
+            Profiler.End($"Window: {window.WindowName.ToKebabCase()}");
 
             currentlyRenderingWindow = null;
         }

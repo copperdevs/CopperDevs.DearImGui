@@ -10,7 +10,7 @@ public static partial class CopperImGui
     /// ID of the main dockspace
     /// </summary>
     public static uint DockSpaceId { get; private set; }
-    
+
     /// <summary>
     ///     Set up the entire system
     /// </summary>
@@ -73,8 +73,8 @@ public static partial class CopperImGui
 
         try
         {
-            Profiler.Begin(nameof(CopperImGui));
-            
+            Profiler.Begin(nameof(CopperImGui), 100);
+
             currentRenderer.Begin();
 
             PreRendered?.Invoke();
@@ -89,7 +89,7 @@ public static partial class CopperImGui
             Rendered?.Invoke();
 
             currentRenderer.End();
-            
+
             Profiler.End(nameof(CopperImGui));
         }
         catch (Exception e)
