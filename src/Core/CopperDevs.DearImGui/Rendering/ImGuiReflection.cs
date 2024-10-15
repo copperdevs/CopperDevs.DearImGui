@@ -8,7 +8,7 @@ namespace CopperDevs.DearImGui.Rendering;
 [SuppressMessage("ReSharper", "AccessToModifiedClosure")]
 internal static class ImGuiReflection
 {
-    private static readonly Dictionary<Type, FieldRenderer> ImGuiRenderers = new();
+    private static readonly Dictionary<Type, FieldRenderer> ImGuiRenderers = [];
     private static readonly Dictionary<Type, List<FieldInfo>> FieldInfoTypeDictionary = [];
 
     internal static void RegisterFieldRenderer<TType, TRenderer>() where TRenderer : FieldRenderer, new()
