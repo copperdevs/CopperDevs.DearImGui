@@ -1,4 +1,4 @@
-﻿namespace CopperDevs.DearImGui.Attributes;
+﻿namespace CopperDevs.DearImGui.Rendering;
 
 /// <summary>
 /// Attribute for exposing an object to be shown via reflection

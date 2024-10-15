@@ -1,5 +1,4 @@
 ﻿using CopperDevs.Core.Data;
-using CopperDevs.DearImGui.Attributes;
 
 namespace CopperDevs.DearImGui.Rendering.Renderers;
 

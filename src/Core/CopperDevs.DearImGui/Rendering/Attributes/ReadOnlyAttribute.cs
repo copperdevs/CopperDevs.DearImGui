@@ -1,4 +1,4 @@
-﻿namespace CopperDevs.DearImGui.Attributes;
+﻿namespace CopperDevs.DearImGui.Rendering;
 
 /// <summary>
 /// Disable the editing of a field

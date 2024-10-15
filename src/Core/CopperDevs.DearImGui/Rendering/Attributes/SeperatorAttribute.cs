@@ -1,4 +1,4 @@
-﻿namespace CopperDevs.DearImGui.Attributes;
+﻿namespace CopperDevs.DearImGui.Rendering;
 
 /// <summary>
 /// Add a seperator line above the field before rendering it

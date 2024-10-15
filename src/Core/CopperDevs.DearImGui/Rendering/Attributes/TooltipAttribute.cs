@@ -1,4 +1,4 @@
-﻿namespace CopperDevs.DearImGui.Attributes;
+﻿namespace CopperDevs.DearImGui.Rendering;
 
 /// <summary>
 /// Add a tooltip on hover to a field

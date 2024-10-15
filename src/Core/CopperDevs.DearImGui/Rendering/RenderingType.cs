@@ -11,7 +11,7 @@ public enum RenderingType
     Public,
     
     /// <summary>
-    /// Renders every field that has the <see cref="CopperDevs.DearImGui.Attributes.ExposedAttribute"/>
+    /// Renders every field that has the <see cref="ExposedAttribute"/>
     /// </summary>
     Exposed,
     

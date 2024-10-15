@@ -1,4 +1,4 @@
-﻿namespace CopperDevs.DearImGui.Attributes;
+﻿namespace CopperDevs.DearImGui.Rendering;
 
 /// <summary>
 /// Attribute to always hide an object from being shown via reflection

@@ -1,7 +1,7 @@
 ﻿
 using Hexa.NET.ImGui;
 
-namespace CopperDevs.DearImGui.Attributes;
+namespace CopperDevs.DearImGui.Rendering;
 
 /// <summary>
 /// Attribute for deciding if a class should a window

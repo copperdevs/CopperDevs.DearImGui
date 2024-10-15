@@ -1,6 +1,4 @@
-﻿using CopperDevs.DearImGui.Attributes;
-
-namespace CopperDevs.DearImGui.Rendering.Renderers;
+﻿namespace CopperDevs.DearImGui.Rendering.Renderers;
 
 internal class IntFieldRenderer : FieldRenderer
 {
