@@ -1,3 +1,4 @@
+using System.Text;
 using CopperDevs.DearImGui.Utility;
 using Hexa.NET.ImGui;
 
@@ -12,6 +13,18 @@ internal class ProfilerWindow : BaseWindow
         foreach (var timestamp in Profiler.GetTimestamps())
         {
             CopperImGui.Text(timestamp.ElapsedTime, timestamp.Id);
+            
+
+            unsafe
+            {
+                fixed (byte* textLabel = Encoding.ASCII.GetBytes(timestamp.Id))
+                {
+                    fixed (float* values = )
+                    {
+                        
+                    }
+                }
+            }
         }        
     }
 }
