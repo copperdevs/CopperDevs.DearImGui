@@ -73,6 +73,8 @@ public static partial class CopperImGui
 
         try
         {
+            Profiler.Begin(nameof(CopperImGui));
+            
             currentRenderer.Begin();
 
             PreRendered?.Invoke();
@@ -87,6 +89,8 @@ public static partial class CopperImGui
             Rendered?.Invoke();
 
             currentRenderer.End();
+            
+            Profiler.End(nameof(CopperImGui));
         }
         catch (Exception e)
         {

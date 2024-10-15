@@ -72,7 +72,7 @@ internal static class ImGuiReflection
             SpaceAttributeRenderer(info);
             SeperatorAttributeRenderer(info);
 
-            if (Attribute.GetCustomAttribute(info, typeof(HideInInspectorAttribute)) is not null)
+            if (Attribute.GetCustomAttribute(info, typeof(DisabledAttribute)) is not null)
                 continue;
 
             var currentReadOnlyAttribute =
