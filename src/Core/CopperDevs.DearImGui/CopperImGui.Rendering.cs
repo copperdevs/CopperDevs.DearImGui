@@ -7,6 +7,11 @@ namespace CopperDevs.DearImGui;
 public static partial class CopperImGui
 {
     /// <summary>
+    /// ID of the main dockspace
+    /// </summary>
+    public static uint DockSpaceId { get; private set; }
+    
+    /// <summary>
     ///     Set up the entire system
     /// </summary>
     /// <param name="isDockingEnabled">Should docking be enabled</param>
@@ -73,7 +78,7 @@ public static partial class CopperImGui
             PreRendered?.Invoke();
 
             if (dockingEnabled)
-                ImGui.DockSpaceOverViewport(0, ImGui.GetMainViewport(), ImGuiDockNodeFlags.PassthruCentralNode | ImGuiDockNodeFlags.AutoHideTabBar);
+                ImGui.DockSpaceOverViewport(null, ImGuiDockNodeFlags.PassthruCentralNode | ImGuiDockNodeFlags.AutoHideTabBar, null);
 
             RenderWindows();
             RenderBuiltInWindows();

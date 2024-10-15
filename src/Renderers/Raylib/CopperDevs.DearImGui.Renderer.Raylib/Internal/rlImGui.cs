@@ -208,7 +208,7 @@ internal static class rlImGui
         byte* pixels;
         int width;
         int height;
-        
+
         ImGui.GetTexDataAsRGBA32(io.Fonts, &pixels, &width, &height, null);
 
         fontTexture = binding.LoadFontTexture(new IntPtr(pixels), new Vector2(width, height));
@@ -254,7 +254,7 @@ internal static class rlImGui
         SetupMouseCursors();
 
         CopperImGui.SetCurrentContext(imGuiContext);
-        
+
         CopperImGui.LoadFonts();
 
         var io = ImGui.GetIO();
@@ -356,7 +356,7 @@ internal static class rlImGui
         lastFrameFocused = focused;
 
 
-        // handle the modifyer key events so that shortcuts work
+        // handle the modifier key events so that shortcuts work
         var ctrlDown = rlImGuiIsControlDown();
         if (ctrlDown != lastControlPressed)
             io.AddKeyEvent(ImGuiKey.ModCtrl, ctrlDown);
@@ -571,7 +571,14 @@ internal static class rlImGui
     {
         CopperImGui.SetCurrentContext(imGuiContext);
         ImGui.Render();
+        ImGui.EndFrame();
         RenderData();
+
+        if (ImGui.GetIO().ConfigFlags.HasFlag(ImGuiConfigFlags.ViewportsEnable))
+        {
+            ImGui.UpdatePlatformWindows();
+            ImGui.RenderPlatformWindowsDefault();
+        }
     }
 
     /// <summary>
