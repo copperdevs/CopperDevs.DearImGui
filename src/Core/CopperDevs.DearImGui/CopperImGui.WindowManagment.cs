@@ -24,7 +24,7 @@ public static partial class CopperImGui
             if (Attribute.GetCustomAttribute(type, typeof(DisabledAttribute)) is not null)
                 continue;
 
-            if (Attribute.GetCustomAttribute(type, typeof(DebugOnlyAttribute)) is not null && IsDebug)
+            if (Attribute.GetCustomAttribute(type, typeof(DebugOnlyAttribute)) is not null && !IsDebug)
                 continue;
 
             var attribute = (WindowAttribute)type.GetCustomAttribute(targetAttribute)!;

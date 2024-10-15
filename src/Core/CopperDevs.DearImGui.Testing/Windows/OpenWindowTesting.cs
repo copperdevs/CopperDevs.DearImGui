@@ -3,7 +3,7 @@ using CopperDevs.DearImGui.Rendering;
 
 namespace CopperDevs.DearImGui.Testing;
 
-[Window("Open Window Testing", WindowOpen = true)]
+[Window("Open Window Testing", WindowOpen = false)]
 public class OpenWindowTesting : BaseWindow
 {
     public override void WindowUpdate()

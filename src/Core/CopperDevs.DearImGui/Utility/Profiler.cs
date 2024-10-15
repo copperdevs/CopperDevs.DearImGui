@@ -5,37 +5,46 @@ namespace CopperDevs.DearImGui.Utility;
 
 internal static class Profiler
 {
+    private const int ProfilerItemHistory = 512;
     private static readonly Dictionary<string, ProfilerItem> timestamps = [];
+    private static readonly Dictionary<string, ProfilerItem.Timestamp> currentTimestamps = [];
 
     public static void Begin(string name, int priority = 0)
     {
         if (!CopperImGui.IsDebug)
             return;
-        
-        var contains = timestamps.TryGetValue(name, out var outProfilerItem);
-        var profilerItem = (contains ? outProfilerItem : new ProfilerItem()) ?? new ProfilerItem();
 
-        profilerItem.Id = name;
-        profilerItem.StartTime = Stopwatch.GetTimestamp();
-        profilerItem.Priority = priority;
+        if (!timestamps.ContainsKey(name))
+            timestamps.Add(name, new ProfilerItem
+            {
+                Id = name,
+                Priority = priority
+            });
 
-        if (!contains)
-            timestamps.Add(name, profilerItem);
+        var timestamp = new ProfilerItem.Timestamp
+        {
+            StartTime = Stopwatch.GetTimestamp()
+        };
+
+        currentTimestamps[name] = timestamp;
     }
 
     public static double End(string name)
     {
         if (!CopperImGui.IsDebug)
             return 0;
-        
-        var end = Stopwatch.GetTimestamp();
-        var start = timestamps[name].StartTime;
-        var elapsed = (end - start) / (double)Stopwatch.Frequency;
 
-        timestamps[name].ElapsedTime = Math.Round(elapsed * 1000, 4);
+        currentTimestamps[name].ElapsedTime = GetCurrentTimestamp(name);
 
-        return elapsed;
+        timestamps[name].Timestamps.Add(currentTimestamps[name]);
+
+        if (timestamps[name].Timestamps.Count >= ProfilerItemHistory)
+            timestamps[name].Timestamps.RemoveAt(0);
+
+        return currentTimestamps[name].ElapsedTime;
     }
+
+    public static double GetCurrentTimestamp(string name) => Math.Round(((Stopwatch.GetTimestamp() - currentTimestamps[name].StartTime) / (double)Stopwatch.Frequency) * 1000, 4);
 
     public static List<ProfilerItem> GetTimestamps() => timestamps.Values.OrderBy(x => x.Priority).ToList();
 
@@ -43,7 +52,16 @@ internal static class Profiler
     {
         public string Id = string.Empty;
         public int Priority;
-        public long StartTime;
-        public double ElapsedTime;
+
+        public List<Timestamp> Timestamps = [];
+
+        public sealed class Timestamp
+        {
+            public long StartTime;
+            public double ElapsedTime;
+
+            public static implicit operator double(Timestamp timestamp) => timestamp.ElapsedTime;
+            public static implicit operator float(Timestamp timestamp) => (float)timestamp.ElapsedTime;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using CopperDevs.DearImGui.Rendering;
+﻿using System.Diagnostics;
+using CopperDevs.DearImGui.Rendering;
 using CopperDevs.DearImGui.Utility;
 using Hexa.NET.ImGui;
 
@@ -87,6 +88,9 @@ public static partial class CopperImGui
             RenderPopups();
 
             Rendered?.Invoke();
+
+            if (IsDebug)
+                Text(Profiler.GetCurrentTimestamp(nameof(CopperImGui)));
 
             currentRenderer.End();
 
