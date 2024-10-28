@@ -1,6 +1,6 @@
 using CopperDevs.DearImGui.Rendering;
 
-namespace CopperDevs.DearImGui.Testing;
+namespace CopperDevs.DearImGui.Testing.Windows;
 
 [Window("Reflection Testing", WindowOpen = false)]
 public class ReflectionTestingWindow : BaseWindow

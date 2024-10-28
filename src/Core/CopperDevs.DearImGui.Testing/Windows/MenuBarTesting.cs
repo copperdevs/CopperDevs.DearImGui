@@ -1,7 +1,7 @@
 using CopperDevs.DearImGui.Rendering;
 using Hexa.NET.ImGui;
 
-namespace CopperDevs.DearImGui.Testing;
+namespace CopperDevs.DearImGui.Testing.Windows;
 
 [Window("Menu Bar Testing", Flags = ImGuiWindowFlags.MenuBar)]
 public class MenuBarTesting : BaseWindow

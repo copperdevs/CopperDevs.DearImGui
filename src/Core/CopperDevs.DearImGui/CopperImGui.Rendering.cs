@@ -17,8 +17,9 @@ public static partial class CopperImGui
     /// </summary>
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
+    /// <param name="useReflectionForWindows">Should reflection be used to find any windows</param>
     /// <param name="rendererType">Type of your <see cref="ImGuiRenderer" /></param>
-    public static void Setup(Type rendererType, bool isDockingEnabled = true, bool shouldShowTabBar = false)
+    public static void Setup(Type rendererType, bool isDockingEnabled = true, bool shouldShowTabBar = false, bool useReflectionForWindows = true)
     {
         try
         {
@@ -27,6 +28,7 @@ public static partial class CopperImGui
             currentRenderer = (ImGuiRenderer)Activator.CreateInstance(rendererType)!;
             showTabBar = shouldShowTabBar;
             dockingEnabled = isDockingEnabled;
+            reflectionWindows = useReflectionForWindows;
 
             currentRenderer.Setup();
 
@@ -35,9 +37,9 @@ public static partial class CopperImGui
 
             Log.Debug("Loading windows");
 
-            windows = LoadWindows();
+            LoadWindows().ForEach(attribute => windows.Add(new WindowData(attribute)));
 
-            windows.ForEach(instance => instance.Start());
+            windows.ForEach(instance => instance.StartWindow());
 
             Log.Debug($"Loaded {windows.Count} windows");
 
@@ -58,10 +60,11 @@ public static partial class CopperImGui
     /// </summary>
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
+    /// <param name="useReflectionForWindows">Should reflection be used to find any windows</param>
     /// <typeparam name="TImGuiRenderer">Type of your <see cref="ImGuiRenderer" /></typeparam>
-    public static void Setup<TImGuiRenderer>(bool isDockingEnabled = true, bool shouldShowTabBar = false) where TImGuiRenderer : ImGuiRenderer, new()
+    public static void Setup<TImGuiRenderer>(bool isDockingEnabled = true, bool shouldShowTabBar = false, bool useReflectionForWindows = true) where TImGuiRenderer : ImGuiRenderer, new()
     {
-        Setup(typeof(TImGuiRenderer), isDockingEnabled, shouldShowTabBar);
+        Setup(typeof(TImGuiRenderer), isDockingEnabled, shouldShowTabBar, useReflectionForWindows);
     }
 
     /// <summary>
@@ -109,7 +112,7 @@ public static partial class CopperImGui
             Log.Info($"Shutting down the rendering for {typeof(CopperImGui)}");
 
             currentRenderer.Shutdown();
-            windows.ForEach(instance => instance.Stop());
+            windows.ForEach(instance => instance.StopWindow());
             UnloadFontAwesomeIcons();
         }
         catch (Exception e)

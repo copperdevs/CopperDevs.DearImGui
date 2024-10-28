@@ -734,8 +734,8 @@ public static partial class CopperImGui
         
         if (!isMainMenuBar)
         {
-            if (!currentlyRenderingWindow!.Flags.HasFlag(ImGuiWindowFlags.MenuBar))
-                Log.Error($"Trying to render a menu bar for {currentlyRenderingWindow.WindowName} window without the {ImGuiWindowFlags.MenuBar} flag");
+            if (!currentlyRenderingWindow!.Value.WindowFlags.HasFlag(ImGuiWindowFlags.MenuBar))
+                Log.Error($"Trying to render a menu bar for {currentlyRenderingWindow!.Value.WindowName} window without the {ImGuiWindowFlags.MenuBar} flag");
         }
 
         if (isMainMenuBar)

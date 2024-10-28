@@ -6,7 +6,7 @@ namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
-    private static WindowAttribute? currentlyRenderingWindow = null!;
+    private static WindowData? currentlyRenderingWindow = null!;
 
     private static List<WindowAttribute> LoadWindows()
     {
@@ -56,8 +56,8 @@ public static partial class CopperImGui
                 continue;
 
             currentlyRenderingWindow = window;
-            
-            if (ImGui.Begin(window.WindowName, ref window.WindowOpen, window.Flags)) window.Update();
+
+            if (ImGui.Begin(window.WindowName, ref window.WindowOpen, window.WindowFlags)) window.UpdateWindow();
 
             ImGui.End();
 
@@ -70,14 +70,9 @@ public static partial class CopperImGui
     /// </summary>
     /// <typeparam name="T">Type of the window you want to get</typeparam>
     /// <returns>The instance of the window</returns>
-    public static WindowAttribute? GetWindow<T>() where T : class
+    public static WindowData? GetWindow<T>() where T : class
     {
-        var windowAttribute = windows.FirstOrDefault(window => window.TargetClass.GetType() == typeof(T));
-
-        if (windowAttribute is null)
-            throw new NullReferenceException($"Window {typeof(T).FullName} not found");
-
-        return windowAttribute;
+        return windows.FirstOrDefault(window => window.TargetClass.GetType() == typeof(T));
     }
 
     /// <summary>
@@ -98,7 +93,7 @@ public static partial class CopperImGui
     /// <typeparam name="T">Type of the window</typeparam>
     public static void ShowWindow<T>() where T : class
     {
-        GetWindow<T>()!.WindowOpen = true;
+        GetWindow<T>()!.Value.WindowOpen = true;
     }
 
     /// <summary>
@@ -107,6 +102,6 @@ public static partial class CopperImGui
     /// <typeparam name="T">Type of the window</typeparam>
     public static void HideWindow<T>() where T : class
     {
-        GetWindow<T>()!.WindowOpen = false;
+        GetWindow<T>()!.Value.WindowOpen = true;
     }
 }

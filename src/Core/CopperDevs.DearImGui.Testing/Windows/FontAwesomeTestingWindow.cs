@@ -2,7 +2,7 @@ using CopperDevs.DearImGui.Rendering;
 using CopperDevs.DearImGui.Resources;
 using CopperDevs.DearImGui.Utility;
 
-namespace CopperDevs.DearImGui.Testing;
+namespace CopperDevs.DearImGui.Testing.Windows;
 
 [Window("Font Awesome", WindowOpen = false)]
 public class FontAwesomeTestingWindow : BaseWindow

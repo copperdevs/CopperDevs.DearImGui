@@ -1,7 +1,7 @@
 using System.Numerics;
 using CopperDevs.DearImGui.Rendering;
 
-namespace CopperDevs.DearImGui.Testing;
+namespace CopperDevs.DearImGui.Testing.Windows;
 
 [Window("Random Testing", WindowOpen = false)]
 public class RandomTestingWindow : BaseWindow

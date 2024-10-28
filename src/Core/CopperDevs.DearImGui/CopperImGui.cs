@@ -23,11 +23,12 @@ public static partial class CopperImGui
     private static bool canRender;
     private static bool dockingEnabled;
     private static bool showTabBar;
+    private static bool reflectionWindows;
 
     private static ImGuiRenderer currentRenderer = null!;
 
     // ---------------- windows ---------------- //
-    private static List<WindowAttribute> windows = [];
+    private static List<WindowData> windows = [];
 
     // ---------------- dearimgui windows ---------------- //
     /// <summary>
