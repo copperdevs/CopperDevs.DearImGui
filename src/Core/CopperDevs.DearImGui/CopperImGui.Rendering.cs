@@ -74,8 +74,6 @@ public static partial class CopperImGui
 
         try
         {
-            Profiler.Begin(nameof(CopperImGui), 100);
-
             currentRenderer.Begin();
 
             PreRendered?.Invoke();
@@ -89,12 +87,7 @@ public static partial class CopperImGui
 
             Rendered?.Invoke();
 
-            if (IsDebug)
-                Text(Profiler.GetCurrentTimestamp(nameof(CopperImGui)));
-
             currentRenderer.End();
-
-            Profiler.End(nameof(CopperImGui));
         }
         catch (Exception e)
         {

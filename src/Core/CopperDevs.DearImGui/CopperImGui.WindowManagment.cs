@@ -38,8 +38,6 @@ public static partial class CopperImGui
 
     private static void RenderWindows()
     {
-        Profiler.Begin("Rendering Windows", 50);
-
         foreach (var window in windows)
         {
             if (showTabBar)
@@ -58,19 +56,13 @@ public static partial class CopperImGui
                 continue;
 
             currentlyRenderingWindow = window;
-
-            Profiler.Begin($"Window: {window.WindowName.ToKebabCase()}");
-
+            
             if (ImGui.Begin(window.WindowName, ref window.WindowOpen, window.Flags)) window.Update();
 
             ImGui.End();
 
-            Profiler.End($"Window: {window.WindowName.ToKebabCase()}");
-
             currentlyRenderingWindow = null;
         }
-
-        Profiler.End("Rendering Windows");
     }
 
     /// <summary>
