@@ -35,13 +35,16 @@ public static partial class CopperImGui
             LoadConfig();
             LoadStyle();
 
-            Log.Debug("Loading windows");
+            if (reflectionWindows)
+            {
+                Log.Debug("Loading windows");
 
-            LoadWindows().ForEach(attribute => windows.Add(new WindowData(attribute)));
+                LoadWindows().ForEach(attribute => windows.Add(new WindowData(attribute)));
 
-            windows.ForEach(instance => instance.StartWindow());
+                windows.ForEach(instance => instance.StartWindow());
 
-            Log.Debug($"Loaded {windows.Count} windows");
+                Log.Debug($"Loaded {windows.Count} windows");
+            }
 
             canRender = true;
 

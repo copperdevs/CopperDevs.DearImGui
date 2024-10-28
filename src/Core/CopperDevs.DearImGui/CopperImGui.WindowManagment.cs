@@ -104,4 +104,15 @@ public static partial class CopperImGui
     {
         GetWindow<T>()!.Value.WindowOpen = true;
     }
+
+    /// <summary>
+    /// Load a window to be rendered
+    /// </summary>
+    /// <typeparam name="T">Type of window to load</typeparam>
+    public static void RegisterWindow<T>() where T : BaseWindow, new()
+    {
+        var window = new WindowData(new T());
+        window.StartWindow();
+        windows.Add(window);
+    }
 }
