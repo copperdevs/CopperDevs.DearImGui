@@ -18,6 +18,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Vulkan", "Vulkan", "{27388D37-9EC6-4936-8772-E48BBF23D780}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Raylib", "Raylib", "{CF55A0AE-A454-41C7-A921-82E1CA126DFE}"
+	ProjectSection(SolutionItems) = preProject
+		src\Renderers\Raylib\ReadMe.md = src\Renderers\Raylib\ReadMe.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "OpenGl", "OpenGl", "{DEAC363D-2625-4A0D-AE28-AA26D8DCA005}"
 EndProject

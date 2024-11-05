@@ -11,15 +11,15 @@
         <RepositoryType>git</RepositoryType>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <Company>copperdevs</Company>
-        <AssemblyVersion>2.0.1</AssemblyVersion>
-        <FileVersion>2.0.1</FileVersion>
+        <AssemblyVersion>2.0.2</AssemblyVersion>
+        <FileVersion>2.0.2</FileVersion>
         <Title>CopperDevs.DearImGui.Renderer.Raylib</Title>
         <Authors>copperdevs</Authors>
         <Description>Base raylib renderer for my ImGui wrapper</Description>
         <PackageLicenseFile>License.txt</PackageLicenseFile>
         <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
-        <Version>2.0.1</Version>
+        <Version>2.0.2</Version>
     </PropertyGroup>
 
     <ItemGroup>

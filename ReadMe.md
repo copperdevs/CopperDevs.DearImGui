@@ -9,7 +9,7 @@ Personally direct DearImGui didn't feel the best in C#, so I made this package t
 ## Installation
 
 ```bash
-dotnet add package CopperDevs.DearImGui --version 1.3.0
+dotnet add package CopperDevs.DearImGui --version 1.4.0
 ```
 
 Additionally, you need to install a relevant renderer package. There is currently two pre-made packages available.
@@ -17,11 +17,11 @@ Additionally, you need to install a relevant renderer package. There is currentl
 *Note - When using raylib there's some extra steps that can be found [here](https://github.com/copperdevs/CopperDevs.DearImGui/blob/master/src/Renderers/Raylib/ReadMe.md)*
 
 ```bash
-dotnet add package CopperDevs.DearImGui.Renderer.Raylib --version 2.0.1
+dotnet add package CopperDevs.DearImGui.Renderer.Raylib --version 2.0.2
 ```
 
 ```bash
-dotnet add package CopperDevs.DearImGui.Renderer.OpenGl.SilkNet --version 1.0.6
+dotnet add package CopperDevs.DearImGui.Renderer.OpenGl.SilkNet --version 1.0.7
 ```
 
 ## To Do
