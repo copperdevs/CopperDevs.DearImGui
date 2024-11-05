@@ -213,7 +213,7 @@ internal static class rlImGui
 
         fontTexture = binding.LoadFontTexture(new IntPtr(pixels), new Vector2(width, height));
 
-        io.Fonts.SetTexID(new IntPtr(fontTexture.Id));
+        io.Fonts.SetTexID(new ImTextureID(fontTexture.Id));
     }
 
     // ReSharper disable once InconsistentNaming
@@ -264,15 +264,15 @@ internal static class rlImGui
         io.MousePos.Y = 0;
 
         // copy/paste callbacks
-        // unsafe
-        // {
-        //     setClipCallback = rlImGuiSetClipText;
-        //     io.SetClipboardTextFn = Marshal.GetFunctionPointerForDelegate(setClipCallback);
-        //
-        //     getClipCallback = rlImGuiGetClipText;
-        //     io.GetClipboardTextFn = Marshal.GetFunctionPointerForDelegate(getClipCallback);
-        // }
-        //
+        unsafe
+        {
+            setClipCallback = rlImGuiSetClipText;
+            // io.SetClipboardTextFn = Marshal.GetFunctionPointerForDelegate(setClipCallback);
+        
+            getClipCallback = rlImGuiGetClipText;
+            // io.GetClipboardTextFn = Marshal.GetFunctionPointerForDelegate(getClipCallback);
+        }
+        
         // io.ClipboardUserData = IntPtr.Zero;
         ReloadFonts();
     }
@@ -381,7 +381,7 @@ internal static class rlImGui
         var keyId = binding.InputGetKeyPressed();
         while (keyId != 0)
         {
-            var key = (KeyboardKey)keyId;
+            var key = keyId;
             if (RaylibKeyMap.TryGetValue(key, out var value))
                 io.AddKeyEvent(value, true);
             keyId = binding.InputGetKeyPressed();
@@ -496,7 +496,7 @@ internal static class rlImGui
 
         uint textureId = 0;
         if (texturePtr != IntPtr.Zero)
-            textureId = (uint)texturePtr.Handle.ToInt32();
+            textureId = Convert.ToUInt32(texturePtr.Handle);
 
         binding.RlGlBegin(4);
         binding.RlGlSetTexture(textureId);
@@ -597,7 +597,7 @@ internal static class rlImGui
     /// <param name="image">The raylib texture to draw</param>
     public static void Image(Texture2D image)
     {
-        ImGui.Image(new IntPtr(image.Id), new Vector2(image.Width, image.Height));
+        ImGui.Image(new ImTextureID(image.Id), new Vector2(image.Width, image.Height));
     }
 
     /// <summary>
@@ -610,7 +610,7 @@ internal static class rlImGui
     /// <param name="height">The height of the drawn image</param>
     public static void ImageSize(Texture2D image, int width, int height)
     {
-        ImGui.Image(new IntPtr(image.Id), new Vector2(width, height));
+        ImGui.Image(new ImTextureID(image.Id), new Vector2(width, height));
     }
 
     /// <summary>
@@ -622,7 +622,7 @@ internal static class rlImGui
     /// <param name="size">The size of drawn image</param>
     public static void ImageSize(Texture2D image, Vector2 size)
     {
-        ImGui.Image(new IntPtr(image.Id), size);
+        ImGui.Image(new ImTextureID(image.Id), size);
     }
 
     /// <summary>
@@ -661,7 +661,7 @@ internal static class rlImGui
             uv1.Y = uv0.Y + sourceRect.Height / image.Height;
         }
 
-        ImGui.Image(new IntPtr(image.Id), new Vector2(destWidth, destHeight), uv0, uv1);
+        ImGui.Image(new ImTextureID(image.Id), new Vector2(destWidth, destHeight), uv0, uv1);
     }
 
     /// <summary>
@@ -724,6 +724,6 @@ internal static class rlImGui
     /// <returns>True if the button was clicked</returns>
     public static bool ImageButtonSize(string name, Texture2D image, Vector2 size)
     {
-        return ImGui.ImageButton(name, new IntPtr(image.Id), size);
+        return ImGui.ImageButton(name, new ImTextureID(image.Id), size);
     }
 }

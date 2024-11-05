@@ -63,8 +63,8 @@ public static partial class CopperImGui
 
     internal static void LoadFontAwesomeIcons()
     {
-        Log.Warning("FontAwesome icons are currently not supported.");
-        return;
+        // Log.Warning("FontAwesome icons are currently not supported.");
+        // return;
 
         unsafe
         {
@@ -90,7 +90,7 @@ public static partial class CopperImGui
                 // this unmanaged memory must remain allocated for the entire run of rlImgui
                 FontAwesomeIcons.IconFontRanges = Marshal.AllocHGlobal(6);
                 Buffer.MemoryCopy(range, FontAwesomeIcons.IconFontRanges.ToPointer(), 6, 6);
-                iconsConfig.GlyphRanges = (char*)FontAwesomeIcons.IconFontRanges.ToPointer();
+                iconsConfig.GlyphRanges = (uint*)FontAwesomeIcons.IconFontRanges.ToPointer();
 
                 using var stream = typeof(CopperImGui).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Resources.FontAwesomeData.txt");
                 using var reader = new StreamReader(stream!);
