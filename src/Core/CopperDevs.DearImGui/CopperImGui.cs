@@ -20,11 +20,12 @@ public static partial class CopperImGui
     }
 
     // ---------------- render settings ---------------- // 
+    private static RenderingSettings settings = RenderingSettings.Everything;
     private static bool canRender;
-    private static bool dockingEnabled;
-    private static bool showTabBar;
-    private static bool reflectionWindows;
-    private static bool fontAwesomeIcons;
+    private static bool DockingEnabled => settings.HasFlag(RenderingSettings.DockingEnabled);
+    private static bool ShowTabBar => settings.HasFlag(RenderingSettings.ShowTabBar);
+    private static bool ReflectionWindows => settings.HasFlag(RenderingSettings.ReflectionForWindows);
+    private static bool FontAwesomeIcons => settings.HasFlag(RenderingSettings.FontAwesomeIcons);
 
     private static ImGuiRenderer currentRenderer = null!;
 

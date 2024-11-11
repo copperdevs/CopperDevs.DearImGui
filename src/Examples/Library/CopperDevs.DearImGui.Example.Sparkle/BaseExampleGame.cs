@@ -16,7 +16,7 @@ public class BaseExampleGame : Game
     {
         base.Init();
 
-        CopperImGui.Setup<RlImGuiRenderer<RlImGuiBinding>>(true, true);
+        CopperImGui.Setup<RlImGuiRenderer<RlImGuiBinding>>();
         CopperImGui.ShowDearImGuiAboutWindow = true;
         CopperImGui.ShowDearImGuiDemoWindow = true;
         CopperImGui.ShowDearImGuiMetricsWindow = true;

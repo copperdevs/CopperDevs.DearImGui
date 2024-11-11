@@ -29,7 +29,7 @@ public static class Program
             SetWindowStyling();
 
             OpenGlRenderer.SetupReferences(gl, window, window.CreateInput());
-            CopperImGui.Setup<OpenGlRenderer>(true, true);
+            CopperImGui.Setup<OpenGlRenderer>();
         };
 
         window.Render += deltaTime =>

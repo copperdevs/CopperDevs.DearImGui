@@ -40,7 +40,7 @@ public static partial class CopperImGui
     {
         foreach (var window in windows)
         {
-            if (showTabBar)
+            if (ShowTabBar)
                 if (ImGui.BeginMainMenuBar())
                 {
                     if (ImGui.BeginMenu("Windows"))

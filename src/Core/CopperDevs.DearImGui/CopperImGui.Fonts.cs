@@ -63,7 +63,7 @@ public static partial class CopperImGui
 
     internal static void LoadFontAwesomeIcons()
     {
-        if (!fontAwesomeIcons)
+        if (!FontAwesomeIcons)
             return;
         
         Log.Warning("FontAwesome icons are currently not supported.");
@@ -83,17 +83,17 @@ public static partial class CopperImGui
             };
 
             var iconRanges = new ushort[3];
-            iconRanges[0] = FontAwesomeIcons.IconMin;
-            iconRanges[1] = FontAwesomeIcons.IconMax;
+            iconRanges[0] = Resources.FontAwesomeIcons.IconMin;
+            iconRanges[1] = Resources.FontAwesomeIcons.IconMax;
             iconRanges[2] = 0;
 
             // using var stream = typeof(rlImGui).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Renderer.Raylib.FontAwesomeData.txt");
             fixed (ushort* range = &iconRanges[0])
             {
                 // this unmanaged memory must remain allocated for the entire run of rlImgui
-                FontAwesomeIcons.IconFontRanges = Marshal.AllocHGlobal(6);
-                Buffer.MemoryCopy(range, FontAwesomeIcons.IconFontRanges.ToPointer(), 6, 6);
-                iconsConfig.GlyphRanges = (uint*)FontAwesomeIcons.IconFontRanges.ToPointer();
+                Resources.FontAwesomeIcons.IconFontRanges = Marshal.AllocHGlobal(6);
+                Buffer.MemoryCopy(range, Resources.FontAwesomeIcons.IconFontRanges.ToPointer(), 6, 6);
+                iconsConfig.GlyphRanges = (uint*)Resources.FontAwesomeIcons.IconFontRanges.ToPointer();
 
                 using var stream = typeof(CopperImGui).Assembly.GetManifestResourceStream("CopperDevs.DearImGui.Resources.FontAwesomeData.txt");
                 using var reader = new StreamReader(stream!);
@@ -113,9 +113,9 @@ public static partial class CopperImGui
 
     internal static void UnloadFontAwesomeIcons()
     {
-        if (FontAwesomeIcons.IconFontRanges != IntPtr.Zero)
-            Marshal.FreeHGlobal(FontAwesomeIcons.IconFontRanges);
+        if (Resources.FontAwesomeIcons.IconFontRanges != IntPtr.Zero)
+            Marshal.FreeHGlobal(Resources.FontAwesomeIcons.IconFontRanges);
 
-        FontAwesomeIcons.IconFontRanges = IntPtr.Zero;
+        Resources.FontAwesomeIcons.IconFontRanges = IntPtr.Zero;
     }
 }

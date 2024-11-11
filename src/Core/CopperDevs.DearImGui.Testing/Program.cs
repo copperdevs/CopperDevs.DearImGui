@@ -24,7 +24,7 @@ public static class Program
         Window.Init(800, 480, "CopperDevs.DearImGui Example");
         SetWindowStyling();
 
-        CopperImGui.Setup<RlImGuiRenderer<RlImGuiBinding>>(true, true);
+        CopperImGui.Setup<RlImGuiRenderer<RlImGuiBinding>>();
         CopperImGui.PreRendered += () =>
         {
             CopperImGui.MenuBar(true, ("Item One", null));

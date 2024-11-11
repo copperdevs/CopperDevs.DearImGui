@@ -22,7 +22,7 @@ public static class Program
         Rl.InitWindow(800, 480, "CopperDevs.DearImGui Example");
         SetWindowStyling();
 
-        CopperImGui.Setup<RlImGuiRenderer<RlImGuiBinding>>(true, true); // setup the actual imgui layering, as well as enabling all the built in dearimgui windows
+        CopperImGui.Setup<RlImGuiRenderer<RlImGuiBinding>>(); // setup the actual imgui layering, as well as enabling all the built in dearimgui windows
         CopperImGui.ShowDearImGuiAboutWindow = true;
         CopperImGui.ShowDearImGuiDemoWindow = true;
         CopperImGui.ShowDearImGuiMetricsWindow = true;

@@ -7,17 +7,17 @@ public static partial class CopperImGui
 {
     private static bool configLoaded = false;
     private static bool styleLoaded = false;
-    
+
     private static void LoadConfig()
     {
         if (configLoaded)
             return;
-        
+
         configLoaded = true;
-        
+
         try
         {
-            if (dockingEnabled)
+            if (DockingEnabled)
                 ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.DockingEnable;
             ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.ViewportsEnable;
             ImGui.GetIO().ConfigFlags |= ImGuiConfigFlags.NavEnableKeyboard;
@@ -47,11 +47,11 @@ public static partial class CopperImGui
 
     private static void LoadStyle()
     {
-        if (styleLoaded)
+        if (styleLoaded || !settings.HasFlag(RenderingSettings.UseCustomStyling))
             return;
-        
+
         styleLoaded = true;
-        
+
         try
         {
             ImGui.StyleColorsDark();
