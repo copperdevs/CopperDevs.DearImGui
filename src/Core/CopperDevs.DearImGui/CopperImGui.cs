@@ -24,6 +24,7 @@ public static partial class CopperImGui
     private static bool dockingEnabled;
     private static bool showTabBar;
     private static bool reflectionWindows;
+    private static bool fontAwesomeIcons;
 
     private static ImGuiRenderer currentRenderer = null!;
 

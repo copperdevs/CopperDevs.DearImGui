@@ -2,7 +2,6 @@
 using System.Reflection;
 using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.Rendering;
-using CopperDevs.DearImGui.Rendering.Renderers;
 using ZeroElectric.Vinculum;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp_Vinculum.Internal.FieldRenderers;

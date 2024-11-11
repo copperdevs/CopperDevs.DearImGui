@@ -1,8 +1,6 @@
 ﻿using System.Reflection;
 using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.Rendering;
-using CopperDevs.DearImGui.Rendering.Renderers;
-
 using CopperTexture2D = CopperDevs.DearImGui.Renderer.Raylib.Bindings.Texture2D;
 using Texture2D = Raylib_cs.Texture2D;
 

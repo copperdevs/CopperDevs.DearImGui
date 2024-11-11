@@ -652,7 +652,7 @@ internal class ImGuiController : IDisposable
         fontTexture.SetMinFilter(TextureMinFilter.Linear);
 
         // Store our identifier
-        io.Fonts.SetTexID((IntPtr)fontTexture.GlTexture);
+        io.Fonts.SetTexID(new ImTextureID((IntPtr)fontTexture.GlTexture)); 
 
         // Restore state
         gl.BindTexture(GLEnum.Texture2D, (uint)lastTexture);

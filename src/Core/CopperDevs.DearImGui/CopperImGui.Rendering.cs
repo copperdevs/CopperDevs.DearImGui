@@ -1,5 +1,4 @@
-﻿using System.Diagnostics;
-using CopperDevs.DearImGui.Rendering;
+﻿using CopperDevs.DearImGui.Rendering;
 using CopperDevs.DearImGui.Utility;
 using Hexa.NET.ImGui;
 
@@ -15,11 +14,12 @@ public static partial class CopperImGui
     /// <summary>
     ///     Set up the entire system
     /// </summary>
+    /// <param name="rendererType">Type of your <see cref="ImGuiRenderer" /></param>
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
     /// <param name="useReflectionForWindows">Should reflection be used to find any windows</param>
-    /// <param name="rendererType">Type of your <see cref="ImGuiRenderer" /></param>
-    public static void Setup(Type rendererType, bool isDockingEnabled = true, bool shouldShowTabBar = false, bool useReflectionForWindows = true)
+    /// <param name="loadFontAwesomeIcons">Should Font Awesome icons font be loaded automatically</param>
+    public static void Setup(Type rendererType, bool isDockingEnabled = true, bool shouldShowTabBar = false, bool useReflectionForWindows = true, bool loadFontAwesomeIcons = false)
     {
         try
         {
@@ -29,6 +29,7 @@ public static partial class CopperImGui
             showTabBar = shouldShowTabBar;
             dockingEnabled = isDockingEnabled;
             reflectionWindows = useReflectionForWindows;
+            fontAwesomeIcons = loadFontAwesomeIcons;
 
             currentRenderer.Setup();
 
@@ -64,10 +65,11 @@ public static partial class CopperImGui
     /// <param name="isDockingEnabled">Should docking be enabled</param>
     /// <param name="shouldShowTabBar">Should the top main menu bar be rendered with all the windows in a dropdown</param>
     /// <param name="useReflectionForWindows">Should reflection be used to find any windows</param>
+    /// <param name="loadFontAwesomeIcons">Should Font Awesome icons font be loaded automatically</param>
     /// <typeparam name="TImGuiRenderer">Type of your <see cref="ImGuiRenderer" /></typeparam>
-    public static void Setup<TImGuiRenderer>(bool isDockingEnabled = true, bool shouldShowTabBar = false, bool useReflectionForWindows = true) where TImGuiRenderer : ImGuiRenderer, new()
+    public static void Setup<TImGuiRenderer>(bool isDockingEnabled = true, bool shouldShowTabBar = false, bool useReflectionForWindows = true, bool loadFontAwesomeIcons = true) where TImGuiRenderer : ImGuiRenderer, new()
     {
-        Setup(typeof(TImGuiRenderer), isDockingEnabled, shouldShowTabBar, useReflectionForWindows);
+        Setup(typeof(TImGuiRenderer), isDockingEnabled, shouldShowTabBar, useReflectionForWindows, useReflectionForWindows);
     }
 
     /// <summary>

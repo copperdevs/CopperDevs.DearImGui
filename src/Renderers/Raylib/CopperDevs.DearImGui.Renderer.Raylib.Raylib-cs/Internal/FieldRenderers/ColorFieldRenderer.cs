@@ -2,7 +2,6 @@
 using System.Reflection;
 using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.Rendering;
-using CopperDevs.DearImGui.Rendering.Renderers;
 using Raylib_cs;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_cs.Internal.FieldRenderers;
