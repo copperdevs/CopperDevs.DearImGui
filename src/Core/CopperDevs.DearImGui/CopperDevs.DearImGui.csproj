@@ -12,12 +12,12 @@
         <PackageProjectUrl>https://github.com/copperdevs/copperdevs.dearimgui</PackageProjectUrl>
         <RepositoryUrl>https://github.com/copperdevs/copperdevs.dearimgui</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
-        <AssemblyVersion>1.4.0</AssemblyVersion>
-        <FileVersion>1.4.0</FileVersion>
+        <AssemblyVersion>1.4.1</AssemblyVersion>
+        <FileVersion>1.4.1</FileVersion>
         <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
         <PackageLicenseFile>License.txt</PackageLicenseFile>
         <PackageReadmeFile>ReadMe.md</PackageReadmeFile>
-        <Version>1.4.0</Version>
+        <Version>1.4.1</Version>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
     </PropertyGroup>
 
