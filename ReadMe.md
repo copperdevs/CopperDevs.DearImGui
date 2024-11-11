@@ -9,7 +9,7 @@ Personally direct DearImGui didn't feel the best in C#, so I made this package t
 ## Installation
 
 ```bash
-dotnet add package CopperDevs.DearImGui --version 1.4.1
+dotnet add package CopperDevs.DearImGui --version 1.4.2
 ```
 
 Additionally, you need to install a relevant renderer package. There is currently two pre-made packages available.
