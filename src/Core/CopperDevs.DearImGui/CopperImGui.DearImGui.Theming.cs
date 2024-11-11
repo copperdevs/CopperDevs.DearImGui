@@ -5,8 +5,16 @@ namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
+    private static bool configLoaded = false;
+    private static bool styleLoaded = false;
+    
     private static void LoadConfig()
     {
+        if (configLoaded)
+            return;
+        
+        configLoaded = true;
+        
         try
         {
             if (dockingEnabled)
@@ -39,6 +47,11 @@ public static partial class CopperImGui
 
     private static void LoadStyle()
     {
+        if (styleLoaded)
+            return;
+        
+        styleLoaded = true;
+        
         try
         {
             ImGui.StyleColorsDark();

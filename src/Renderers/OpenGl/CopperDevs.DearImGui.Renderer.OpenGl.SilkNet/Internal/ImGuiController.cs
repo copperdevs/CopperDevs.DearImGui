@@ -48,6 +48,9 @@ internal class ImGuiController : IDisposable
         CopperImGui.LoadFonts();
 
         io.BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset;
+        
+        Utility.CallPrivateStaticMethod(typeof(CopperImGui), "LoadConfig");
+        Utility.CallPrivateStaticMethod(typeof(CopperImGui), "LoadStyle");
 
         CreateDeviceResources();
 
@@ -640,19 +643,20 @@ internal class ImGuiController : IDisposable
 
         // Build texture atlas
         var io = ImGui.GetIO();
-        ImGui.GetTexDataAsRGBA32(io.Fonts, &pixels, &width, &height, null);
+        ImGui.GetTexDataAsRGBA32(io.Fonts, &pixels, &width, &height);
+        
         // Load as RGBA 32-bit (75% of the memory is wasted, but default font is so small) because it is more likely to be compatible with user's existing shaders. If your ImTextureId represent a higher-level concept than just a GL texture id, consider calling GetTexDataAsAlpha8() instead to save on GPU memory.
 
         // Upload texture to graphics system
         gl.GetInteger(GLEnum.TextureBinding2D, out var lastTexture);
 
-        fontTexture = new Texture(gl, width, height, *pixels);
+        fontTexture = new Texture(gl, width, height, new IntPtr(pixels));
         fontTexture.Bind();
         fontTexture.SetMagFilter(TextureMagFilter.Linear);
         fontTexture.SetMinFilter(TextureMinFilter.Linear);
 
         // Store our identifier
-        io.Fonts.SetTexID(new ImTextureID((IntPtr)fontTexture.GlTexture)); 
+        io.Fonts.SetTexID(new ImTextureID(fontTexture.GlTexture)); 
 
         // Restore state
         gl.BindTexture(GLEnum.Texture2D, (uint)lastTexture);

@@ -2,6 +2,7 @@
 // The .NET Foundation licenses this file to you under the MIT license.
 
 using CopperDevs.Core.Utility;
+using CopperDevs.Logger;
 using Silk.NET.OpenGL;
 
 namespace CopperDevs.DearImGui.Renderer.OpenGl.SilkNet.Internal;
@@ -43,6 +44,7 @@ internal class Texture : IDisposable
 
         _gl.TexStorage2D(GLEnum.Texture2D, MipmapLevels, InternalFormat, Width, Height);
         _gl.TexSubImage2D(GLEnum.Texture2D, 0, 0, 0, Width, Height, PixelFormat.Bgra, PixelType.UnsignedByte, (void*)data);
+
 
         if (generateMipmaps)
             _gl.GenerateTextureMipmap(GlTexture);

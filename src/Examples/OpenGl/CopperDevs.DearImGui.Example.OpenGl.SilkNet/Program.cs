@@ -18,10 +18,7 @@ public static class Program
     {
         var windowOptions = WindowOptions.Default with
         {
-            Title = "CopperDevs.DearImGui Example",
-            PreferredDepthBufferBits = 24,
-            PreferredStencilBufferBits = 8,
-            API = new GraphicsAPI(ContextAPI.OpenGL, new APIVersion(3, 3)),
+            Title = "CopperDevs.DearImGui Example"
         };
 
         using var window = Window.Create(windowOptions);

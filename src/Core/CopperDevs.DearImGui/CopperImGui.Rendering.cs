@@ -30,9 +30,9 @@ public static partial class CopperImGui
             dockingEnabled = isDockingEnabled;
             reflectionWindows = useReflectionForWindows;
             fontAwesomeIcons = loadFontAwesomeIcons;
-
+            
             currentRenderer.Setup();
-
+            
             LoadConfig();
             LoadStyle();
 
