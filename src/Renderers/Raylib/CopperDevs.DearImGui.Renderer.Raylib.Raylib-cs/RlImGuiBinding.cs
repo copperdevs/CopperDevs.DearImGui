@@ -18,6 +18,7 @@ using rlMouseCursor = Raylib_cs.MouseCursor;
 using rlGamepadButton = Raylib_cs.GamepadButton;
 using rlGamepadAxis = Raylib_cs.GamepadAxis;
 using Rl = Raylib_cs.Raylib;
+using Vector2 = System.Numerics.Vector2;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_cs;
 

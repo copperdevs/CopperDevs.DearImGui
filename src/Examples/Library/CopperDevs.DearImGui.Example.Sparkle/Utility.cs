@@ -2,6 +2,7 @@ using CopperDevs.Core.Utility;
 using CopperDevs.Logger;
 using Raylib_CSharp.Windowing;
 using Sparkle.CSharp.Logging;
+using GameWindow = Raylib_CSharp.Windowing.Window;
 
 namespace CopperDevs.DearImGui.Example.Sparkle;
 
@@ -39,7 +40,7 @@ public static class Utility
         if (!WindowsApi.IsWindows11)
             return;
         
-        var handle = Window.GetHandle();
+        var handle = GameWindow.GetHandle();
 
         WindowsApi.SetDwmImmersiveDarkMode(handle, true);
         WindowsApi.SetDwmSystemBackdropType(handle, WindowsApi.SystemBackdropType.Acrylic);

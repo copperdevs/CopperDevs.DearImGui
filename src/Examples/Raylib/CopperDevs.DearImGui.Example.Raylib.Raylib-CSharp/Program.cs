@@ -5,6 +5,7 @@ using Raylib_CSharp.Colors;
 using Raylib_CSharp.Rendering;
 using Raylib_CSharp.Windowing;
 using static Raylib_CSharp.Raylib;
+using GameWindow = Raylib_CSharp.Windowing.Window;
 
 namespace CopperDevs.DearImGui.Example.Raylib.Raylib_CSharp;
 
@@ -21,7 +22,7 @@ public static class Program
             configFlags |= ConfigFlags.TransparentWindow;
 
         SetConfigFlags(configFlags);
-        Window.Init(800, 480, "CopperDevs.DearImGui Example");
+        GameWindow.Init(800, 480, "CopperDevs.DearImGui Example");
         SetWindowStyling();
 
         CopperImGui.Setup<RlImGuiRenderer<RlImGuiBinding>>(); // setup the actual imgui layering, as well as enabling all the built in dearimgui windows
@@ -31,11 +32,11 @@ public static class Program
         CopperImGui.ShowDearImGuiDebugLogWindow = true;
         CopperImGui.ShowDearImGuiIdStackToolWindow = true;
 
-        while (!Window.ShouldClose())
+        while (!GameWindow.ShouldClose())
             RenderGame();
 
         CopperImGui.Shutdown();
-        Window.Close();
+        GameWindow.Close();
     }
 
     private static void RenderGame() // this is in its own method so that WindowsApi.OnWindowResize can call it so the window gets redrawn on resize
@@ -53,7 +54,7 @@ public static class Program
         if (!WindowsApi.IsWindows11)
             return;
 
-        var handle = Window.GetHandle();
+        var handle = GameWindow.GetHandle();
 
         WindowsApi.SetDwmImmersiveDarkMode(handle, true);
         WindowsApi.SetDwmSystemBackdropType(handle, WindowsApi.SystemBackdropType.Acrylic);

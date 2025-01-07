@@ -1,14 +1,12 @@
 using System.Numerics;
-using CopperDevs.DearImGui.Rendering;
 
 namespace CopperDevs.DearImGui.Testing.Windows;
 
-[Window("Random Testing", WindowOpen = false)]
-public class RandomTestingWindow : BaseWindow
+public class RandomTestingWindow() : Window("Random Testing", false)
 {
     private Vector3 vector3 = Vector3.Zero;
     
-    public override void WindowUpdate()
+    public override void Render()
     {
         CopperImGui.DragValue(nameof(vector3), ref vector3);
     }
