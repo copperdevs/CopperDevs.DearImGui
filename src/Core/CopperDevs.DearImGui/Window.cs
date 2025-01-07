@@ -1,3 +1,5 @@
+using Hexa.NET.ImGui;
+
 namespace CopperDevs.DearImGui;
 
 public abstract class Window
@@ -19,4 +21,14 @@ public abstract class Window
     }
 
     public Guid GetId() => id;
+
+    public void SetWindowSettings(ImGuiWindowSettings windowSettings)
+    {
+        CopperImGui.SetWindowSettings(id, windowSettings);
+    }
+
+    public bool IsOpen()
+    {
+        
+    }
 }

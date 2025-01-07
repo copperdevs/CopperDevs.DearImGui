@@ -30,13 +30,12 @@ public static partial class CopperImGui
             LoadConfig();
             LoadStyle();
 
-            if (ReflectionWindows)
+            if (UseReflectionForWindows)
             {
                 Log.Debug("Loading windows");
 
-                LoadWindows().ForEach(attribute => windows.Add(new WindowData(attribute)));
-
-                windows.ForEach(instance => instance.StartWindow());
+                windows = LoadAllWindows();
+                windows.ForEach(instance => instance.OnLoad());
 
                 Log.Debug($"Loaded {windows.Count} windows");
             }
@@ -108,7 +107,7 @@ public static partial class CopperImGui
             Log.Info($"Shutting down the rendering for {typeof(CopperImGui)}");
 
             currentRenderer.Shutdown();
-            windows.ForEach(instance => instance.StopWindow());
+            windows.ForEach(instance => instance.Shutdown());
             UnloadFontAwesomeIcons();
         }
         catch (Exception e)
