@@ -30,3 +30,6 @@ CopperDevs.DearImGui.sln.DotSettings.user
 !/docs/api/index.md
 !/docs/api/toc.yml
 /docs/log.txt
+
+# vscode
+.vscode/*
