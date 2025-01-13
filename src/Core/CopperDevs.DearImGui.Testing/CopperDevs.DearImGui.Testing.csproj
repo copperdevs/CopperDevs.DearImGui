@@ -8,13 +8,15 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\Renderers\Raylib\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp.csproj"/>
-        <ProjectReference Include="..\..\Renderers\Raylib\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj"/>
-        <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
+        <ProjectReference
+            Include="..\..\Renderers\Raylib\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp\CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp.csproj" />
+        <ProjectReference
+            Include="..\..\Renderers\Raylib\CopperDevs.DearImGui.Renderer.Raylib\CopperDevs.DearImGui.Renderer.Raylib.csproj" />
+        <ProjectReference Include="..\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CopperDevs.Core" Version="1.1.3" />
+        <PackageReference Include="CopperDevs.Core" Version="1.1.10" />
         <PackageReference Include="CopperDevs.Logger" Version="1.0.1" />
     </ItemGroup>
 

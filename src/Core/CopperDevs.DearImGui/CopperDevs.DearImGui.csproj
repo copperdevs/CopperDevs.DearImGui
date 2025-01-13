@@ -30,9 +30,9 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="CopperDevs.Core" Version="1.1.3" />
+        <PackageReference Include="CopperDevs.Core" Version="1.1.10" />
         <PackageReference Include="CopperDevs.Logger" Version="1.0.1" />
-        <PackageReference Include="Hexa.NET.ImGui" Version="2.2.1" />
+        <PackageReference Include="Hexa.NET.ImGui" Version="2.2.4" />
     </ItemGroup>
 
     <ItemGroup>
@@ -81,7 +81,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <EmbeddedResource Include="Resources\FontAwesomeData.txt"/>
+        <EmbeddedResource Include="Resources\FontAwesomeData.txt" />
     </ItemGroup>
 
 </Project>
