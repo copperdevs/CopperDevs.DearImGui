@@ -263,17 +263,21 @@ internal static class rlImGui
         io.MousePos.X = 0;
         io.MousePos.Y = 0;
 
+        ImGuiPlatformIOPtr platformIO = ImGui.GetPlatformIO();
+
         // copy/paste callbacks
         unsafe
         {
-            setClipCallback = rlImGuiSetClipText;
-            // io.SetClipboardTextFn = Marshal.GetFunctionPointerForDelegate(setClipCallback);
-        
-            getClipCallback = rlImGuiGetClipText;
-            // io.GetClipboardTextFn = Marshal.GetFunctionPointerForDelegate(getClipCallback);
+            setClipCallback = new SetClipTextCallback(rlImGuiSetClipText);
+            platformIO.PlatformSetClipboardTextFn = (void*)Marshal.GetFunctionPointerForDelegate(setClipCallback);
+
+            getClipCallback = new GetClipTextCallback(rlImGuiGetClipText);
+            platformIO.PlatformGetClipboardTextFn = (void*)Marshal.GetFunctionPointerForDelegate(getClipCallback);
+
+            platformIO.PlatformClipboardUserData = null;
         }
-        
-        // io.ClipboardUserData = IntPtr.Zero;
+
+
         ReloadFonts();
     }
 
