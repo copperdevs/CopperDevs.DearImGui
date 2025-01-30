@@ -33,3 +33,6 @@ CopperDevs.DearImGui.sln.DotSettings.user
 
 # vscode
 .vscode/*
+
+# this shit
+CopperDevs.DearImGui.csproj.DotSettings
