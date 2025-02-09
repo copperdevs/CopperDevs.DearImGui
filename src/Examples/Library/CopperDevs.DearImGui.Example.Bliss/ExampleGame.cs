@@ -1,5 +1,6 @@
 using Bliss.CSharp.Windowing;
 using CopperDevs.Core.Utility;
+using CopperDevs.DearImGui.Renderer.Bliss;
 using Veldrid;
 
 namespace CopperDevs.DearImGui.Example.Bliss;
@@ -7,10 +8,9 @@ namespace CopperDevs.DearImGui.Example.Bliss;
 public class ExampleGame(ExampleGameOptions options) : SafeDisposable
 {
     public readonly ExampleGameOptions Options = options;
-    
+
     private IWindow window = null!;
     private GraphicsDevice graphicsDevice = null!;
-
 
     public void Setup()
     {
@@ -23,7 +23,13 @@ public class ExampleGame(ExampleGameOptions options) : SafeDisposable
             Window.GetPlatformDefaultBackend(),
             out graphicsDevice);
     }
-    
+
+    public void SetupImGui()
+    {
+        BlissRenderer.SetupReferences(window, graphicsDevice);
+        CopperImGui.Setup<BlissRenderer>(RenderingSettings.DockingEnabled | RenderingSettings.UseCustomStyling);
+    }
+
     public void Run()
     {
         while (window.Exists)
