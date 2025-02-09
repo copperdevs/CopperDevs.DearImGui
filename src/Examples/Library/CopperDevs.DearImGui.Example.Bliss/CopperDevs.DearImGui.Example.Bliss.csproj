@@ -8,8 +8,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CopperDevs.DearImGui.Renderer.Bliss\CopperDevs.DearImGui.Renderer.Bliss.csproj" />
-      <ProjectReference Include="..\src\Core\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
+      <ProjectReference Include="..\..\..\Core\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
+      <ProjectReference Include="..\..\..\Renderers\Library\CopperDevs.DearImGui.Renderer.Bliss\CopperDevs.DearImGui.Renderer.Bliss.csproj" />
     </ItemGroup>
 
 </Project>
