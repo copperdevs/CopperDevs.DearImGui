@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Publish - Bliss" type="DotNetFolderPublish" factoryName="Publish to folder">
+    <riderPublish configuration="Release" platform="Any CPU" runtime="Portable" target_folder="$PROJECT_DIR$/CopperDevs.DearImGui.Renderer.Bliss/bin/Release/net9.0/publish" target_framework="net9.0" uuid_high="7669320851697779423" uuid_low="-9061349648659039869" />
+    <method v="2" />
+  </configuration>
+</component>

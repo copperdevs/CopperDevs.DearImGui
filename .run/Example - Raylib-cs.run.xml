@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Example - Raylib-cs" type="DotNetProject" factoryName=".NET Project">
-    <option name="EXE_PATH" value="$PROJECT_DIR$/src/Examples/Raylib/CopperDevs.DearImGui.Example.Raylib.Raylib-cs/bin/Debug/net8.0/CopperDevs.DearImGui.Example.Raylib.Raylib-cs.exe" />
+    <option name="EXE_PATH" value="$PROJECT_DIR$/src/Examples/Raylib/CopperDevs.DearImGui.Example.Raylib.Raylib-cs/bin/Debug/net8.0/CopperDevs.DearImGui.Example.Raylib.Raylib-cs" />
     <option name="PROGRAM_PARAMETERS" value="" />
     <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/src/Examples/Raylib/CopperDevs.DearImGui.Example.Raylib.Raylib-cs/bin/Debug/net8.0" />
     <option name="PASS_PARENT_ENVS" value="1" />
