@@ -1,4 +1,6 @@
-﻿namespace CopperDevs.DearImGui.Example.Bliss;
+﻿using CopperDevs.DearImGui.Example.Bliss.Data;
+
+namespace CopperDevs.DearImGui.Example.Bliss;
 
 public static class Program
 {

@@ -1,8 +1,6 @@
-using Bliss.CSharp.Windowing;
-using CopperDevs.Core.Data;
 using Veldrid;
 
-namespace CopperDevs.DearImGui.Example.Bliss;
+namespace CopperDevs.DearImGui.Example.Bliss.Data;
 
 public record ExampleGameOptions
 {
@@ -21,11 +19,4 @@ public record ExampleGameOptions
     public WindowOptions WindowOptions = new();
 
     public static ExampleGameOptions Default => new();
-}
-
-public record WindowOptions
-{
-    public string Title = "Window";
-    public Vector2Int Size = new(1150, 680);
-    public WindowState Flags = WindowState.Resizable;
 }

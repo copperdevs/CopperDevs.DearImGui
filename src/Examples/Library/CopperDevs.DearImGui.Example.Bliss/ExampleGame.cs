@@ -1,5 +1,6 @@
 using Bliss.CSharp.Windowing;
 using CopperDevs.Core.Utility;
+using CopperDevs.DearImGui.Example.Bliss.Data;
 using CopperDevs.DearImGui.Renderer.Bliss;
 using Veldrid;
 using BlissWindow = Bliss.CSharp.Windowing.Window;
