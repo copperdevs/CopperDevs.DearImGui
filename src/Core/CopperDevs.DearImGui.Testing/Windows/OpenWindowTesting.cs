@@ -1,12 +1,9 @@
-using CopperDevs.DearImGui.Rendering;
-
 namespace CopperDevs.DearImGui.Testing.Windows;
 
-[Window("Open Window Testing", WindowOpen = false)]
-public class OpenWindowTesting : BaseWindow
+public class OpenWindowTesting() : Window("Open Window Testing", false)
 {
-    public override void WindowUpdate()
+    public override void Render()
     {
-        CopperImGui.Button("open random testing window", CopperImGui.ShowWindow<RandomTestingWindow>);
+        // CopperImGui.Button("open random testing window", CopperImGui.ShowWindow<RandomTestingWindow>);
     }
 }

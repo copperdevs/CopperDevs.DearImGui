@@ -5,7 +5,9 @@ riderModule.iml
 /_ReSharper.Caches/
 temp-notes.txt
 .idea
+
 CopperDevs.DearImGui.sln.DotSettings.user
+CopperDevs.DearImGui.csproj.DotSettings
 
 # rider default crap
 /shelf/
@@ -36,3 +38,6 @@ CopperDevs.DearImGui.sln.DotSettings.user
 
 # this shit
 CopperDevs.DearImGui.csproj.DotSettings
+
+# mac moment
+.DS_Store

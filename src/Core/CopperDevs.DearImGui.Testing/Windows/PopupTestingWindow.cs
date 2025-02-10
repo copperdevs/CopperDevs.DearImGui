@@ -1,26 +1,23 @@
-using CopperDevs.DearImGui.Rendering;
-
 namespace CopperDevs.DearImGui.Testing.Windows;
 
-[Window("Popup Testing", WindowOpen = false)]
-public class PopupTestingWindow : BaseWindow
+public class PopupTestingWindow() : Window("Popup Testing", false)
 {
-    public override void WindowStart()
+    public override void OnLoad()
     {
         CopperImGui.RegisterPopup("test-popup", TestPopup);
     }
 
-    public override void WindowStop()
-    {
-        CopperImGui.DeregisterPopup("test-popup");
-    }
-
-    public override void WindowUpdate()
+    public override void Render()
     {
         CopperImGui.Button("open popup", () => CopperImGui.ShowPopup("test-popup"));
         // CopperImGui.ForceRenderPopup("test-popup");
     }
 
+    public override void Shutdown()
+    {
+        CopperImGui.DeregisterPopup("test-popup");
+    }
+    
     private void TestPopup()
     {
         CopperImGui.Text("Test popup");

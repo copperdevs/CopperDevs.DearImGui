@@ -1,4 +1,3 @@
-using System.Numerics;
 using CopperDevs.Core.Data;
 using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
 using CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp.Internal.FieldRenderers;
@@ -8,7 +7,6 @@ using Raylib_CSharp.Images;
 using Raylib_CSharp.Interact;
 using Raylib_CSharp.Rendering.Gl;
 using Raylib_CSharp.Textures;
-using Raylib_CSharp.Windowing;
 using ConfigFlags = CopperDevs.DearImGui.Renderer.Raylib.Bindings.ConfigFlags;
 using GamepadAxis = CopperDevs.DearImGui.Renderer.Raylib.Bindings.GamepadAxis;
 using GamepadButton = CopperDevs.DearImGui.Renderer.Raylib.Bindings.GamepadButton;
@@ -23,6 +21,9 @@ using rlConfigFlags = Raylib_CSharp.Windowing.ConfigFlags;
 using rlMouseCursor = Raylib_CSharp.Interact.MouseCursor;
 using rlGamepadButton = Raylib_CSharp.Interact.GamepadButton;
 using rlGamepadAxis = Raylib_CSharp.Interact.GamepadAxis;
+
+using GameWindow = Raylib_CSharp.Windowing.Window;
+using Vector2 = System.Numerics.Vector2;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp;
 
@@ -70,17 +71,17 @@ public class RlImGuiBinding : RlBinding
 
     public override bool WindowIsFocused()
     {
-        return Window.IsFocused();
+        return GameWindow.IsFocused();
     }
 
     public override string WindowGetClipboardText()
     {
-        return Window.GetClipboardText();
+        return GameWindow.GetClipboardText();
     }
 
     public override void WindowSetClipboardText(string text)
     {
-        Window.SetClipboardText(text);
+        GameWindow.SetClipboardText(text);
     }
 
     public override bool InputIsMouseButtonPressed(MouseButton button)
@@ -95,42 +96,42 @@ public class RlImGuiBinding : RlBinding
 
     public override bool WindowIsFullscreen()
     {
-        return Window.IsFullscreen();
+        return GameWindow.IsFullscreen();
     }
 
     public override int WindowGetCurrentMonitor()
     {
-        return Window.GetCurrentMonitor();
+        return GameWindow.GetCurrentMonitor();
     }
 
     public override int WindowGetMonitorWidth(int monitor)
     {
-        return Window.GetMonitorWidth(monitor);
+        return GameWindow.GetMonitorWidth(monitor);
     }
 
     public override int WindowGetMonitorHeight(int monitor)
     {
-        return Window.GetMonitorHeight(monitor);
+        return GameWindow.GetMonitorHeight(monitor);
     }
 
     public override int WindowGetScreenWidth()
     {
-        return Window.GetScreenWidth();
+        return GameWindow.GetScreenWidth();
     }
 
     public override int WindowGetScreenHeight()
     {
-        return Window.GetScreenHeight();
+        return GameWindow.GetScreenHeight();
     }
 
     public override bool WindowIsState(ConfigFlags flag)
     {
-        return Window.IsState((rlConfigFlags)flag);
+        return GameWindow.IsState((rlConfigFlags)flag);
     }
 
     public override Vector2 WindowGetScaleDPI()
     {
-        return Window.GetScaleDPI();
+        return GameWindow.GetScaleDPI();
     }
 
     public override float TimeGetFrameTime()

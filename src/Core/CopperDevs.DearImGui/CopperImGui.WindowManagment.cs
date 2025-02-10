@@ -1,118 +1,204 @@
 ﻿using CopperDevs.DearImGui.Rendering;
 using CopperDevs.DearImGui.Utility;
 using Hexa.NET.ImGui;
+using WindowCreationData = (string, bool, Hexa.NET.ImGui.ImGuiWindowFlags);
 
 namespace CopperDevs.DearImGui;
 
 public static partial class CopperImGui
 {
-    private static WindowData? currentlyRenderingWindow = null!;
+    private static readonly Dictionary<Guid, InternalWindowData> Windows = [];
 
-    private static List<WindowAttribute> LoadWindows()
+    private static Guid currentlyRenderingWindow;
+
+    internal static WindowCreationData CurrentlyCreatingWindowData;
+
+    /// <summary>
+    /// Get the <see cref="Guid"/> of a window from its type
+    /// </summary>
+    /// <typeparam name="T">Type of the window to check</typeparam>
+    /// <returns>The found <see cref="Guid"/> of the window. Returns null if no window with the type was found</returns>
+    public static Guid GetWindowId<T>() where T : Window, new() => GetWindowId(typeof(T));
+
+    /// <summary>
+    /// Add a new window
+    /// </summary>
+    /// <typeparam name="T">Type of the window to add</typeparam>
+    public static T AddWindow<T>() where T : Window, new() => (T)AddWindow(typeof(T));
+
+    /// <summary>
+    /// Remove a window
+    /// </summary>
+    /// <typeparam name="T">Type of the window to remove</typeparam>
+    public static void RemoveWindow<T>() where T : Window, new() => RemoveWindow(typeof(T));
+
+    /// <summary>
+    /// Remove an already created window
+    /// </summary>
+    /// <param name="window">Window object</param>
+    public static void RemoveWindow(Window window) => RemoveWindow(window.GetType());
+
+    /// <summary>
+    /// Checks if a window type has been added
+    /// </summary>
+    /// <typeparam name="T">Type of the window to check</typeparam>
+    /// <returns>True if the window was found</returns>
+    public static bool ContainsWindowType<T>() where T : Window, new() => WindowsContainsType(typeof(T));
+
+    /// <summary>
+    /// Get the created window from its type
+    /// </summary>
+    /// <typeparam name="T">Type of the window to check</typeparam>
+    /// <returns></returns>
+    public static T? GetWindowInstance<T>() where T : Window, new() => (T?)GetWindowInstance(typeof(T));
+
+    /// <summary>
+    /// Checks if a window is currently open
+    /// </summary>
+    /// <typeparam name="T">Type of the window to check</typeparam>
+    /// <returns>True if the window is open</returns>
+    public static bool IsWindowOpen<T>() where T : Window, new() => IsWindowOpen(typeof(T));
+
+    /// <summary>
+    /// Checks if a window is currently open
+    /// </summary>
+    /// <param name="id"><see cref="Guid"/> of the window to check</param>
+    /// <returns>True if the window is open</returns>
+    public static bool IsWindowOpen(Guid id) => Windows[id].IsOpen;
+
+    private static bool CurrentlyRenderingWindowHasFlag(ImGuiWindowFlags flag) => Windows[currentlyRenderingWindow].WindowFlags.HasFlag(flag);
+    private static string GetWindowTitle(Guid id) => Windows[id].Title;
+    private static bool IsWindowOpen(Type type) => Windows[GetWindowId(type)].IsOpen;
+    private static Guid GetWindowId(Type type) => Windows.FirstOrDefault(x => x.Value.Type == type, new KeyValuePair<Guid, InternalWindowData>(Guid.Empty, null!)).Key;
+    private static bool WindowsContainsType(Type type) => Windows.Values.Any(window => window.Type == type);
+
+    private static Window AddWindow(Type type)
     {
-        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
-        var targetAttribute = typeof(WindowAttribute);
+        if (type == typeof(Window))
+            return null!;
 
-        var createdObjects = new List<WindowAttribute>();
+        if (WindowsContainsType(type))
+        {
+            Log.Warning($"Trying to add window of type {type}, even though it was already added.");
+            return null!;
+        }
+
+        if (type.HasAttribute<DebugOnlyAttribute>() && IsDebug)
+            return null!;
+
+        if (type.HasAttribute<DisabledAttribute>())
+        {
+            if (!UseReflectionForWindows)
+                Log.Warning($"Trying to add window of type {type}, even though it was disabled.");
+            return null!;
+        }
+
+        var createdWindow = (Window)Activator.CreateInstance(type)!;
+
+        Windows.Add(createdWindow.GetId(), new InternalWindowData(createdWindow, type, CurrentlyCreatingWindowData));
+
+
+        createdWindow.OnLoad();
+
+        return createdWindow;
+    }
+
+    private static void RemoveWindow(Type type)
+    {
+        if (type == typeof(Window))
+            return;
+
+        var id = GetWindowId(type);
+
+        if (id == Guid.Empty)
+            return;
+
+        Windows[id].TargetWindow.Shutdown();
+
+        Windows.Remove(id);
+    }
+
+    private static Window? GetWindowInstance(Type type)
+    {
+        if (type == typeof(Window))
+            return null;
+
+        if (!WindowsContainsType(type))
+        {
+            Log.Warning($"Trying to get window instance of type {type}, even though it wasn't added.");
+            return null;
+        }
+
+        var id = GetWindowId(type);
+
+        return id == Guid.Empty ? null : Windows[id].TargetWindow;
+    }
+
+    private static void LoadAllWindowsWithReflection()
+    {
+        if (!UseReflectionForWindows)
+            return;
+
+        var assemblies = AppDomain.CurrentDomain.GetAssemblies();
 
         foreach (var assembly in assemblies)
         foreach (var type in assembly.GetTypes())
         {
-            if (type.GetCustomAttributes(targetAttribute, true).Length <= 0)
+            if (!type.IsAssignableTo(typeof(Window)))
                 continue;
 
-            if (Attribute.GetCustomAttribute(type, typeof(DisabledAttribute)) is not null)
-                continue;
-
-            if (Attribute.GetCustomAttribute(type, typeof(DebugOnlyAttribute)) is not null && !IsDebug)
-                continue;
-
-            var attribute = (WindowAttribute)type.GetCustomAttribute(targetAttribute)!;
-            attribute.GetMethods(Activator.CreateInstance(type)!);
-            Log.Debug($"Found and loaded {type.FullName} window");
-            createdObjects.Add(attribute);
+            AddWindow(type);
         }
+    }
 
-        return createdObjects;
+    private static void ShutdownAllWindows()
+    {
+        foreach (var window in Windows.Values)
+        {
+            RemoveWindow(window.TargetWindow);
+        }
     }
 
     private static void RenderWindows()
     {
-        foreach (var window in windows)
+        foreach (var window in Windows.Values)
         {
-            if (ShowTabBar)
+            if (ShowWindowsOnMenuBar)
                 if (ImGui.BeginMainMenuBar())
                 {
                     if (ImGui.BeginMenu("Windows"))
                     {
-                        ImGui.MenuItem(window.WindowName, string.Empty, ref window.WindowOpen);
+                        ImGui.MenuItem(window.Title, string.Empty, ref window.IsOpen);
                         ImGui.EndMenu();
                     }
 
                     ImGui.EndMainMenuBar();
                 }
 
-            if (!window.WindowOpen)
+            if (!window.IsOpen)
                 continue;
 
-            currentlyRenderingWindow = window;
+            currentlyRenderingWindow = window.Id;
 
-            if (ImGui.Begin(window.WindowName, ref window.WindowOpen, window.WindowFlags)) window.UpdateWindow();
+            if (ImGui.Begin(window.Title, ref window.IsOpen, window.WindowFlags))
+                window.TargetWindow.Render();
 
             ImGui.End();
 
-            currentlyRenderingWindow = null;
+            currentlyRenderingWindow = Guid.Empty;
         }
     }
 
-    /// <summary>
-    ///     Get the loaded instance of a specific window
-    /// </summary>
-    /// <typeparam name="T">Type of the window you want to get</typeparam>
-    /// <returns>The instance of the window</returns>
-    public static WindowData? GetWindow<T>() where T : class
+    private class InternalWindowData(Window window, Type type, WindowCreationData creationData)
     {
-        return windows.FirstOrDefault(window => window.TargetClass.GetType() == typeof(T));
-    }
+        public readonly Window TargetWindow = window;
+        public readonly Type Type = type;
 
-    /// <summary>
-    /// Returns the created instance of the window 
-    /// </summary>
-    /// <typeparam name="T">Type of the window you want to get</typeparam>
-    /// <returns>Instance of the target window</returns>
-    /// <remarks>Use <see cref="GetWindow{T}"/> instead. This is here for legacy reasons.</remarks>
-    [Obsolete("Since windows have been moved from a class inheritance solution to using attributes, there is no reason to get the class. Use GetWindow<T> instead.")]
-    public static T? GetWindowClass<T>() where T : class
-    {
-        return windows.FirstOrDefault(window => window.TargetClass.GetType() == typeof(T))!.TargetClass as T;
-    }
+        public readonly string Title = creationData.Item1;
+        public readonly ImGuiWindowFlags WindowFlags = creationData.Item3;
 
-    /// <summary>
-    /// Opens a target window
-    /// </summary>
-    /// <typeparam name="T">Type of the window</typeparam>
-    public static void ShowWindow<T>() where T : class
-    {
-        GetWindow<T>()!.Value.WindowOpen = true;
-    }
+        public bool IsOpen = creationData.Item2;
 
-    /// <summary>
-    /// Hides a target window
-    /// </summary>
-    /// <typeparam name="T">Type of the window</typeparam>
-    public static void HideWindow<T>() where T : class
-    {
-        GetWindow<T>()!.Value.WindowOpen = true;
-    }
-
-    /// <summary>
-    /// Load a window to be rendered
-    /// </summary>
-    /// <typeparam name="T">Type of window to load</typeparam>
-    public static void RegisterWindow<T>() where T : BaseWindow, new()
-    {
-        var window = new WindowData(new T());
-        window.StartWindow();
-        windows.Add(window);
+        public Guid Id => TargetWindow.GetId();
     }
 }

@@ -63,7 +63,7 @@ public static partial class CopperImGui
 
     internal static void LoadFontAwesomeIcons()
     {
-        if (!FontAwesomeIcons)
+        if (!FontAwesomeIconsEnabled)
             return;
         
         Log.Warning("FontAwesome icons are currently not supported.");

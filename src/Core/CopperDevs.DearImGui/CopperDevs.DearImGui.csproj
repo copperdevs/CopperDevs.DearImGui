@@ -32,7 +32,7 @@
     <ItemGroup>
         <PackageReference Include="CopperDevs.Core" Version="1.1.11" />
         <PackageReference Include="CopperDevs.Logger" Version="1.0.1" />
-        <PackageReference Include="Hexa.NET.ImGui" Version="2.2.5" />
+        <PackageReference Include="Hexa.NET.ImGui" Version="2.2.6" />
     </ItemGroup>
 
     <ItemGroup>

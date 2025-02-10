@@ -5,6 +5,7 @@ using Raylib_CSharp.Colors;
 using Raylib_CSharp.Rendering;
 using Raylib_CSharp.Windowing;
 using static Raylib_CSharp.Raylib;
+using GameWindow = Raylib_CSharp.Windowing.Window;
 
 namespace CopperDevs.DearImGui.Testing;
 
@@ -21,7 +22,7 @@ public static class Program
         if (WindowsApi.IsWindows11 && TransparentWindow) configFlags |= ConfigFlags.TransparentWindow;
 
         SetConfigFlags(configFlags);
-        Window.Init(800, 480, "CopperDevs.DearImGui Example");
+        GameWindow.Init(800, 480, "CopperDevs.DearImGui Example");
         SetWindowStyling();
 
         CopperImGui.Setup<RlImGuiRenderer<RlImGuiBinding>>();
@@ -34,11 +35,11 @@ public static class Program
             CopperImGui.MenuBar(true, ("Item Five", null));
         };
 
-        while (!Window.ShouldClose())
+        while (!GameWindow.ShouldClose())
             RenderGame();
 
         CopperImGui.Shutdown();
-        Window.Close();
+        GameWindow.Close();
     }
 
     private static void RenderGame()
@@ -56,7 +57,7 @@ public static class Program
         if (!WindowsApi.IsWindows11)
             return;
         
-        var handle = Window.GetHandle();
+        var handle = GameWindow.GetHandle();
 
         WindowsApi.SetDwmImmersiveDarkMode(handle, true);
         WindowsApi.SetDwmSystemBackdropType(handle, WindowsApi.SystemBackdropType.Acrylic);

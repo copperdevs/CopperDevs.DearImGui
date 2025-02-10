@@ -17,9 +17,9 @@ public enum RenderingSettings
     DockingEnabled = 1 << 0,
 
     /// <summary>
-    /// Should the top main menu bar be rendered with all the windows in a dropdown<
+    /// Should the main menu bar render all registered windows in a 'Windows' dropdown 
     /// </summary>
-    ShowTabBar = 1 << 1,
+    ShowWindowsOnMenuBar = 1 << 1,
 
     /// <summary>
     /// Should reflection be used to find any windows
@@ -39,5 +39,5 @@ public enum RenderingSettings
     /// <summary>
     /// Everything enabled
     /// </summary>
-    Everything = DockingEnabled | ShowTabBar | ReflectionForWindows | FontAwesomeIcons | UseCustomStyling,
+    Everything = DockingEnabled | ShowWindowsOnMenuBar | ReflectionForWindows | FontAwesomeIcons | UseCustomStyling,
 }
