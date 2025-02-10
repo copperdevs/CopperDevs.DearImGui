@@ -22,11 +22,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\..\..\Core\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj"/>
+        <ProjectReference Include="..\..\..\Core\CopperDevs.DearImGui\CopperDevs.DearImGui.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="CopperDevs.Core" Version="1.1.3" />
+        <PackageReference Include="CopperDevs.Core" Version="1.1.11" />
         <PackageReference Include="CopperDevs.Logger" Version="1.0.1" />
         <PackageReference Include="Silk.NET.Input.Common" Version="2.22.0" />
         <PackageReference Include="Silk.NET.Input.Extensions" Version="2.22.0" />
@@ -46,10 +46,10 @@
     </ItemGroup>
     
     <ItemGroup>
-        <None Remove="Resources\shader.frag"/>
-        <EmbeddedResource Include="Resources\shader.frag"/>
-        <None Remove="Resources\shader.vert"/>
-        <EmbeddedResource Include="Resources\shader.vert"/>
+        <None Remove="Resources\shader.frag" />
+        <EmbeddedResource Include="Resources\shader.frag" />
+        <None Remove="Resources\shader.vert" />
+        <EmbeddedResource Include="Resources\shader.vert" />
     </ItemGroup>
 
 </Project>

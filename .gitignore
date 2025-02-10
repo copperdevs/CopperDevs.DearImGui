@@ -32,3 +32,9 @@ CopperDevs.DearImGui.csproj.DotSettings
 !/docs/api/index.md
 !/docs/api/toc.yml
 /docs/log.txt
+
+# vscode
+.vscode/*
+
+# this shit
+CopperDevs.DearImGui.csproj.DotSettings
