@@ -6,8 +6,19 @@ public abstract class Window
 {
     private Guid id = Guid.NewGuid();
 
-    public Window(string name, bool open = true)
+    public Window(string name)
     {
+        CopperImGui.CurrentlyCreatingWindowData = (name, true, ImGuiWindowFlags.None);
+    }
+
+    public Window(string name, bool open)
+    {
+        CopperImGui.CurrentlyCreatingWindowData = (name, open, ImGuiWindowFlags.None);
+    }
+
+    public Window(string name, bool open, ImGuiWindowFlags flags)
+    {
+        CopperImGui.CurrentlyCreatingWindowData = (name, open, flags);
     }
 
     public abstract void Render();
@@ -21,14 +32,5 @@ public abstract class Window
     }
 
     public Guid GetId() => id;
-
-    public void SetWindowSettings(ImGuiWindowSettings windowSettings)
-    {
-        CopperImGui.SetWindowSettings(id, windowSettings);
-    }
-
-    public bool IsOpen()
-    {
-        
-    }
+    public bool IsOpen() => CopperImGui.IsWindowOpen(id);
 }
