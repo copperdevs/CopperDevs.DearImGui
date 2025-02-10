@@ -2,6 +2,7 @@ using Bliss.CSharp.Windowing;
 using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.Renderer.Bliss;
 using Veldrid;
+using BlissWindow = Bliss.CSharp.Windowing.Window;
 
 namespace CopperDevs.DearImGui.Example.Bliss;
 
@@ -14,13 +15,13 @@ public class ExampleGame(ExampleGameOptions options) : SafeDisposable
 
     public void Setup()
     {
-        window = Window.CreateWindow(WindowType.Sdl3,
+        window = BlissWindow.CreateWindow(WindowType.Sdl3,
             Options.WindowOptions.Size.X,
             Options.WindowOptions.Size.Y,
             Options.WindowOptions.Title,
             Options.WindowOptions.Flags,
             Options.GraphicsDeviceOptions,
-            Window.GetPlatformDefaultBackend(),
+            BlissWindow.GetPlatformDefaultBackend(),
             out graphicsDevice);
     }
 
