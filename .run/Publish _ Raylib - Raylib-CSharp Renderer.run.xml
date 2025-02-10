@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="Publish - Raylib-CSharp Renderer" type="DotNetFolderPublish" factoryName="Publish to folder">
+  <configuration default="false" name="Publish | Raylib - Raylib-CSharp Renderer" type="DotNetFolderPublish" factoryName="Publish to folder">
     <riderPublish configuration="Release" platform="Any CPU" runtime="Portable" target_folder="$PROJECT_DIR$/src/Renderers/Raylib/CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp/bin/Release/net8.0/publish" target_framework="net8.0" uuid_high="-7076885502142233198" uuid_low="-7352315353011297057" />
     <method v="2" />
   </configuration>

@@ -1,5 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Publish all projects" type="CompoundRunConfigurationType">
+    <toRun name="Publish - Bliss" type="DotNetFolderPublish" />
     <toRun name="Publish - Core" type="DotNetFolderPublish" />
     <toRun name="Publish - OpenGl (Silk.Net)" type="DotNetFolderPublish" />
     <toRun name="Publish - Raylib Core" type="DotNetFolderPublish" />
