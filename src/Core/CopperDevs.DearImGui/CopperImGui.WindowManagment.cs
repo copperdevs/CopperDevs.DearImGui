@@ -13,42 +13,84 @@ public static partial class CopperImGui
 
     internal static WindowCreationData CurrentlyCreatingWindowData;
 
+    /// <summary>
+    /// Get the <see cref="Guid"/> of a window from its type
+    /// </summary>
+    /// <typeparam name="T">Type of the window to check</typeparam>
+    /// <returns>The found <see cref="Guid"/> of the window. Returns null if no window with the type was found</returns>
     public static Guid GetWindowId<T>() where T : Window, new() => GetWindowId(typeof(T));
-    public static void AddWindow<T>() where T : Window, new() => AddWindow(typeof(T));
+
+    /// <summary>
+    /// Add a new window
+    /// </summary>
+    /// <typeparam name="T">Type of the window to add</typeparam>
+    public static T AddWindow<T>() where T : Window, new() => (T)AddWindow(typeof(T));
+
+    /// <summary>
+    /// Remove a window
+    /// </summary>
+    /// <typeparam name="T">Type of the window to remove</typeparam>
     public static void RemoveWindow<T>() where T : Window, new() => RemoveWindow(typeof(T));
+
+    /// <summary>
+    /// Remove an already created window
+    /// </summary>
+    /// <param name="window">Window object</param>
     public static void RemoveWindow(Window window) => RemoveWindow(window.GetType());
+
+    /// <summary>
+    /// Checks if a window type has been added
+    /// </summary>
+    /// <typeparam name="T">Type of the window to check</typeparam>
+    /// <returns>True if the window was found</returns>
     public static bool ContainsWindowType<T>() where T : Window, new() => WindowsContainsType(typeof(T));
+
+    /// <summary>
+    /// Get the created window from its type
+    /// </summary>
+    /// <typeparam name="T">Type of the window to check</typeparam>
+    /// <returns></returns>
     public static T? GetWindowInstance<T>() where T : Window, new() => (T?)GetWindowInstance(typeof(T));
+
+    /// <summary>
+    /// Checks if a window is currently open
+    /// </summary>
+    /// <typeparam name="T">Type of the window to check</typeparam>
+    /// <returns>True if the window is open</returns>
     public static bool IsWindowOpen<T>() where T : Window, new() => IsWindowOpen(typeof(T));
+
+    /// <summary>
+    /// Checks if a window is currently open
+    /// </summary>
+    /// <param name="id"><see cref="Guid"/> of the window to check</param>
+    /// <returns>True if the window is open</returns>
     public static bool IsWindowOpen(Guid id) => Windows[id].IsOpen;
 
-
     private static bool CurrentlyRenderingWindowHasFlag(ImGuiWindowFlags flag) => Windows[currentlyRenderingWindow].WindowFlags.HasFlag(flag);
-    private static ImGuiWindowFlags GetWindowFlags(Guid id) => Windows[id].WindowFlags;
     private static string GetWindowTitle(Guid id) => Windows[id].Title;
     private static bool IsWindowOpen(Type type) => Windows[GetWindowId(type)].IsOpen;
     private static Guid GetWindowId(Type type) => Windows.FirstOrDefault(x => x.Value.Type == type, new KeyValuePair<Guid, InternalWindowData>(Guid.Empty, null!)).Key;
     private static bool WindowsContainsType(Type type) => Windows.Values.Any(window => window.Type == type);
 
-    private static void AddWindow(Type type)
+    private static Window AddWindow(Type type)
     {
         if (type == typeof(Window))
-            return;
+            return null!;
 
         if (WindowsContainsType(type))
         {
             Log.Warning($"Trying to add window of type {type}, even though it was already added.");
-            return;
+            return null!;
         }
 
         if (type.HasAttribute<DebugOnlyAttribute>() && IsDebug)
-            return;
+            return null!;
 
         if (type.HasAttribute<DisabledAttribute>())
         {
             if (!UseReflectionForWindows)
                 Log.Warning($"Trying to add window of type {type}, even though it was disabled.");
-            return;
+            return null!;
         }
 
         var createdWindow = (Window)Activator.CreateInstance(type)!;
@@ -57,6 +99,8 @@ public static partial class CopperImGui
 
 
         createdWindow.OnLoad();
+
+        return createdWindow;
     }
 
     private static void RemoveWindow(Type type)
