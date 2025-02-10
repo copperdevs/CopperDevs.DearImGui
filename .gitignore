@@ -38,3 +38,6 @@ CopperDevs.DearImGui.csproj.DotSettings
 
 # this shit
 CopperDevs.DearImGui.csproj.DotSettings
+
+# mac moment
+.DS_Store
