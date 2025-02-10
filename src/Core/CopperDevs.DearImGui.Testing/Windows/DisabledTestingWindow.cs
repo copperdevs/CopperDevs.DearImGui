@@ -2,8 +2,10 @@ using CopperDevs.DearImGui.Rendering;
 
 namespace CopperDevs.DearImGui.Testing.Windows;
 
-[Window("Disabled Testing"), Disabled]
-public class DisabledTestingWindow : BaseWindow
+[Disabled]
+public class DisabledTestingWindow() : Window("Disabled Testing", false)
 {
-    
+    public override void Render()
+    {
+    }
 }

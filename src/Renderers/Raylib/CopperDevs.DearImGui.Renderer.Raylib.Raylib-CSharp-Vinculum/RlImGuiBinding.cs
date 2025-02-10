@@ -1,4 +1,3 @@
-using System.Numerics;
 using CopperDevs.Core.Data;
 using CopperDevs.DearImGui.Renderer.Raylib.Bindings;
 using CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp_Vinculum.Internal.FieldRenderers;
@@ -17,6 +16,7 @@ using rlMouseCursor = ZeroElectric.Vinculum.MouseCursor;
 using rlGamepadButton = ZeroElectric.Vinculum.GamepadButton;
 using rlGamepadAxis = ZeroElectric.Vinculum.GamepadAxis;
 using Rl = ZeroElectric.Vinculum.Raylib;
+using Vector2 = System.Numerics.Vector2;
 
 namespace CopperDevs.DearImGui.Renderer.Raylib.Raylib_CSharp_Vinculum;
 

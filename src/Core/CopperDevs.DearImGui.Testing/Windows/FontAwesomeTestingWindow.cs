@@ -1,22 +1,20 @@
-using CopperDevs.DearImGui.Rendering;
 using CopperDevs.DearImGui.Resources;
 using CopperDevs.DearImGui.Utility;
 
 namespace CopperDevs.DearImGui.Testing.Windows;
 
-[Window("Font Awesome", WindowOpen = false)]
-public class FontAwesomeTestingWindow : BaseWindow
+public class FontAwesomeTestingWindow() : Window("Font Awesome", false)
 {
     private List<string> values = [];
 
-    public override void WindowStart()
+    public override void OnLoad()
     {
         Task.Run(() => { values = typeof(FontAwesomeIcons).GetAllPublicConstantValues<string>(); });
     }
 
-
-    public override void WindowUpdate()
+    public override void Render()
     {
-        foreach (var value in values) CopperImGui.Text(value);
+        foreach (var value in values)
+            CopperImGui.Text(value);
     }
 }

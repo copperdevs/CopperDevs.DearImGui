@@ -7,6 +7,8 @@ using Silk.NET.Input;
 using Silk.NET.OpenGL;
 using Silk.NET.Windowing;
 
+using SilkWindow = Silk.NET.Windowing.Window;
+
 namespace CopperDevs.DearImGui.Example.OpenGl.SilkNet;
 
 [SuppressMessage("ReSharper", "AccessToDisposedClosure")]
@@ -21,7 +23,7 @@ public static class Program
             Title = "CopperDevs.DearImGui Example"
         };
 
-        using var window = Window.Create(windowOptions);
+        using var window = SilkWindow.Create(windowOptions);
 
         window.Load += () =>
         {

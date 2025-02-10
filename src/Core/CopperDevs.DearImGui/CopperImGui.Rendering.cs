@@ -7,11 +7,6 @@ namespace CopperDevs.DearImGui;
 public static partial class CopperImGui
 {
     /// <summary>
-    /// ID of the main dockspace
-    /// </summary>
-    public static uint DockSpaceId { get; private set; }
-
-    /// <summary>
     ///     Set up the entire system
     /// </summary>
     /// <param name="rendererType">Type of your <see cref="ImGuiRenderer" /></param>
@@ -24,21 +19,19 @@ public static partial class CopperImGui
 
             currentRenderer = (ImGuiRenderer)Activator.CreateInstance(rendererType)!;
             settings = renderingSettings;
-            
+
             currentRenderer.Setup();
-            
+
             LoadConfig();
             LoadStyle();
 
-            if (ReflectionWindows)
+            if (UseReflectionForWindows)
             {
                 Log.Debug("Loading windows");
 
-                LoadWindows().ForEach(attribute => windows.Add(new WindowData(attribute)));
+                LoadAllWindowsWithReflection();
 
-                windows.ForEach(instance => instance.StartWindow());
-
-                Log.Debug($"Loaded {windows.Count} windows");
+                Log.Debug($"Loaded {Windows.Count} windows");
             }
 
             canRender = true;
@@ -108,7 +101,7 @@ public static partial class CopperImGui
             Log.Info($"Shutting down the rendering for {typeof(CopperImGui)}");
 
             currentRenderer.Shutdown();
-            windows.ForEach(instance => instance.StopWindow());
+            ShutdownAllWindows();
             UnloadFontAwesomeIcons();
         }
         catch (Exception e)

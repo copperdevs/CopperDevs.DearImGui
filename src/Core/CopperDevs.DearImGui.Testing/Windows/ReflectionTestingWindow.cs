@@ -2,12 +2,11 @@ using CopperDevs.DearImGui.Rendering;
 
 namespace CopperDevs.DearImGui.Testing.Windows;
 
-[Window("Reflection Testing", WindowOpen = false)]
-public class ReflectionTestingWindow : BaseWindow
+public class ReflectionTestingWindow() : Window("Reflection Testing")
 {
     private ReflectionTest reflectionTest = new();
     
-    public override void WindowUpdate()
+    public override void Render()
     {
         CopperImGui.RenderObjectValues(reflectionTest);
     }
