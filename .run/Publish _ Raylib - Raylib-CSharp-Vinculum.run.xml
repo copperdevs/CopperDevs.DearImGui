@@ -1,0 +1,6 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Publish | Raylib - Raylib-CSharp-Vinculum" type="DotNetFolderPublish" factoryName="Publish to folder">
+    <riderPublish configuration="Release" platform="Any CPU" runtime="Portable" target_folder="$PROJECT_DIR$/src/Renderers/Raylib/CopperDevs.DearImGui.Renderer.Raylib.Raylib-CSharp-Vinculum/bin/Release/net8.0/publish" target_framework="net8.0" uuid_high="-3407282353646843145" uuid_low="-4903897953479510967" />
+    <method v="2" />
+  </configuration>
+</component>
