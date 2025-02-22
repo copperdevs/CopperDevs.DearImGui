@@ -10,6 +10,8 @@ using Bliss.CSharp.Textures;
 using Bliss.CSharp.Windowing;
 using CopperDevs.Logger;
 using Hexa.NET.ImGui;
+using Veldrid;
+using BlissWindow = Bliss.CSharp.Windowing.Window;
 
 namespace CopperDevs.DearImGui.Renderer.Bliss;
 
@@ -56,7 +58,7 @@ internal static class BlissImGui
     public static void BeginInitImGui()
     {
         mouseCursorMap = new Dictionary<ImGuiMouseCursor, SystemCursor>();
-        
+
         lastFrameFocused = BlissRenderer.Window.IsFocused;
         lastControlPressed = false;
         lastShiftPressed = false;
@@ -206,8 +208,7 @@ internal static class BlissImGui
         int width;
         int height;
 
-        ImGui.GetTexDataAsRGBA32(io.Fonts, &pixels, &width, &height, null);
-
+        ImGui.GetTexDataAsRGBA32(io.Fonts, &pixels, &width, &height);
 
         // TODO: Add font support - waiting for Bliss version with full image support        
         // new Texture2D(BlissRenderer.Device);
@@ -306,13 +307,13 @@ internal static class BlissImGui
         }
 
         io.DisplayFramebufferScale = new Vector2(1, 1);
-        
+
         // TODO: See if theres a way to do high dpi stuff w/ bliss
         // if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX) || binding.WindowIsState(ConfigFlags.HighDpiWindow))
         //     io.DisplayFramebufferScale = binding.WindowGetScaleDPI();
 
         io.DeltaTime = dt >= 0 ? dt : (float)BlissRenderer.DeltaTime;
-        
+
 
         if (io.WantSetMousePos)
         {
@@ -348,10 +349,10 @@ internal static class BlissImGui
         else
         {
             Input.ShowCursor();
-            
-            
+
+
             if ((io.ConfigFlags & ImGuiConfigFlags.NoMouseCursorChange) == 0)
-                binding.InputSetMouseCursor(mouseCursorMap.GetValueOrDefault(imguiCursor, SystemCursor.Default));
+                Input.SetMouseCursor(new Sdl3Cursor(mouseCursorMap.GetValueOrDefault(imguiCursor, SystemCursor.Default)));
         }
     }
 
@@ -385,35 +386,31 @@ internal static class BlissImGui
         if (superDown != lastSuperPressed)
             io.AddKeyEvent(ImGuiKey.ModSuper, superDown);
         lastSuperPressed = superDown;
-        
+
         // get the pressed keys, they are in event order
-        var keyId = binding.InputGetKeyPressed();
-        while (keyId != 0)
-        {
-            var key = keyId;
-            if (BlissKeyMap.TryGetValue(key, out var value))
-                io.AddKeyEvent(value, true);
-            keyId = binding.InputGetKeyPressed();
-        }
+//        var keyId = Input.GetKeyPressed();
+//        while (keyId != 0)
+//        {
+//            var key = keyId;
+//            if (BlissKeyMap.TryGetValue(key, out var value))
+//                io.AddKeyEvent(value, true);
+//            keyId = Input.GetKeyPressed();
+//        }
 
         // look for any keys that were down last frame and see if they were down and are released
         // ReSharper disable once ForeachCanBePartlyConvertedToQueryUsingAnotherGetEnumerator
         foreach (var keyItr in BlissKeyMap)
         {
-            if (binding.InputIsKeyReleased(keyItr.Key))
+            if (Input.IsKeyReleased(keyItr.Key))
                 io.AddKeyEvent(keyItr.Value, false);
         }
 
         // add the text input in order
-        var pressed = binding.InputGetCharPressed();
-        while (pressed != 0)
-        {
-            io.AddInputCharacter((uint)pressed);
-            pressed = binding.InputGetCharPressed();
-        }
+        foreach (var c in Input.GetPressedChars())
+            io.AddInputCharacter(c);
 
         // gamepads
-        if ((io.ConfigFlags & ImGuiConfigFlags.NavEnableGamepad) == 0 || !binding.InputIsGamepadAvailable(0))
+        if ((io.ConfigFlags & ImGuiConfigFlags.NavEnableGamepad) == 0 || !Input.IsGamepadAvailable(0))
             return;
 
         // TODO: make sure gamepad controls are correct
@@ -422,20 +419,20 @@ internal static class BlissImGui
         HandleGamepadButtonEvent(io, GamepadButton.DpadDown, ImGuiKey.GamepadDpadDown);
         HandleGamepadButtonEvent(io, GamepadButton.DpadLeft, ImGuiKey.GamepadDpadLeft);
 
-        HandleGamepadButtonEvent(io, GamepadButton.RightFaceUp, ImGuiKey.GamepadFaceUp);
-        HandleGamepadButtonEvent(io, GamepadButton.RightFaceRight, ImGuiKey.GamepadFaceLeft);
-        HandleGamepadButtonEvent(io, GamepadButton.RightFaceDown, ImGuiKey.GamepadFaceDown);
-        HandleGamepadButtonEvent(io, GamepadButton.RightFaceLeft, ImGuiKey.GamepadFaceRight);
+//        HandleGamepadButtonEvent(io, GamepadButton.RightFaceUp, ImGuiKey.GamepadFaceUp);
+//        HandleGamepadButtonEvent(io, GamepadButton.RightFaceRight, ImGuiKey.GamepadFaceLeft);
+//        HandleGamepadButtonEvent(io, GamepadButton.RightFaceDown, ImGuiKey.GamepadFaceDown);
+//        HandleGamepadButtonEvent(io, GamepadButton.RightFaceLeft, ImGuiKey.GamepadFaceRight);
 
         HandleGamepadButtonEvent(io, GamepadButton.LeftShoulder, ImGuiKey.GamepadL1);
         HandleGamepadButtonEvent(io, GamepadButton.LeftPaddle1, ImGuiKey.GamepadL2);
-        HandleGamepadButtonEvent(io, GamepadButton.RightTrigger1, ImGuiKey.GamepadR1);
-        HandleGamepadButtonEvent(io, GamepadButton.RightTrigger2, ImGuiKey.GamepadR2);
+//        HandleGamepadButtonEvent(io, GamepadButton.RightTrigger1, ImGuiKey.GamepadR1);
+//        HandleGamepadButtonEvent(io, GamepadButton.RightTrigger2, ImGuiKey.GamepadR2);
         HandleGamepadButtonEvent(io, GamepadButton.LeftPaddle2, ImGuiKey.GamepadL3);
-        HandleGamepadButtonEvent(io, GamepadButton.RightThumb, ImGuiKey.GamepadR3);
+//        HandleGamepadButtonEvent(io, GamepadButton.RightThumb, ImGuiKey.GamepadR3);
 
-        HandleGamepadButtonEvent(io, GamepadButton.MiddleLeft, ImGuiKey.GamepadStart);
-        HandleGamepadButtonEvent(io, GamepadButton.MiddleRight, ImGuiKey.GamepadBack);
+        HandleGamepadButtonEvent(io, GamepadButton.Start, ImGuiKey.GamepadStart);
+        HandleGamepadButtonEvent(io, GamepadButton.Back, ImGuiKey.GamepadBack);
 
         // left stick
         HandleGamepadStickEvent(io, GamepadAxis.LeftX, ImGuiKey.GamepadLStickLeft, ImGuiKey.GamepadLStickRight);
@@ -449,9 +446,9 @@ internal static class BlissImGui
 
     private static void HandleGamepadButtonEvent(ImGuiIOPtr io, GamepadButton button, ImGuiKey key)
     {
-        if (binding.InputIsGamepadButtonPressed(0, button))
+        if (Input.IsGamepadButtonPressed(0, button))
             io.AddKeyEvent(key, true);
-        else if (binding.InputIsGamepadButtonReleased(0, button))
+        else if (Input.IsGamepadButtonReleased(0, button))
             io.AddKeyEvent(key, false);
     }
 
@@ -459,7 +456,7 @@ internal static class BlissImGui
     {
         const float deadZone = 0.20f;
 
-        var axisValue = binding.InputGetGamepadAxisMovement(0, axis);
+        var axisValue = Input.GetGamepadAxisMovement(0, axis);
 
         io.AddKeyAnalogEvent(negKey, axisValue < -deadZone, axisValue < -deadZone ? -axisValue : 0);
         io.AddKeyAnalogEvent(posKey, axisValue > deadZone, axisValue > deadZone ? axisValue : 0);
@@ -478,25 +475,20 @@ internal static class BlissImGui
         ImGui.NewFrame();
     }
 
+    private static GraphicsDevice Gd => BlissRenderer.Device;
+    private static CommandList Cl => BlissRenderer.CommandList;
+
     private static void EnableScissor(float x, float y, float width, float height)
     {
-        binding.RlGlEnableScissorTest();
         var io = ImGui.GetIO();
-
         var scale = new Vector2(1.0f, 1.0f);
-        // if (binding.WindowIsState(ConfigFlags.HighDpiWindow) || RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-        //     scale = io.DisplayFramebufferScale;
 
-        binding.RlGlScissor((int)(x * scale.X), (int)((io.DisplaySize.Y - (int)(y + height)) * scale.Y), (int)(width * scale.X), (int)(height * scale.Y));
-    }
+        uint xPos = (uint)(x * scale.X);
+        uint yPos = (uint)((io.DisplaySize.Y - (y + height)) * scale.Y);
+        uint w = (uint)(width * scale.X);
+        uint h = (uint)(height * scale.Y);
 
-    private static void TriangleVert(ImDrawVert idxVert)
-    {
-        var color = ImGui.ColorConvertU32ToFloat4(idxVert.Col);
-
-        binding.RlGlColor4F(color.X, color.Y, color.Z, color.W);
-        binding.RlGlTexCoord2F(idxVert.Uv.X, idxVert.Uv.Y);
-        binding.RlGlVertex2F(idxVert.Pos.X, idxVert.Pos.Y);
+        Cl.SetScissorRect(0, xPos, yPos, w, h);
     }
 
     private static void RenderTriangles(uint count, uint indexStart, ImVector<ushort> indexBuffer, ImVector<ImDrawVert> vertBuffer, ImTextureID texturePtr)
@@ -504,45 +496,36 @@ internal static class BlissImGui
         if (count < 3)
             return;
 
-        uint textureId = 0;
+        // Bind the pipeline
+        Cl.SetPipeline(_pipeline);
+
+        // Bind the vertex and index buffers
+        Cl.SetVertexBuffer(0, _vertexBuffer);
+        Cl.SetIndexBuffer(_indexBuffer, IndexFormat.UInt16);
+
+        // Bind texture if available
         if (texturePtr != IntPtr.Zero)
-            textureId = Convert.ToUInt32(texturePtr.Handle);
-
-        binding.RlGlBegin(4);
-        binding.RlGlSetTexture(textureId);
-
-        for (var i = 0; i <= (count - 3); i += 3)
         {
-            if (binding.RlGlCheckRenderBatchLimit(3))
+            TextureView? textureView = (TextureView?)GCHandle.FromIntPtr((IntPtr)texturePtr.Handle).Target;
+            if (textureView != null)
             {
-                binding.RlGlBegin(4);
-                binding.RlGlSetTexture(textureId);
+                Cl.SetGraphicsResourceSet(0, Gd.ResourceFactory.CreateResourceSet(new ResourceSetDescription(
+                    _resourceLayout, textureView, Gd.PointSampler)));
             }
-
-            var indexA = indexBuffer[(int)indexStart + i];
-            var indexB = indexBuffer[(int)indexStart + i + 1];
-            var indexC = indexBuffer[(int)indexStart + i + 2];
-
-            var vertexA = vertBuffer[indexA];
-            var vertexB = vertBuffer[indexB];
-            var vertexC = vertBuffer[indexC];
-
-            TriangleVert(vertexA);
-            TriangleVert(vertexB);
-            TriangleVert(vertexC);
         }
 
-        binding.RlGlEnd();
+        // Issue draw call
+        Cl.DrawIndexed(count, 1, indexStart, 0, 0);
     }
 
-    private delegate void Callback(ImDrawListPtr list, ImDrawCmdPtr cmd);
 
-    private static unsafe void RenderData()
+    public static unsafe void RenderData()
     {
-        binding.RlGlDrawRenderBatchActive();
-        binding.RlGlDisableBackfaceCulling();
-
         var data = ImGui.GetDrawData();
+        if (data == null || data.CmdListsCount == 0)
+            return;
+
+        Cl.Begin();
 
         for (var l = 0; l < data.CmdListsCount; l++)
         {
@@ -552,7 +535,9 @@ internal static class BlissImGui
             {
                 var cmd = commandList.CmdBuffer[cmdIndex];
 
-                EnableScissor(cmd.ClipRect.X - data.DisplayPos.X, cmd.ClipRect.Y - data.DisplayPos.Y,
+                EnableScissor(
+                    cmd.ClipRect.X - data.DisplayPos.X,
+                    cmd.ClipRect.Y - data.DisplayPos.Y,
                     cmd.ClipRect.Z - (cmd.ClipRect.X - data.DisplayPos.X),
                     cmd.ClipRect.W - (cmd.ClipRect.Y - data.DisplayPos.Y));
 
@@ -564,14 +549,11 @@ internal static class BlissImGui
                 }
 
                 RenderTriangles(cmd.ElemCount, cmd.IdxOffset, commandList.IdxBuffer, commandList.VtxBuffer, cmd.TextureId);
-
-                binding.RlGlDrawRenderBatchActive();
             }
         }
 
-        binding.RlGlSetTexture(0);
-        binding.RlGlDisableScissorTest();
-        binding.RlGlEnableBackfaceCulling();
+        Cl.End();
+        Gd.SubmitCommands(Cl);
     }
 
     /// <summary>

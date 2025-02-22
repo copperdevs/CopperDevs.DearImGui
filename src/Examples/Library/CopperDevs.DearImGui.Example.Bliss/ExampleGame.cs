@@ -1,3 +1,6 @@
+using Bliss.CSharp.Colors;
+using Bliss.CSharp.Interact;
+using Bliss.CSharp.Transformations;
 using Bliss.CSharp.Windowing;
 using CopperDevs.Core.Utility;
 using CopperDevs.DearImGui.Example.Bliss.Data;
@@ -13,6 +16,7 @@ public class ExampleGame(ExampleGameOptions options) : SafeDisposable
 
     private IWindow window = null!;
     private GraphicsDevice graphicsDevice = null!;
+    private CommandList commandList = null!;
 
     public void Setup()
     {
@@ -24,11 +28,12 @@ public class ExampleGame(ExampleGameOptions options) : SafeDisposable
             Options.GraphicsDeviceOptions,
             BlissWindow.GetPlatformDefaultBackend(),
             out graphicsDevice);
-    }
 
-    public void SetupImGui()
-    {
-        BlissRenderer.SetupReferences(window, graphicsDevice);
+        commandList = graphicsDevice.ResourceFactory.CreateCommandList();
+
+        window.Resized += OnResize;
+
+        BlissRenderer.SetupReferences(window, graphicsDevice, commandList);
         CopperImGui.Setup<BlissRenderer>(RenderingSettings.DockingEnabled | RenderingSettings.UseCustomStyling);
     }
 
@@ -37,12 +42,39 @@ public class ExampleGame(ExampleGameOptions options) : SafeDisposable
         while (window.Exists)
         {
             window.PumpEvents();
+            Input.Begin();
+
+            if (!window.Exists)
+            {
+                break;
+            }
+
+            Update();
         }
+    }
+
+    private void Update()
+    {
+        commandList.Begin();
+        commandList.SetFramebuffer(graphicsDevice.SwapchainFramebuffer);
+        commandList.ClearColorTarget(0, Color.DarkGray.ToRgbaFloat());
+
+        CopperImGui.Render();
+
+        commandList.End();
+        graphicsDevice.SubmitCommands(commandList);
+        graphicsDevice.SwapBuffers();
+    }
+
+    protected virtual void OnResize()
+    {
+        graphicsDevice.MainSwapchain.Resize((uint)window.GetWidth(), (uint)window.GetHeight());
     }
 
     public override void DisposeResources()
     {
         window.Dispose();
         graphicsDevice.Dispose();
+        CopperImGui.Shutdown();
     }
 }
