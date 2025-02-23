@@ -50,6 +50,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Exampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum", "src\Examples\Raylib\CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum\CopperDevs.DearImGui.Example.Raylib.Raylib-CSharp-Vinculum.csproj", "{CB536AF6-86A5-449A-9E2B-CEB6446547DE}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Library", "Library", "{30D16054-850F-4B3B-BAB1-187D50E0D87C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Example.Bliss", "src\Examples\Library\CopperDevs.DearImGui.Example.Bliss\CopperDevs.DearImGui.Example.Bliss.csproj", "{20DD99E6-1DB4-4110-A5EB-09C0C15276CA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CopperDevs.DearImGui.Renderer.Bliss", "src\Renderers\Library\CopperDevs.DearImGui.Renderer.Bliss\CopperDevs.DearImGui.Renderer.Bliss.csproj", "{9E73464D-92F2-4988-9EA7-785FDE2A8EF9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -104,6 +110,14 @@ Global
 		{CB536AF6-86A5-449A-9E2B-CEB6446547DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB536AF6-86A5-449A-9E2B-CEB6446547DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CB536AF6-86A5-449A-9E2B-CEB6446547DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20DD99E6-1DB4-4110-A5EB-09C0C15276CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20DD99E6-1DB4-4110-A5EB-09C0C15276CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20DD99E6-1DB4-4110-A5EB-09C0C15276CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20DD99E6-1DB4-4110-A5EB-09C0C15276CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9E73464D-92F2-4988-9EA7-785FDE2A8EF9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9E73464D-92F2-4988-9EA7-785FDE2A8EF9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9E73464D-92F2-4988-9EA7-785FDE2A8EF9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9E73464D-92F2-4988-9EA7-785FDE2A8EF9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BCB5D11D-AC1A-4B7A-9415-BD38C8FA6584} = {D80512F7-C352-4BD7-99A8-2D380494B3E8}
@@ -123,5 +137,8 @@ Global
 		{6A8A9C0C-F2E8-48A8-9FC2-9B041E381B6D} = {C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1}
 		{C98F8037-E5E1-4DD0-99EF-1522DA861A06} = {C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1}
 		{CB536AF6-86A5-449A-9E2B-CEB6446547DE} = {C58E73B1-33D4-4C9C-97D9-59FCBCDAB7D1}
+		{30D16054-850F-4B3B-BAB1-187D50E0D87C} = {D80512F7-C352-4BD7-99A8-2D380494B3E8}
+		{20DD99E6-1DB4-4110-A5EB-09C0C15276CA} = {4223FF19-0D8A-4F4B-A056-A1FDFC0602F7}
+		{9E73464D-92F2-4988-9EA7-785FDE2A8EF9} = {30D16054-850F-4B3B-BAB1-187D50E0D87C}
 	EndGlobalSection
 EndGlobal

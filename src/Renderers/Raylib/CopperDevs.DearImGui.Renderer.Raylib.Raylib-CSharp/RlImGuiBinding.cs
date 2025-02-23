@@ -21,7 +21,6 @@ using rlConfigFlags = Raylib_CSharp.Windowing.ConfigFlags;
 using rlMouseCursor = Raylib_CSharp.Interact.MouseCursor;
 using rlGamepadButton = Raylib_CSharp.Interact.GamepadButton;
 using rlGamepadAxis = Raylib_CSharp.Interact.GamepadAxis;
-
 using GameWindow = Raylib_CSharp.Windowing.Window;
 using Vector2 = System.Numerics.Vector2;
 
@@ -35,7 +34,7 @@ public class RlImGuiBinding : RlBinding
         CopperImGui.RegisterFieldRenderer<rlTexture2D, Texture2DFieldRenderer>();
         CopperImGui.RegisterFieldRenderer<RenderTexture2D, RenderTexture2DFieldRenderer>();
     }
-    
+
     public override Texture2D LoadFontTexture(IntPtr data, Vector2Int size)
     {
         var image = new Image
@@ -46,7 +45,7 @@ public class RlImGuiBinding : RlBinding
             Mipmaps = 1,
             Format = PixelFormat.UncompressedR8G8B8A8,
         };
-        
+
         var rlTexture = rlTexture2D.LoadFromImage(image);
 
         return new Texture2D()
